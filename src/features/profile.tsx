@@ -356,7 +356,7 @@ function ProfileForm() {
           </Surface>
 
           {polygamous ? (
-            <div className="grid shrink-0 gap-3">
+            <div className="grid flex-1 gap-3">
               <PersonCard
                 title="Candidat"
                 member={draft.applicant}
@@ -406,7 +406,7 @@ function ProfileForm() {
               </div>
             </div>
           ) : (
-            <div className={cn("grid shrink-0 items-stretch gap-3 min-w-0", showSpouse && "@min-[34rem]:grid-cols-2")}>
+            <div className={cn("grid flex-1 items-stretch gap-3 min-w-0", showSpouse && "@min-[34rem]:grid-cols-2")}>
               <PersonCard
                 title="Candidat"
                 member={draft.applicant}
@@ -1195,7 +1195,7 @@ function AppearancePicks({
   return (
     <fieldset>
       <legend className="mb-1 text-[11px] font-medium text-muted-foreground">{label}</legend>
-      <div className="ir-option-grid" style={{ "--ir-option-min": "7rem" }} role="radiogroup" aria-label={label}>
+      <div className="ir-option-grid ir-option-grid--max-3" style={{ "--ir-option-min": "7rem" }} role="radiogroup" aria-label={label}>
         {appearances.map((option) => {
           const selected = value === option;
           return (
@@ -1233,7 +1233,7 @@ function LanguagePicks({
   return (
     <fieldset>
       <legend className="mb-1 text-[11px] font-medium text-muted-foreground">{label}</legend>
-      <div className="ir-option-grid" style={{ "--ir-option-min": "8rem" }} role="radiogroup" aria-label={label}>
+      <div className="ir-option-grid ir-option-grid--max-3" style={{ "--ir-option-min": "7rem" }} role="radiogroup" aria-label={label}>
         {languageLevels.map((level) => {
           const selected = value === level;
           return (

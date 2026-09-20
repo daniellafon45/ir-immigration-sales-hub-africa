@@ -197,6 +197,11 @@ describe("provinces cost of living boards", () => {
     expect(source).toContain("Choisissez jusqu’à trois villes pour comparer.");
     expect(source).toContain("defaultCompareIds");
     expect(source).toContain("Estimation de démonstration.");
+    expect(extractFunction("ProvincesEstimator")).toContain("LivingMoneyField");
+    expect(extractFunction("ProvincesEstimator")).toContain("withLivingOverrides");
+    expect(extractFunction("ProvincesEstimator")).toContain('label="Net du foyer"');
+    expect(extractFunction("ProvincesEstimator")).toContain("{money(basket.total)}");
+    expect(extractFunction("ProvincesEstimator")).toContain("{money(basket.remainder)}");
   });
 
   it("filters compare city chips by the selected province instead of dumping the national list", () => {

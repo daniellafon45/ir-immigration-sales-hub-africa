@@ -53,11 +53,16 @@ describe("fluid layout system", () => {
     const splitMainEnd = css.indexOf("}", splitMainStart);
     const splitMainBlock = css.slice(splitMainStart, splitMainEnd);
 
+    expect(splitMainBlock).toContain("height: 100%");
     expect(splitMainBlock).toContain("overflow-x: visible");
     expect(splitMainBlock).toContain("overflow-y: auto");
     expect(splitMainBlock).toContain("padding-inline: 2px");
     expect(splitMainBlock).toContain("margin-inline: -2px");
     expect(splitMainBlock).not.toContain("overflow-x: hidden");
+
+    expect(css).toMatch(/\.page-shell__frame--split\s*\{[\s\S]*?height:\s*100%;/);
+    expect(css).toContain("align-self: stretch");
+    expect(css).toContain("min-height: 100%");
 
     expect(css).toMatch(/--page-pad-x:\s*clamp\(\s*1rem\b/);
   });

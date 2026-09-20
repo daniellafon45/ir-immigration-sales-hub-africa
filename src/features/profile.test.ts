@@ -311,7 +311,18 @@ describe("option grid alignment", () => {
       expect(fn).not.toContain("text-[10px]");
     }
     expect(appearance).toContain('--ir-option-min": "7rem"');
-    expect(language).toContain('--ir-option-min": "8rem"');
+    expect(language).toContain('--ir-option-min": "7rem"');
+    expect(appearance).toContain("ir-option-grid--max-3");
+    expect(language).toContain("ir-option-grid--max-3");
+    expect(sex).not.toContain("ir-option-grid--max-3");
+  });
+
+  it("lets the couple cards grow so their bottoms can meet the principal panel", () => {
+    const form = extractFunction("ProfileForm");
+    expect(form).toContain("grid flex-1 items-stretch gap-3 min-w-0");
+    expect(form).toContain("grid flex-1 gap-3");
+    expect(form).not.toContain("grid shrink-0 items-stretch gap-3 min-w-0");
+    expect(form).not.toContain('<div className="grid shrink-0 gap-3">');
   });
 
   it("uses the responsive option grid for the family tiles instead of hard-coded grid-cols breakpoints", () => {

@@ -43,6 +43,7 @@ import {
   defaultProvinceCode,
   defaultCompareIds,
   livingBasket,
+  withLivingOverrides,
 } from "@/lib/living-basket";
 import { householdMarket, type HouseholdMarket, type HouseholdMarketAdult } from "@/lib/household-market";
 import { profileAdFor, type ProfileAd } from "@/lib/profile-ad";
@@ -1775,7 +1776,37 @@ function ProvincesEstimator({
   const selectedId = cities.some((city) => city.id === cityId) ? cityId : cities[0]?.id ?? "montreal";
   const family = profile.objective === "Regroupement familial";
   const extras = family ? reunitedLivingExtras(profile) : undefined;
-  const basket = livingBasket(profile, selectedId, extras);
+  const catalog = livingBasket(profile, selectedId, extras);
+  const [housing, setHousing] = useState(catalog.housing);
+  const [grocery, setGrocery] = useState(catalog.grocery);
+  const [transport, setTransport] = useState(catalog.transport);
+  const [utilities, setUtilities] = useState(catalog.utilities);
+  const [childcare, setChildcare] = useState(catalog.childcare);
+  const [netMonthly, setNetMonthly] = useState(catalog.netMonthly);
+  useEffect(() => {
+    setHousing(catalog.housing);
+    setGrocery(catalog.grocery);
+    setTransport(catalog.transport);
+    setUtilities(catalog.utilities);
+    setChildcare(catalog.childcare);
+    setNetMonthly(catalog.netMonthly);
+  }, [
+    selectedId,
+    catalog.housing,
+    catalog.grocery,
+    catalog.transport,
+    catalog.utilities,
+    catalog.childcare,
+    catalog.netMonthly,
+  ]);
+  const basket = withLivingOverrides(catalog, {
+    housing,
+    grocery,
+    transport,
+    utilities,
+    childcare,
+    netMonthly,
+  });
   const pills = [
     market.family,
     market.province,
@@ -1786,12 +1817,12 @@ function ProvincesEstimator({
     ...market.adults.map((adult) => adult.member.profession),
   ];
   const rows = [
-    ["Logement", basket.housing],
-    ["Épicerie", basket.grocery],
-    ["Transport", basket.transport],
-    ["Services", basket.utilities],
-    ...(basket.kids > 0 ? [["Garde d’enfants", basket.childcare] as const] : []),
-  ] as Array<[string, number]>;
+    ["Logement", basket.housing, setHousing],
+    ["Épicerie", basket.grocery, setGrocery],
+    ["Transport", basket.transport, setTransport],
+    ["Services", basket.utilities, setUtilities],
+    ...(basket.kids > 0 ? [["Garde d’enfants", basket.childcare, setChildcare] as const] : []),
+  ] as Array<[string, number, (value: number) => void]>;
   return (
     <OpportunitiesShell
       kicker="Provinces · Coût de vie"
@@ -1840,11 +1871,8 @@ function ProvincesEstimator({
           {basket.city.name} · {provinceData[basket.city.province]?.name ?? basket.city.province}
         </SectionLabel>
         <div className="mt-3 ir-auto-grid">
-          {rows.map(([label, value]) => (
-            <div key={label} className="rounded-[14px] border border-border bg-white p-5">
-              <span className="block text-[10px] uppercase text-muted-foreground">{label}</span>
-              <strong className="mt-1.5 block text-[26px]">{money(value)}</strong>
-            </div>
+          {rows.map(([label, value, onChange]) => (
+            <LivingMoneyField key={label} label={label} value={value} onChange={onChange} />
           ))}
         </div>
         <div className="mt-3 ir-equal-row">
@@ -1852,10 +1880,7 @@ function ProvincesEstimator({
             <span className="block text-[10px] uppercase text-muted-foreground">Panier mensuel</span>
             <strong className="mt-1.5 block text-[26px]">{money(basket.total)}</strong>
           </div>
-          <div className="rounded-[14px] border border-border bg-white p-5">
-            <span className="block text-[10px] uppercase text-muted-foreground">Net du foyer</span>
-            <strong className="mt-1.5 block text-[26px]">{money(basket.netMonthly)}</strong>
-          </div>
+          <LivingMoneyField label="Net du foyer" value={basket.netMonthly} onChange={setNetMonthly} />
           <div className="rounded-[14px] border border-transparent bg-linear-to-br from-primary to-ir-deep p-5 text-white">
             <span className="block text-[10px] uppercase opacity-75">Reste estimatif</span>
             <strong className="mt-1.5 block text-[26px]">{money(basket.remainder)}</strong>

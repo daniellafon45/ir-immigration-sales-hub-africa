@@ -8,6 +8,7 @@ import {
   defaultProvinceCode,
   defaultCompareIds,
   livingBasket,
+  withLivingOverrides,
 } from "@/lib/living-basket";
 
 describe("livingCities", () => {
@@ -96,6 +97,19 @@ describe("livingBasket", () => {
     expect(view.childcare).toBe(900);
     expect(view.total).toBe(4570);
     expect(view.remainder).toBe(4880);
+  });
+});
+
+describe("withLivingOverrides", () => {
+  it("recalculates the Montreal couple basket when housing is edited to 2500", () => {
+    const view = withLivingOverrides(livingBasket(defaultProfile, "montreal"), { housing: 2500 });
+    expect(view.housing).toBe(2500);
+    expect(view.grocery).toBe(840);
+    expect(view.transport).toBe(300);
+    expect(view.utilities).toBe(220);
+    expect(view.total).toBe(3860);
+    expect(view.netMonthly).toBe(9450);
+    expect(view.remainder).toBe(5590);
   });
 });
 

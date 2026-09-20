@@ -29,6 +29,11 @@ describe("option grid utilities", () => {
     );
   });
 
+  it("caps appearance and language chips at three columns", () => {
+    expect(css).toContain(".ir-option-grid--max-3 {");
+    expect(css).toContain("minmax(min(100%, max(32%, var(--ir-option-min, 5.5rem))), 1fr)");
+  });
+
   it("defines .ir-option-btn for equal option chips", () => {
     expect(css).toContain(".ir-option-btn {");
     expect(css).toMatch(/\.ir-option-btn\s*\{[\s\S]*?display: flex;/);

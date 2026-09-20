@@ -69,3 +69,32 @@ export function livingBasket(profile: Profile, cityId: string, extras?: { extraA
     kids,
   };
 }
+
+export type LivingOverrides = Partial<
+  Pick<LivingBasket, "housing" | "grocery" | "transport" | "utilities" | "childcare" | "netMonthly">
+>;
+
+function moneyAmount(value: number) {
+  return Math.max(0, Number(value) || 0);
+}
+
+export function withLivingOverrides(basket: LivingBasket, overrides?: LivingOverrides): LivingBasket {
+  const housing = moneyAmount(overrides?.housing ?? basket.housing);
+  const grocery = moneyAmount(overrides?.grocery ?? basket.grocery);
+  const transport = moneyAmount(overrides?.transport ?? basket.transport);
+  const utilities = moneyAmount(overrides?.utilities ?? basket.utilities);
+  const childcare = moneyAmount(overrides?.childcare ?? basket.childcare);
+  const netMonthly = moneyAmount(overrides?.netMonthly ?? basket.netMonthly);
+  const total = housing + grocery + transport + utilities + childcare;
+  return {
+    ...basket,
+    housing,
+    grocery,
+    transport,
+    utilities,
+    childcare,
+    total,
+    netMonthly,
+    remainder: Math.max(0, netMonthly - total),
+  };
+}
