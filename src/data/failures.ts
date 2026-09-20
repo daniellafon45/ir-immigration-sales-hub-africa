@@ -21,7 +21,9 @@ export type FailureRiskId =
   | "housing"
   | "job-myth"
   | "counsel"
-  | "urgent";
+  | "urgent"
+  | "status-myth"
+  | "language";
 
 export type FailureRisk = {
   id: FailureRiskId;
@@ -90,6 +92,18 @@ export const failureRisks: FailureRisk[] = [
     label: "Attendre que tout soit urgent",
     cost: "L’urgence fait signer n’importe quoi.",
     image: quebecWinter,
+  },
+  {
+    id: "status-myth",
+    label: "Confondre temporaire et résidence permanente",
+    cost: "Un permis temporaire n’ouvre pas automatiquement la RP.",
+    image: problemWrongPath,
+  },
+  {
+    id: "language",
+    label: "Négliger les exigences linguistiques",
+    cost: "Sans score, plusieurs voies restent fermées.",
+    image: emploiHero,
   },
 ];
 

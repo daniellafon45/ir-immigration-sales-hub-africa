@@ -23,12 +23,12 @@ import slide12b from "@/assets/pitch/slide-12-2.jpg";
 import slide12c from "@/assets/pitch/slide-12-3.jpg";
 import slide12d from "@/assets/pitch/slide-12-4.jpg";
 import slide13qr from "@/assets/pitch/slide-13-1.png";
-import slide14 from "@/assets/pitch/slide-14-1.jpg";
 import banffFall from "@/assets/places/banff-fall.jpg";
 import montrealFall from "@/assets/places/montreal-fall.jpg";
 import quebecFall from "@/assets/places/quebec-fall.jpg";
 import torontoFall from "@/assets/places/toronto-fall.jpg";
 import {
+  appearanceFromCountry,
   familyHasChildren,
   familyHasSpouse,
   familyIsPolygamous,
@@ -38,9 +38,9 @@ import {
 
 export const PITCH_CONTACT = "ir-immigration.com   ·   WhatsApp 819 919 8683";
 
-export type PitchBullet = { title: string; body?: string; image?: string };
+export type PitchBullet = { title: string; body?: string; image?: string; href?: string };
 export type PitchStat = { value: string; label: string; note: string; image?: string };
-export type PitchCard = { title: string; body: string; image?: string };
+export type PitchCard = { title: string; body: string; image?: string; href?: string };
 
 export type PitchSlide = {
   id: number;
@@ -193,13 +193,14 @@ function appearanceSlug(look: string): PitchHeroLook {
 }
 
 export function pitchHeroLook(profile: Profile): PitchHeroLook {
-  return appearanceSlug(profile.applicant.look);
+  return appearanceSlug(appearanceFromCountry(profile.country));
 }
 
 export function pitchHeroLooks(profile: Profile): { applicant: PitchHeroLook; spouse: PitchHeroLook } {
+  const look = appearanceSlug(appearanceFromCountry(profile.country));
   return {
-    applicant: appearanceSlug(profile.applicant.look),
-    spouse: appearanceSlug(profile.spouse.look),
+    applicant: look,
+    spouse: look,
   };
 }
 
@@ -308,7 +309,7 @@ export function pitchFormPeople(profile: Profile, kind: PitchFormKind): PitchHer
 
 export function pitchFormImage(profile: Profile, kind: PitchFormKind) {
   const people = pitchFormPeople(profile, kind);
-  const look = appearanceSlug(profile.applicant.look);
+  const look = pitchHeroLook(profile);
   const looks = pitchHeroLooks(profile);
   const fallback = FORM_FALLBACK[kind];
   if (kind === "family" && people === "hf") {
@@ -358,9 +359,8 @@ export const pitchSlides: PitchSlide[] = [
   {
     id: 2,
     layout: "welcome",
-    kicker: "Pitch · Votre projet",
     title: "On peut vous aider à construire votre projet Canada.",
-    lead: "Nous sommes un cabinet d’immigration qui construit le projet au complet : statut, carrière et installation. Un seul interlocuteur, de la stratégie jusqu’à l’arrivée.",
+    lead: "IR Immigration accompagne les familles depuis l’Afrique : statut, carrière et installation. Un seul interlocuteur pour réussir le projet, pas seulement déposer un dossier.",
     cards: [
       { title: "Travailler", body: "dans votre domaine", image: torontoFall },
       { title: "S’installer", body: "avec plus de sérénité", image: montrealFall },
@@ -370,47 +370,64 @@ export const pitchSlides: PitchSlide[] = [
   },
   {
     id: 3,
-    layout: "stats",
-    title: "LE CANADA CONTINUE D’ACCUEILLIR. LA SÉLECTION EST PLUS CIBLÉE.",
-    lead: "Les possibilités restent réelles, mais le profil, la stratégie et la qualité du dossier comptent davantage.",
-    stats: [
+    layout: "pillars",
+    title: "QUI EST IR : 3 EXPERTISES, 1 SEUL PROJET DE VIE",
+    lead: "Vous ne changez pas d’équipe à chaque étape. Nous connectons les enjeux qui décident de la qualité de votre parcours.",
+    cards: [
       {
-        value: "380 000",
-        label: "admissions de résidents permanents prévues chaque année",
-        note: "2026 à 2028",
-        image: pontInstallation,
+        title: "IMMIGRATION",
+        body: "Analyse du profil, stratégie, préparation et coordination. Professionnels autorisés mobilisés lorsque requis.",
+        href: "https://ir-immigration.com/",
       },
       {
-        value: "64 %",
-        label: "part de l’immigration économique visée",
-        note: "en 2027 et 2028",
-        image: emploiSante,
+        title: "CARRIÈRE & EMPLOI",
+        body: "Positionnement métier, réseau et IR recrutement / Industrielle RH. Pas un emploi « garanti ».",
+        href: "https://industriellerh.com/",
       },
       {
-        value: "9 %",
-        label: "cible de résidents permanents francophones hors Québec",
-        note: "2026 • 10,5 % en 2028",
-        image: pontVille,
-      },
-      {
-        value: "1,25",
-        label: "enfant par femme au Canada, un creux historique",
-        note: "donnée 2024",
-        image: demoAines,
+        title: "CONCIERGERIE",
+        body: "Logement, accueil et démarches pour arriver avec des repères concrets.",
+        href: "https://ir-conciergerie.com/",
       },
     ],
-    quote: "Les portes existent. La préparation fait la différence.",
-    legal: "Sources : IRCC, Plan des niveaux d’immigration 2026-2028. Statistique Canada, fécondité 2024.",
+    quote: "Un seul fil conducteur : votre projet de vie au Canada.",
+    legal: "Les services exacts dépendent du forfait, de la province et de votre admissibilité.",
   },
   {
     id: 4,
+    layout: "split-left",
+    title: "LE BUT D’UN PROJET D’IMMIGRATION",
+    lead: "Immigrer pour réussir une vie, pas uniquement pour obtenir un papier.",
+    image: slide08,
+    items: [
+      { title: "Un statut cohérent avec le foyer" },
+      { title: "Un plan carrière réaliste" },
+      { title: "Une installation préparée" },
+      { title: "Une projection claire sur 3 à 5 ans" },
+    ],
+    quote: "Un statut n’est pas encore une intégration.",
+  },
+  {
+    id: 5,
+    layout: "forms",
+    title: "LES OPPORTUNITÉS DU CANADA",
+    lead: "Étudier, travailler, entreprendre et s’installer en famille, souvent dans la même trajectoire.",
+    cards: [
+      { title: "ÉTUDIER", body: "", image: slide12a },
+      { title: "TRAVAILLER", body: "", image: slide12b },
+      { title: "ENTREPRENDRE", body: "", image: slide12c },
+      { title: "S’INSTALLER EN FAMILLE", body: "", image: slide12d },
+    ],
+  },
+  {
+    id: 6,
     layout: "problems",
-    title: "POURQUOI TANT DE PROJETS SE COMPLIQUENT ?",
+    title: "LES PIÈGES QUI CASSENT LES PROJETS",
     lead: "Une bonne intention ne remplace pas une bonne stratégie.",
     items: [
       {
         title: "La mauvaise voie est choisie",
-        body: "Le projet commence sans vraie lecture du profil et de l’admissibilité.",
+        body: "Le projet commence sans vraie lecture du profil.",
         image: problemWrongPath,
       },
       {
@@ -420,114 +437,21 @@ export const pitchSlides: PitchSlide[] = [
       },
       {
         title: "La carrière est préparée trop tard",
-        body: "Le candidat pense au marché du travail seulement après son arrivée.",
+        body: "Le marché du travail n’est pensé qu’après l’arrivée.",
         image: problemCareerLate,
       },
       {
         title: "L’installation est laissée au hasard",
-        body: "Logement, démarches et repères se transforment en urgence.",
+        body: "Logement et démarches deviennent une urgence.",
         image: problemSettlementChance,
       },
     ],
     quote: "Chez IR, immigration, carrière et installation sont travaillées ensemble.",
   },
   {
-    id: 5,
-    layout: "pillars",
-    title: "LA DIFFÉRENCE IR : 3 EXPERTISES, 1 SEUL PROJET DE VIE",
-    lead: "Vous ne changez pas d’équipe à chaque étape. Nous connectons les enjeux qui décident de la qualité de votre parcours.",
-    cards: [
-      {
-        title: "IMMIGRATION",
-        body: "Analyse du profil, stratégie, préparation et coordination du dossier. Professionnels autorisés mobilisés lorsque requis.",
-      },
-      {
-        title: "CARRIÈRE & EMPLOI",
-        body: "Positionnement métier, CV, entrevue, orientation vers les exigences du marché et réseau professionnel.",
-      },
-      {
-        title: "CONCIERGERIE",
-        body: "Logement, accueil, démarches pratiques et installation pour arriver avec des repères concrets.",
-      },
-    ],
-    quote: "Un seul fil conducteur : votre projet de vie au Canada.",
-    legal: "Les services exacts dépendent du forfait choisi, de la province et de votre admissibilité.",
-  },
-  {
-    id: 6,
-    layout: "journey",
-    title: "VOTRE PARCOURS, DE L’IDÉE À L’INSTALLATION",
-    lead: "Une méthode simple à comprendre. Chaque étape prépare la suivante.",
-    items: [
-      { title: "DIAGNOSTIC", body: "Comprendre votre profil, vos objectifs et vos contraintes." },
-      { title: "STRATÉGIE", body: "Identifier les options réalistes et les priorités." },
-      { title: "PRÉPARATION", body: "Organiser les documents, preuves et échéances." },
-      { title: "DÉPÔT & SUIVI", body: "Coordonner le dossier et répondre aux demandes." },
-      { title: "DÉPART", body: "Préparer carrière, logement et arrivée." },
-      { title: "INTÉGRATION", body: "Soutenir l’installation et les prochaines étapes." },
-    ],
-    quote: "Une seule question guide tout le parcours : quelle est la prochaine action utile pour votre projet ?",
-  },
-  {
     id: 7,
-    layout: "forms",
-    title: "VOTRE CANADA PEUT PRENDRE PLUSIEURS FORMES",
-    lead: "Chaque projet est différent. Votre stratégie doit l’être aussi.",
-    cards: [
-      { title: "ÉTUDIER", body: "", image: slide12a },
-      { title: "TRAVAILLER", body: "", image: slide12b },
-      { title: "ENTREPRENDRE", body: "", image: slide12c },
-      { title: "S’INSTALLER EN FAMILLE", body: "", image: slide12d },
-    ],
-    quote: "IR vous aide à transformer l’envie en plan d’action réaliste.",
-  },
-  {
-    id: 8,
-    layout: "split-left",
-    title: "UN STATUT N’EST PAS ENCORE UNE INTÉGRATION",
-    lead: "Nous préparons aussi l’après.",
-    image: slide08,
-    items: [
-      { title: "Projet professionnel et ciblage métier" },
-      { title: "CV, entrevue et positionnement aux standards canadiens" },
-      { title: "Orientation sur reconnaissance, équivalences et formations utiles" },
-      { title: "Réseau, employeurs et pistes de développement" },
-    ],
-    quote: "Objectif : arriver avec un plan professionnel, pas recommencer de zéro.",
-  },
-  {
-    id: 9,
-    layout: "split-right",
-    title: "VOTRE ARRIVÉE PEUT ÊTRE DÉJÀ ORGANISÉE",
-    lead: "Selon le forfait choisi, nous pouvons préparer une grande partie de votre installation avant même votre départ.",
-    image: slide09,
-    items: [
-      { title: "Accueil à l’aéroport" },
-      { title: "Recherche et inspection de logement" },
-      { title: "Clés et logement prêt" },
-      { title: "SIM, premières courses et abonnements" },
-      { title: "Démarches essentielles sur place" },
-      { title: "Support et orientation après l’arrivée" },
-    ],
-    legal: "Les démarches varient selon la province, le statut et la situation du client.",
-  },
-  {
-    id: 10,
-    layout: "hero",
-    title: "IMAGINEZ VOS 90 PREMIERS JOURS",
-    lead: "Moins d’improvisation. Plus de repères dès le départ.",
-    image: slide10,
-    items: [
-      { title: "AVANT LE DÉPART", body: "Documents, logement, préparation carrière et plan d’arrivée." },
-      { title: "SEMAINE 1", body: "Accueil, clés, démarches prioritaires, repères essentiels." },
-      { title: "MOIS 1 À 3", body: "Installation, réseau, carrière, suivi et ajustements." },
-    ],
-    legal: "Selon les services retenus et votre situation.",
-  },
-  {
-    id: 11,
     layout: "promises",
-    title: "CE QUE NOUS PROMETTONS. ET CE QUE NOUS NE PROMETTONS PAS.",
+    title: "NOTRE APPROCHE : RÈGLES, JUSTIFICATIONS, HONNÊTETÉ",
     lead: "La confiance commence par des attentes claires.",
     cards: [
       { title: "NOUS PROMETTONS", body: "yes" },
@@ -535,37 +459,107 @@ export const pitchSlides: PitchSlide[] = [
     ],
     items: [
       { title: "Une lecture honnête de votre situation" },
-      { title: "Une stratégie personnalisée" },
-      { title: "De la rigueur et de la transparence" },
-      { title: "Un accompagnement structuré dans la durée" },
+      { title: "Le respect de la logique des autorités" },
+      { title: "De la transparence sur les délais variables" },
+      { title: "Un accompagnement structuré (et des recours si nécessaires)" },
       { title: "Une approbation garantie" },
       { title: "Un emploi garanti" },
       { title: "Une résidence permanente garantie" },
       { title: "Des délais irréalistes ou “miracles”" },
     ],
     quote: "Nous ne vendons pas de rêve. Nous construisons une méthode et un chemin sécurisé.",
-    legal: "Toute décision appartient aux autorités compétentes. L’admissibilité est évaluée au cas par cas.",
+    legal: "Toute décision appartient aux autorités compétentes.",
+  },
+  {
+    id: 8,
+    layout: "journey",
+    title: "LE PIPELINE : DE L’IDÉE AU RDV",
+    lead: "Une méthode simple. Le détail de la voie se construit en consultation.",
+    items: [
+      { title: "PROFIL", body: "Comprendre le foyer et l’objectif." },
+      { title: "PROJECTION", body: "Salaires, coût de vie, opportunités." },
+      { title: "RISQUES", body: "Nommer les pièges avant qu’ils coûtent." },
+      { title: "DIFFÉRENCE IR", body: "Comparer avec les autres approches." },
+      { title: "ÉCOSYSTÈME", body: "Immigration, emploi, installation." },
+      { title: "RDV WEB", body: "Réserver la consultation sur le site." },
+    ],
+    quote: "Quelle est la prochaine action utile pour votre projet ?",
+  },
+  {
+    id: 9,
+    layout: "stats",
+    title: "POURQUOI IR PLUTÔT QU’UNE AGENCE « VISA ONLY » ?",
+    lead: "Les portes existent. La préparation et l’écosystème font la différence.",
+    stats: [
+      {
+        value: "3",
+        label: "expertises dans un seul projet de vie",
+        note: "Immigration · Emploi · Conciergerie",
+        image: pontInstallation,
+      },
+      {
+        value: "1",
+        label: "interlocuteur pour le foyer",
+        note: "Pas un vendeur de visa isolé",
+        image: emploiSante,
+      },
+      {
+        value: "0",
+        label: "promesse miracle",
+        note: "Décisions aux autorités",
+        image: pontVille,
+      },
+      {
+        value: "∞",
+        label: "partenaires pour les démarches",
+        note: "Études, billet, RP, emploi…",
+        image: demoAines,
+      },
+    ],
+    quote: "Immigrer pour réussir, pas uniquement pour un dossier.",
+  },
+  {
+    id: 10,
+    layout: "split-right",
+    title: "UN ÉCOSYSTÈME DE PARTENAIRES",
+    lead: "Visa, billet, études, emploi, RP, installation : un réseau pour chaque étape.",
+    image: slide09,
+    items: [
+      { title: "IR Immigration, stratégie et dossier", href: "https://ir-immigration.com/" },
+      { title: "IR recrutement / Industrielle RH, carrière", href: "https://industriellerh.com/" },
+      { title: "IR Conciergerie, logement et accueil", href: "https://ir-conciergerie.com/" },
+      { title: "Partenaires études, billet et démarches" },
+    ],
+    legal: "Les honoraires IR sont présentés en rendez-vous, selon le projet.",
+  },
+  {
+    id: 11,
+    layout: "journey",
+    title: "CE QUE VOUS OBTENEZ EN SIGNANT AVEC IR",
+    lead: "Un parcours clair. Le détail opérationnel se précise en consultation.",
+    items: [
+      { title: "DIAGNOSTIC", body: "Profil, objectifs, contraintes du foyer." },
+      { title: "STRATÉGIE", body: "Options réalistes, sans tout dévoiler ici." },
+      { title: "PRÉPARATION", body: "Documents, preuves, calendrier." },
+      { title: "DÉPÔT & SUIVI", body: "Coordination et réponses aux autorités." },
+      { title: "DÉPART", body: "Carrière, logement, plan d’arrivée." },
+      { title: "INTÉGRATION", body: "Soutien après l’arrivée." },
+    ],
+    quote: "Le Canada n’est pas un rêve à acheter. C’est un projet à construire.",
   },
   {
     id: 12,
     layout: "cta",
-    title: "ENTAMONS VOTRE PROJET SANS PLUS TARDER",
-    lead: "La consultation est déjà payée. Ses frais seront déduits des honoraires de service de la procédure.",
+    title: "PRENEZ RENDEZ-VOUS SUR LE SITE",
+    lead: "Le détail de votre voie se construit en consultation. Réservez maintenant sur ir-immigration.com.",
     qr: slide13qr,
     items: [
-      { title: "Nous validons la stratégie retenue aujourd’hui" },
-      { title: "Nous constituons le dossier et le calendrier" },
-      { title: "Nous lançons les démarches sans attendre" },
-      { title: "Vous avancez avec un plan d’action clair" },
+      { title: "Vous clarifiez l’objectif du foyer" },
+      { title: "Nous cadrons une stratégie réaliste" },
+      { title: "Vous repartez avec les prochaines étapes" },
+      { title: "Les honoraires sont présentés en rendez-vous" },
     ],
-    footer: "PARLONS DE VOTRE PROJET",
-    legal: "Scannez pour nous écrire sur WhatsApp · 819 919 8683",
-  },
-  {
-    id: 13,
-    layout: "hero",
-    title: "LE CANADA N’EST PAS UN RÊVE À ACHETER. C’EST UN PROJET À CONSTRUIRE.",
-    lead: "Construisons le vôtre avec méthode.",
-    image: slide14,
+    footer: "PRENDRE RENDEZ-VOUS",
+    legal: "ir-immigration.com · WhatsApp 819 919 8683",
   },
 ];

@@ -23,8 +23,9 @@ function extractFunction(name: string) {
 }
 
 describe("echecs catalog", () => {
-  it("keeps a single failure slide", () => {
-    expect(sections.find((section) => section.id === "echecs")?.slideCount).toBe(1);
+  it("surfaces risks as risques on the Africa catalog", () => {
+    expect(sections.map((s) => s.id)).not.toContain("echecs");
+    expect(sections.find((section) => section.id === "risques")?.slideCount).toBe(1);
   });
 });
 

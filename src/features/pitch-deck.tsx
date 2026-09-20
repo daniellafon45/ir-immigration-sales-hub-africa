@@ -1,4 +1,5 @@
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { IR_CTA, IR_SITE_LABEL, IR_SITE_URL } from "@/data/ecosystem";
 import { defaultProfile, type Profile } from "@/data/profile";
 import { PITCH_CONTACT, pitchDaysImage, pitchFormCards, pitchHeroLooks, pitchHeroPeople, pitchHeroScene, pitchHeroSources, pitchWelcomeTitle, type PitchSlide } from "@/data/pitch";
 import { cn } from "@/lib/utils";
@@ -139,21 +140,22 @@ function SlideBody({ slide, profile }: { slide: PitchSlide; profile: Profile }) 
 
 function WelcomeSlide({ slide, title }: { slide: PitchSlide; title: string }) {
   return (
-    <div className="mx-auto flex min-h-full w-full max-w-[90rem] flex-col justify-center pr-12 sm:pr-20">
-      {slide.kicker ? (
-        <p className="text-[10px] font-semibold tracking-[0.18em] text-primary uppercase">{slide.kicker}</p>
-      ) : null}
-      <h1 className="mt-2 max-w-[min(970px,calc(100%-3.5rem))] text-[clamp(1.5rem,4vw,2.625rem)] leading-[1.08] font-semibold tracking-tight text-[#10233f]">
-        {title}
-      </h1>
-      {slide.lead ? (
-        <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg">{slide.lead}</p>
-      ) : null}
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-auto flex min-h-full w-full max-w-[52rem] flex-col items-center justify-center">
+      <div className="w-full text-center">
+        <h1 className="mx-auto max-w-[min(970px,calc(100%-3.5rem))] text-[clamp(1.5rem,4vw,2.625rem)] leading-[1.08] font-semibold tracking-tight text-[#10233f]">
+          {title}
+        </h1>
+        {slide.lead ? (
+          <p className="mx-auto mt-3 max-w-[62ch] text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {slide.lead}
+          </p>
+        ) : null}
+      </div>
+      <div className="mt-8 grid w-full gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {slide.cards?.map((card) => (
           <div
             key={card.title}
-            className="relative min-h-[160px] overflow-hidden rounded-[1.2rem] bg-cover bg-center sm:h-[200px]"
+            className="relative min-h-[160px] overflow-hidden rounded-[1.2rem] bg-cover bg-center text-left sm:h-[200px]"
             style={card.image ? { backgroundImage: `url("${card.image}")` } : undefined}
           >
             <span className="absolute inset-0 bg-linear-to-t from-[#08111e]/78 via-[#08111e]/18 to-transparent" />
@@ -216,7 +218,18 @@ function SplitSlide({ slide, photo }: { slide: PitchSlide; photo: "left" | "righ
           {slide.items.map((item) => (
             <li key={item.title} className="flex items-start gap-3 text-[15px] text-white/90">
               <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#e31c23]" />
-              {item.title}
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline-offset-2 hover:underline"
+                >
+                  {item.title}
+                </a>
+              ) : (
+                item.title
+              )}
             </li>
           ))}
         </ul>
@@ -306,12 +319,34 @@ function PillarsSlide({ slide }: { slide: PitchSlide }) {
       <PitchTitle title={slide.title} />
       {slide.lead ? <p className="mt-4 max-w-[920px] text-base text-[#5b6b7c]">{slide.lead}</p> : null}
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        {slide.cards?.map((card) => (
-          <div key={card.title} className="rounded-2xl bg-primary px-6 py-8 text-white">
-            <p className="font-[family-name:var(--font-pitch)] text-xl tracking-wide">{card.title}</p>
-            <p className="mt-4 text-sm leading-relaxed text-white/85">{card.body}</p>
-          </div>
-        ))}
+        {slide.cards?.map((card) => {
+          const inner = (
+            <>
+              <p className="font-[family-name:var(--font-pitch)] text-xl tracking-wide">{card.title}</p>
+              <p className="mt-4 text-sm leading-relaxed text-white/85">{card.body}</p>
+              {card.href ? (
+                <p className="mt-4 text-[11px] font-semibold text-white/90">
+                  {card.href.replace(/^https?:\/\//, "").replace(/\/$/, "")} →
+                </p>
+              ) : null}
+            </>
+          );
+          return card.href ? (
+            <a
+              key={card.title}
+              href={card.href}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-2xl bg-primary px-6 py-8 text-white transition hover:brightness-110"
+            >
+              {inner}
+            </a>
+          ) : (
+            <div key={card.title} className="rounded-2xl bg-primary px-6 py-8 text-white">
+              {inner}
+            </div>
+          );
+        })}
       </div>
       {slide.quote ? <p className="mt-8 text-base font-semibold">{slide.quote}</p> : null}
       {slide.legal ? <p className="mt-2 text-xs text-[#8a96a4]">{slide.legal}</p> : null}
@@ -456,11 +491,27 @@ function CtaSlide({ slide }: { slide: PitchSlide }) {
             </li>
           ))}
         </ol>
+        <a
+          href={IR_SITE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-8 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-white hover:bg-primary/90"
+        >
+          {IR_CTA}
+        </a>
       </div>
       <div className="rounded-3xl bg-[#0d2744] p-6 text-center text-white">
         <p className="font-[family-name:var(--font-pitch)] text-xl tracking-wide">{slide.footer}</p>
         {slide.qr ? <img src={slide.qr} alt="QR code WhatsApp IR Immigration" className="mx-auto mt-5 size-40 rounded-xl bg-white p-2 sm:size-52" /> : null}
         {slide.legal ? <p className="mt-4 text-xs text-white/70">{slide.legal}</p> : null}
+        <a
+          href={IR_SITE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-block text-sm font-semibold text-white underline-offset-2 hover:underline"
+        >
+          {IR_SITE_LABEL}
+        </a>
       </div>
     </div>
   );

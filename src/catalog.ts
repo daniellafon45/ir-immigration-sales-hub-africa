@@ -1,15 +1,12 @@
 import type { LucideIcon } from "lucide-react";
 import {
   AlertTriangle,
-  Briefcase,
-  Calculator,
-  Columns2,
+  CalendarCheck,
   DollarSign,
-  MapPin,
+  Globe2,
   Network,
   Presentation,
-  Radio,
-  Signpost,
+  Scale,
   TrendingUp,
   User,
 } from "lucide-react";
@@ -17,16 +14,13 @@ import {
 export type SectionId =
   | "profile"
   | "pitch"
-  | "canada"
   | "opportunites"
-  | "emplois"
-  | "salaires"
-  | "calculateurs"
-  | "provinces"
-  | "voies"
-  | "comparateur"
-  | "echecs"
-  | "ecosysteme";
+  | "comparaison-pays"
+  | "preuves"
+  | "risques"
+  | "pourquoi-nous"
+  | "ecosysteme"
+  | "rdv";
 
 export type SectionMeta = {
   id: SectionId;
@@ -37,15 +31,12 @@ export type SectionMeta = {
 
 export const sections: SectionMeta[] = [
   { id: "profile", label: "Profil client", icon: User, slideCount: 1 },
-  { id: "pitch", label: "Pitch", icon: Presentation, slideCount: 13 },
-  { id: "canada", label: "Canada Live", icon: Radio, slideCount: 4 },
-  { id: "opportunites", label: "Opportunités", icon: TrendingUp, slideCount: 3 },
-  { id: "emplois", label: "Emplois", icon: Briefcase, slideCount: 2 },
-  { id: "salaires", label: "Guide salarial", icon: DollarSign, slideCount: 1 },
-  { id: "calculateurs", label: "Calculateurs", icon: Calculator, slideCount: 3 },
-  { id: "provinces", label: "Provinces", icon: MapPin, slideCount: 2 },
-  { id: "voies", label: "Voies d’immigration", icon: Signpost, slideCount: 2 },
-  { id: "comparateur", label: "Comparateur de procédures", icon: Columns2, slideCount: 2 },
-  { id: "echecs", label: "Échecs fréquents", icon: AlertTriangle, slideCount: 1 },
-  { id: "ecosysteme", label: "Écosystème IR", icon: Network, slideCount: 1 },
+  { id: "pitch", label: "Votre projet", icon: Presentation, slideCount: 11 },
+  { id: "opportunites", label: "Opportunités Canada", icon: TrendingUp, slideCount: 1 },
+  { id: "comparaison-pays", label: "Canada vs pays", icon: Globe2, slideCount: 1 },
+  { id: "preuves", label: "Salaires & coût de vie", icon: DollarSign, slideCount: 2 },
+  { id: "risques", label: "Pièges & détresse", icon: AlertTriangle, slideCount: 1 },
+  { id: "pourquoi-nous", label: "Pourquoi IR", icon: Scale, slideCount: 1 },
+  { id: "ecosysteme", label: "Écosystème & parcours", icon: Network, slideCount: 1 },
+  { id: "rdv", label: "Prendre RDV", icon: CalendarCheck, slideCount: 1 },
 ];

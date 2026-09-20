@@ -171,11 +171,27 @@ export function EcosystemSection() {
       </Surface>
       <div className="grid min-w-0 gap-3 @min-[24rem]:grid-cols-2 @min-[40rem]:grid-cols-3">
         {ecosystemPillars.map((pillar) => (
-          <Surface key={pillar.id} className="p-4">
-            <p className="text-[9px] font-extrabold tracking-wide text-primary uppercase">{pillar.tag}</p>
-            <h3 className="mt-2 mb-1.5 text-base font-semibold">{pillar.title}</h3>
-            <p className="text-[13px] leading-relaxed text-[#707987]">{pillar.body}</p>
-          </Surface>
+          <a
+            key={pillar.id}
+            href={pillar.url}
+            target="_blank"
+            rel="noreferrer"
+            className="block rounded-[1.2rem] outline-none transition hover:ring-2 hover:ring-primary/25 focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <Surface className="relative h-full min-h-[180px] overflow-hidden p-4">
+              <img src={pillar.image} alt="" className="absolute inset-0 size-full object-cover" />
+              <span className="absolute inset-0 bg-ir-navy/30" />
+              <span className="absolute inset-0 bg-linear-to-t from-ir-navy from-15% via-ir-navy/75 via-50% to-transparent" />
+              <div className="relative z-10 flex h-full min-h-[148px] flex-col">
+                <p className="text-[9px] font-extrabold tracking-wide text-white/80 uppercase">{pillar.tag}</p>
+                <h3 className="mt-2 mb-1.5 text-base font-semibold text-white">{pillar.title}</h3>
+                <p className="text-[13px] leading-relaxed text-white/85">{pillar.body}</p>
+                <p className="mt-auto pt-3 text-[11px] font-semibold text-white">
+                  {pillar.url.replace(/^https?:\/\//, "").replace(/\/$/, "")} →
+                </p>
+              </div>
+            </Surface>
+          </a>
         ))}
       </div>
       <Surface className="flex flex-col gap-4 border-transparent bg-linear-to-br from-primary to-ir-deep p-4 text-white shadow-[0_12px_28px_rgba(27,84,141,.22)] sm:flex-row sm:items-center sm:justify-between">
@@ -192,7 +208,7 @@ export function EcosystemSection() {
           </div>
         </div>
         <a
-          href={IR_WHATSAPP_URL}
+          href={IR_SITE_URL}
           target="_blank"
           rel="noreferrer"
           className="inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-white px-4 text-sm font-semibold text-primary hover:bg-white/90"

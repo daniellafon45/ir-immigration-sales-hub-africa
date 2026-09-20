@@ -13,9 +13,11 @@ function extractFunction(name: string) {
 }
 
 describe("profile shader banners", () => {
-  it("keeps the water shader on the Profil client page header", () => {
+  it("uses a photo banner on the Profil client page header", () => {
     const form = extractFunction("ProfileForm");
-    expect(form).toContain("<IrShaderGradient");
+    expect(form).toContain("personHeroImage(principal)");
+    expect(form).toContain("bg-linear-to-r from-primary/92 via-primary/62 to-primary/20");
+    expect(form).not.toContain("<IrShaderGradient");
     expect(form).not.toContain("pitchHeroImage");
     expect(form).not.toContain("sectionBanners");
   });
@@ -40,7 +42,9 @@ describe("profile shader banners", () => {
   });
 
   it("exposes a polygamous household with two wife cards", () => {
-    expect(source).toContain('label: "Polygame"');
+    expect(source).toContain('label: "Couple"');
+    expect(source).toContain("simple");
+    expect(source).not.toContain('label: "Polygame"');
     expect(source).toContain("Épouse 1");
     expect(source).toContain("Épouse ${index + 2}");
     expect(source).toContain("Le Canada ne reconnaît qu’un conjoint");
@@ -92,6 +96,17 @@ describe("profile form column scroll", () => {
     expect(form).toContain("<PageShell");
     expect(form).not.toContain("xl:overflow-y-auto");
     expect(form).not.toContain("xl:grid-cols-[minmax(0,1fr)_300px]");
+  });
+});
+
+describe("principal panel background", () => {
+  it("uses a Canada photo behind the navy overlay on PrincipalPanel", () => {
+    expect(source).toContain('import canadaBanner from "@/assets/banners/canada.jpg"');
+    const panel = extractFunction("PrincipalPanel");
+    expect(panel).toContain("src={canadaBanner}");
+    expect(panel).toContain("absolute inset-0 size-full object-cover object-[center_30%]");
+    expect(panel).toContain("bg-linear-to-br from-primary/90 via-primary/82 to-ir-deep/88");
+    expect(panel).not.toContain("bg-linear-to-br from-primary to-ir-deep p-4");
   });
 });
 
@@ -165,89 +180,43 @@ describe("adult sex field", () => {
     expect(personCard).not.toContain("options={professions}");
   });
 
-  it("lets each PersonCard pick Noir, Blanc or Maghrébin", () => {
+  it("hides Portrait picks from each PersonCard", () => {
     const personCard = extractFunction("PersonCard");
-    expect(personCard).toContain('label="Apparence"');
-    expect(personCard).toContain("member.look");
-    expect(personCard).toContain("AppearancePicks");
-    expect(personCard).toContain("onChange({ look:");
+    expect(personCard).not.toContain('label="Portrait"');
+    expect(personCard).not.toContain("AppearancePicks");
+    expect(personCard).not.toContain("onChange({ look:");
   });
 });
 
 describe("study program fields", () => {
-  it("opens a searchable catalog of named programs when the objective is Études", () => {
+  it("hides study program closing fields on the Africa simplified profil", () => {
     const form = extractFunction("ProfileForm");
-    expect(form).toContain("applicantStudy");
-    expect(form).toContain('draft.objective === "Études"');
-    expect(form).toContain("study={applicantStudy}");
+    expect(form).not.toContain("applicantStudy");
+    expect(form).toContain("simple");
     const personCard = extractFunction("PersonCard");
-    expect(personCard).toContain("StudyFields");
-    expect(source).toContain("Programme visé");
-    expect(source).toContain("Choisir un programme");
-    expect(source).toContain("Rechercher un programme");
-    expect(source).toContain("searchStudyPrograms");
-    expect(source).toContain("function ProgramSelect");
-    expect(source).not.toContain("Niveau d’études visé");
-    expect(source).not.toContain("studyProgramsForLevel");
-    expect(source).not.toContain("<option value=\"\" />");
-    expect(source).not.toContain("professionSector[draft.study");
+    expect(personCard).toContain("simple");
+    expect(personCard).toContain("!simple && study");
   });
 });
 
 describe("closing profile objective fields", () => {
-  it("shows work profile controls only for the applicant on Travail", () => {
+  it("keeps IRCC closing fields offline from the Africa profil UI", () => {
     const form = extractFunction("ProfileForm");
-    expect(form).toContain('draft.objective === "Travail"');
-    expect(form).toContain("applicantWork");
-    expect(form).toContain("work={applicantWork}");
-    expect(form).not.toContain("work={spouseWork}");
+    expect(form).not.toContain("applicantWork");
+    expect(form).not.toContain("applicantVisit");
+    expect(form).not.toContain("applicantBusiness");
+    expect(form).not.toContain("applicantFamily");
+    expect(form).toContain("simple");
+    expect(form).toContain("Profil simplifié");
+  });
+
+  it("still ships PersonCard closing helpers for offline reuse", () => {
     const personCard = extractFunction("PersonCard");
     expect(personCard).toContain("WorkFields");
-    expect(source).toContain("NocSearchField");
-    expect(source).toContain("Titre d’emploi ou code CNP");
-    expect(source).toContain("professionNoc");
-    expect(source).toContain("workPermitKind");
-    expect(source).toContain("workHasOffer");
-    expect(source).toContain("Offre d’emploi");
-  });
-
-  it("shows visit profile controls only on Visite", () => {
-    const form = extractFunction("ProfileForm");
-    expect(form).toContain('draft.objective === "Visite"');
-    expect(form).toContain("applicantVisit");
-    expect(form).toContain("visit={applicantVisit}");
-    const personCard = extractFunction("PersonCard");
     expect(personCard).toContain("VisitFields");
-    expect(source).toContain("visitPurpose");
-    expect(source).toContain("visitDuration");
-    expect(source).toContain("15 jours");
-    expect(source).toContain("6 mois");
-  });
-
-  it("shows business path chips on Affaires without a selectable startup path", () => {
-    const form = extractFunction("ProfileForm");
-    expect(form).toContain('draft.objective === "Affaires"');
-    expect(form).toContain("applicantBusiness");
-    expect(form).toContain("business={applicantBusiness}");
-    const personCard = extractFunction("PersonCard");
     expect(personCard).toContain("BusinessFields");
-    expect(source).toContain("businessPath");
-    expect(source).toContain("businessPaths");
-    expect(source).toContain('path.id !== "startup"');
-    expect(source).not.toContain('setProject("businessPath", "startup")');
-  });
-
-  it("shows family sponsorship controls and reminders only on Regroupement familial", () => {
-    const form = extractFunction("ProfileForm");
-    expect(form).toContain('draft.objective === "Regroupement familial"');
-    expect(form).toContain("applicantFamily");
-    expect(form).toContain("family={applicantFamily}");
-    const personCard = extractFunction("PersonCard");
     expect(personCard).toContain("FamilyFields");
-    expect(source).toContain("familyLink");
-    expect(source).toContain("sponsorStatus");
-    expect(source).toContain("ajoutez le conjoint au dossier");
-    expect(source).toContain("ajoutez un enfant");
+    expect(personCard).toContain("!simple && work");
   });
 });
 
@@ -297,12 +266,11 @@ describe("profile file import and export", () => {
 });
 
 describe("option grid alignment", () => {
-  it("uses ir-option-grid and ir-option-btn for adult sex, appearance, and language picks", () => {
+  it("uses ir-option-grid and ir-option-btn for adult sex and language picks", () => {
     const sex = extractFunction("SexPicks");
-    const appearance = extractFunction("AppearancePicks");
     const language = extractFunction("LanguagePicks");
 
-    for (const fn of [sex, appearance, language]) {
+    for (const fn of [sex, language]) {
       expect(fn).toContain("ir-option-grid");
       expect(fn).toContain("ir-option-btn");
       expect(fn).not.toContain("grid-cols-2");
@@ -310,11 +278,10 @@ describe("option grid alignment", () => {
       expect(fn).not.toContain("h-8");
       expect(fn).not.toContain("text-[10px]");
     }
-    expect(appearance).toContain('--ir-option-min": "7rem"');
     expect(language).toContain('--ir-option-min": "7rem"');
-    expect(appearance).toContain("ir-option-grid--max-3");
     expect(language).toContain("ir-option-grid--max-3");
     expect(sex).not.toContain("ir-option-grid--max-3");
+    expect(source).not.toContain("function AppearancePicks");
   });
 
   it("lets the couple cards grow so their bottoms can meet the principal panel", () => {

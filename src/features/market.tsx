@@ -22,7 +22,8 @@ import { provinceCode, provinceData } from "@/data/provinces";
 import { extraSpouseId, type AdultMember, type Profile } from "@/data/profile";
 import { OccupationSearchField } from "@/features/occupation-search-field";
 import { applyOccupationPatch } from "@/lib/occupation-resolve";
-import { money, num } from "@/lib/format";
+import { money, moneyPair, num } from "@/lib/format";
+import { CURRENCY_RATES_AS_OF, currencyForCountry } from "@/data/currencies";
 import { workBenefitsFor, type WorkBenefitId } from "@/data/work-benefits";
 import { professionPhotosFor } from "@/data/profession-photos";
 import { businessCost } from "@/lib/business-cost";
@@ -1059,12 +1060,21 @@ function SalariesBands({
       pills={pills}
       hero={sectionBanners.salaries}
     >
-      <SalariesBoard groups={view.groups} />
+      <SalariesBoard groups={view.groups} country={profile.country} />
+      {currencyForCountry(profile.country) ? (
+        <p className="text-[12px] text-muted-foreground">
+          Conversion indicative ({CURRENCY_RATES_AS_OF}) selon le pays d’origine. Les montants officiels restent en
+          dollars canadiens.
+        </p>
+      ) : null}
     </OpportunitiesShell>
   );
 }
 
-function SalaryPhaseBands({ phase }: { phase: HouseholdSalaryPhase }) {
+function SalaryPhaseBands({ phase, country }: { phase: HouseholdSalaryPhase; country: string }) {
+  const low = moneyPair(phase.low, country);
+  const mid = moneyPair(phase.mid, country);
+  const high = moneyPair(phase.high, country);
   return (
     <div className="grid gap-2">
       {phase.label ? (
@@ -1074,23 +1084,27 @@ function SalaryPhaseBands({ phase }: { phase: HouseholdSalaryPhase }) {
         </div>
       ) : null}
       <div className="ir-equal-row">
-        <Band label="Bas" value={money(phase.low)} />
-        <Band label="Médian" value={money(phase.mid)} featured />
-        <Band label="Élevé" value={money(phase.high)} />
+        <Band label="Bas" value={low.cad} local={low.local} />
+        <Band label="Médian" value={mid.cad} local={mid.local} featured />
+        <Band label="Élevé" value={high.cad} local={high.local} />
       </div>
       <div className="grid gap-2 ir-auto-grid-sm">
-        {Object.entries(phase.bands).map(([code, values]) => (
-          <div key={code} className="rounded-[10px] border border-border bg-white p-3 text-center">
-            <span className="block text-[12px] text-muted-foreground">{provinceData[code]?.name ?? code}</span>
-            <b className="mt-1 block text-[15px]">{money(values[1])}</b>
-          </div>
-        ))}
+        {Object.entries(phase.bands).map(([code, values]) => {
+          const pair = moneyPair(values[1], country);
+          return (
+            <div key={code} className="rounded-[10px] border border-border bg-white p-3 text-center">
+              <span className="block text-[12px] text-muted-foreground">{provinceData[code]?.name ?? code}</span>
+              <b className="mt-1 block text-[15px]">{pair.cad}</b>
+              {pair.local ? <span className="mt-0.5 block text-[11px] text-muted-foreground">{pair.local}</span> : null}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function SalariesBoard({ groups }: { groups: HouseholdSalaryGroup[] }) {
+function SalariesBoard({ groups, country }: { groups: HouseholdSalaryGroup[]; country: string }) {
   return (
     <div className="grid shrink-0 gap-3">
       {groups.map((group) => {
@@ -1100,12 +1114,13 @@ function SalariesBoard({ groups }: { groups: HouseholdSalaryGroup[] }) {
             <SectionLabel>{group.heading}</SectionLabel>
             <div className="mt-3 grid gap-4">
               {group.phases.map((item) => (
-                <SalaryPhaseBands key={item.id} phase={item} />
+                <SalaryPhaseBands key={item.id} phase={item} country={country} />
               ))}
               {phase ? (
                 <SalaryRecognitionBlock
                   recognition={group.recognition}
                   band={[phase.low, phase.mid, phase.high]}
+                  country={country}
                 />
               ) : null}
             </div>
@@ -1125,10 +1140,14 @@ function SalariesBoard({ groups }: { groups: HouseholdSalaryGroup[] }) {
 function SalaryRecognitionBlock({
   recognition,
   band,
+  country,
 }: {
   recognition: SalaryRecognition;
   band: SalaryBand;
+  country: string;
 }) {
+  const gapPair = moneyPair(recognition.gap, country);
+  const netPair = moneyPair(recognition.netMonthly, country);
   return (
     <div className="grid gap-3">
       <SectionLabel>Années reconnues · fourchette</SectionLabel>
@@ -1143,6 +1162,7 @@ function SalaryRecognitionBlock({
               : declared
                 ? "Si les années comptent"
                 : null;
+          const stepPair = moneyPair(salaryForSeniority(band, step.id), country);
           return (
             <div
               key={step.id}
@@ -1157,7 +1177,12 @@ function SalaryRecognitionBlock({
             >
               <span className="block text-[12px] uppercase opacity-80">{step.yearsLabel}</span>
               <span className="block text-[12px] uppercase opacity-80">{step.salaryLabel}</span>
-              <strong className="mt-0.5 block text-[22px] tabular-nums">{money(salaryForSeniority(band, step.id))}</strong>
+              <strong className="mt-0.5 block text-[22px] tabular-nums">{stepPair.cad}</strong>
+              {stepPair.local ? (
+                <span className={cn("block text-[11px]", recognized ? "text-white/75" : "text-muted-foreground")}>
+                  {stepPair.local}
+                </span>
+              ) : null}
               {badge ? (
                 <span
                   className={cn(
@@ -1186,12 +1211,16 @@ function SalaryRecognitionBlock({
         <div className="rounded-[10px] border border-border bg-white p-3 text-center">
           <span className="block text-[12px] uppercase text-muted-foreground">Écart salarial</span>
           <b className="mt-1 block text-[15px] tabular-nums">
-            {recognition.gap > 0 ? `−${money(recognition.gap)}` : money(0)}
+            {recognition.gap > 0 ? `−${gapPair.cad}` : money(0)}
           </b>
+          {recognition.gap > 0 && gapPair.local ? (
+            <span className="mt-0.5 block text-[11px] text-muted-foreground">−{gapPair.local.replace(/^≈\s*/, "")}</span>
+          ) : null}
         </div>
         <div className="rounded-[10px] border border-border bg-white p-3 text-center">
           <span className="block text-[12px] uppercase text-muted-foreground">Net mensuel à ce palier</span>
-          <b className="mt-1 block text-[15px] tabular-nums">{money(recognition.netMonthly)}</b>
+          <b className="mt-1 block text-[15px] tabular-nums">{netPair.cad}</b>
+          {netPair.local ? <span className="mt-0.5 block text-[11px] text-muted-foreground">{netPair.local}</span> : null}
         </div>
       </div>
       <div className="flex flex-wrap gap-1.5">
@@ -1209,7 +1238,8 @@ function SalaryRecognitionBlock({
         Estimation de démonstration. La reconnaissance réelle dépend du permis, du CNP et de l’ordre.
       </p>
       <p className="text-[13px] text-[#1a2332]">
-        À {recognition.recognizedYears} ans reconnus : {money(recognition.netMonthly)} net / mois.
+        À {recognition.recognizedYears} ans reconnus : {netPair.cad} net / mois
+        {netPair.local ? ` (${netPair.local})` : ""}.
       </p>
     </div>
   );
@@ -2006,11 +2036,24 @@ function compareIdsForProvince(code: string, profile: Profile) {
   return local[0] ? [local[0].id] : [];
 }
 
-function Band({ label, value, featured = false }: { label: string; value: string; featured?: boolean }) {
+function Band({
+  label,
+  value,
+  local,
+  featured = false,
+}: {
+  label: string;
+  value: string;
+  local?: string | null;
+  featured?: boolean;
+}) {
   return (
     <div className={`rounded-[14px] border p-5 text-center ${featured ? "border-transparent bg-linear-to-br from-primary to-ir-deep text-white" : "border-border bg-white"}`}>
       <span className="block text-[12px] uppercase opacity-80">{label}</span>
       <strong className="mt-1.5 block text-[26px]">{value}</strong>
+      {local ? (
+        <span className={`mt-1 block text-[12px] ${featured ? "text-white/75" : "text-muted-foreground"}`}>{local}</span>
+      ) : null}
     </div>
   );
 }

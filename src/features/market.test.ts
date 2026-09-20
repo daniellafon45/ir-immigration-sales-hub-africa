@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { MapPin } from "lucide-react";
 import { describe, expect, it } from "vitest";
 import { sections } from "@/catalog";
 
@@ -18,8 +17,8 @@ function extractFunction(name: string) {
 }
 
 describe("opportunities catalog", () => {
-  it("keeps three opportunity slides", () => {
-    expect(sections.find((section) => section.id === "opportunites")?.slideCount).toBe(3);
+  it("keeps a single Africa opportunities slide", () => {
+    expect(sections.find((section) => section.id === "opportunites")?.slideCount).toBe(1);
   });
 });
 
@@ -153,12 +152,9 @@ describe("opportunities prospect copy", () => {
 });
 
 describe("provinces catalog", () => {
-  it("keeps two province slides", () => {
-    expect(sections.find((section) => section.id === "provinces")?.slideCount).toBe(2);
-  });
-
-  it("uses a city pin instead of a folded map in the nav", () => {
-    expect(sections.find((section) => section.id === "provinces")?.icon).toBe(MapPin);
+  it("keeps province helpers offline from the Africa menu", () => {
+    expect(sections.map((s) => s.id)).not.toContain("provinces");
+    expect(source).toContain("export function ProvincesSection");
   });
 });
 
@@ -230,8 +226,9 @@ describe("provinces cost of living boards", () => {
 });
 
 describe("jobs catalog", () => {
-  it("keeps two employment slides", () => {
-    expect(sections.find((section) => section.id === "emplois")?.slideCount).toBe(2);
+  it("keeps jobs helpers offline from the Africa menu", () => {
+    expect(sections.map((s) => s.id)).not.toContain("emplois");
+    expect(source).toContain("export function JobsSection");
   });
 });
 
@@ -303,8 +300,10 @@ describe("jobs household boards", () => {
 });
 
 describe("salaries catalog", () => {
-  it("keeps one salary slide", () => {
-    expect(sections.find((section) => section.id === "salaires")?.slideCount).toBe(1);
+  it("surfaces salaries inside preuves on the Africa catalog", () => {
+    expect(sections.map((s) => s.id)).not.toContain("salaires");
+    expect(sections.find((section) => section.id === "preuves")?.slideCount).toBe(2);
+    expect(source).toContain("export function SalariesSection");
   });
 });
 
@@ -419,12 +418,10 @@ describe("market layout helpers", () => {
 });
 
 describe("calculators catalog", () => {
-  it("keeps three calculator slides between salaries and provinces", () => {
-    const ids = sections.map((section) => section.id);
-    expect(ids.indexOf("salaires") + 1).toBe(ids.indexOf("calculateurs"));
-    expect(ids.indexOf("calculateurs") + 1).toBe(ids.indexOf("provinces"));
-    expect(sections.find((section) => section.id === "calculateurs")?.slideCount).toBe(3);
-    expect(sections.find((section) => section.id === "calculateurs")?.label).toBe("Calculateurs");
+  it("keeps full calculators offline; Africa uses living proof inside preuves", () => {
+    expect(sections.map((s) => s.id)).not.toContain("calculateurs");
+    expect(sections.find((section) => section.id === "preuves")?.slideCount).toBe(2);
+    expect(source).toContain("export function CalculatorsSection");
   });
 });
 

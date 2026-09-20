@@ -54,23 +54,20 @@ describe("ecosystemLifeCards", () => {
     expect(String(cards[3]?.imageUrl)).toMatch(/life-ville-hf-noir/i);
   });
 
-  it("follows a White look when both adults are Blanc", () => {
+  it("follows a White look when the origin country is France", () => {
     const cards = ecosystemLifeCards({
       ...defaultProfile,
       country: "France",
-      applicant: { ...defaultApplicant, look: "Blanc" },
-      spouse: { ...defaultSpouse, look: "Blanc" },
     });
     expect(String(cards[0]?.imageUrl)).toMatch(/life-foyer-hf-blanc/i);
   });
 
-  it("follows Maghrebi, East Asian and Latino appearance chips", () => {
+  it("follows Maghrebi, East Asian and Latino looks from the origin country", () => {
     expect(
       String(
         ecosystemLifeCards({
           ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Maghrébin" },
-          spouse: { ...defaultSpouse, look: "Maghrébin" },
+          country: "Maroc",
         })[0]?.imageUrl,
       ),
     ).toMatch(/life-foyer-hf-maghrebin/i);
@@ -78,8 +75,7 @@ describe("ecosystemLifeCards", () => {
       String(
         ecosystemLifeCards({
           ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Asiatique" },
-          spouse: { ...defaultSpouse, look: "Asiatique" },
+          country: "Chine",
         })[0]?.imageUrl,
       ),
     ).toMatch(/life-foyer-hf-asiatique/i);
@@ -87,8 +83,7 @@ describe("ecosystemLifeCards", () => {
       String(
         ecosystemLifeCards({
           ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Latino" },
-          spouse: { ...defaultSpouse, look: "Latino" },
+          country: "Mexique",
         })[0]?.imageUrl,
       ),
     ).toMatch(/life-foyer-hf-latino/i);

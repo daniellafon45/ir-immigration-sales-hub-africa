@@ -14,15 +14,14 @@ import {
   Trash2,
   User,
   UserRound,
-  UserRoundPlus,
   Users,
   UsersRound,
   Upload,
   type LucideIcon,
 } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
-import { IrShaderGradient } from "@/components/brand/IrShaderGradient";
 import { PageShell } from "@/components/layout/PageShell";
+import canadaBanner from "@/assets/banners/canada.jpg";
 import { personHeroImage } from "@/data/pitch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,9 +41,7 @@ import {
   objectives,
   otherProvinces,
   sexes,
-  appearances,
   type AdultMember,
-  type Appearance,
   type Sex,
   type PrincipalMode,
   type Profile,
@@ -54,7 +51,6 @@ import {
   familyLinks,
 } from "@/data/family-links";
 import { businessPaths } from "@/data/business-paths";
-import { professionNoc } from "@/data/profession-noc";
 import { visitPurposes } from "@/data/visit-purposes";
 import { workPermits } from "@/data/work-permits";
 import {
@@ -81,7 +77,6 @@ const familyTiles: { value: (typeof familyOptions)[number]; label: string; icon:
   { value: "Couple", label: "Couple", icon: Users },
   { value: "Couple + enfant(s)", label: "Couple + enfants", icon: UsersRound },
   { value: "Parent seul + enfant(s)", label: "Parent seul", icon: UserRound },
-  { value: "Polygame", label: "Polygame", icon: UserRoundPlus },
 ];
 
 const objectiveIcons: Record<string, LucideIcon> = {
@@ -136,63 +131,6 @@ function ProfileForm() {
   const polygamous = familyIsPolygamous(draft.family);
   const extraSpouses = polygamous ? draft.extraSpouses : [];
   const showChildren = familyHasChildren(draft.family);
-  const applicantStudy =
-    draft.objective === "Études"
-      ? {
-          programId: draft.studyProgramId,
-          onChange: (patch: { studyLevel?: string; studyProgramId?: string }) => {
-            if (patch.studyLevel !== undefined) setProject("studyLevel", patch.studyLevel);
-            if (patch.studyProgramId !== undefined) setProject("studyProgramId", patch.studyProgramId);
-          },
-        }
-      : undefined;
-  const applicantWork =
-    draft.objective === "Travail"
-      ? {
-          nocCode: draft.workNocCode,
-          suggestionCode: professionNoc(draft.applicant.profession),
-          permitKind: draft.workPermitKind,
-          hasOffer: draft.workHasOffer,
-          onChange: (patch: { workNocCode?: string; workPermitKind?: string; workHasOffer?: boolean }) => {
-            if (patch.workNocCode !== undefined) setProject("workNocCode", patch.workNocCode);
-            if (patch.workPermitKind !== undefined) setProject("workPermitKind", patch.workPermitKind);
-            if (patch.workHasOffer !== undefined) setProject("workHasOffer", patch.workHasOffer);
-          },
-        }
-      : undefined;
-  const applicantVisit =
-    draft.objective === "Visite"
-      ? {
-          purpose: draft.visitPurpose,
-          duration: draft.visitDuration,
-          onChange: (patch: { visitPurpose?: string; visitDuration?: string }) => {
-            if (patch.visitPurpose !== undefined) setProject("visitPurpose", patch.visitPurpose);
-            if (patch.visitDuration !== undefined) setProject("visitDuration", patch.visitDuration);
-          },
-        }
-      : undefined;
-  const applicantBusiness =
-    draft.objective === "Affaires"
-      ? {
-          path: draft.businessPath,
-          onChange: (patch: { businessPath?: string }) => {
-            if (patch.businessPath !== undefined) setProject("businessPath", patch.businessPath);
-          },
-        }
-      : undefined;
-  const applicantFamily =
-    draft.objective === "Regroupement familial"
-      ? {
-          link: draft.familyLink,
-          sponsorStatus: draft.sponsorStatus,
-          showSpouseReminder: draft.familyLink === "spouse" && !showSpouse,
-          showChildReminder: draft.familyLink === "child" && draft.children.length === 0,
-          onChange: (patch: { familyLink?: string; sponsorStatus?: string }) => {
-            if (patch.familyLink !== undefined) setProject("familyLink", patch.familyLink);
-            if (patch.sponsorStatus !== undefined) setProject("sponsorStatus", patch.sponsorStatus);
-          },
-        }
-      : undefined;
   const fileRef = useRef<HTMLInputElement>(null);
   const [saved, setSaved] = useState(false);
   const [imported, setImported] = useState(false);
@@ -266,7 +204,12 @@ function ProfileForm() {
       }
     >
           <header className="relative shrink-0 overflow-hidden rounded-[1.2rem] bg-primary px-4 py-4 text-white sm:px-6 sm:py-6">
-            <IrShaderGradient />
+            <img
+              src={personHeroImage(principal)}
+              alt=""
+              className="absolute inset-0 size-full object-cover object-[80%_center]"
+            />
+            <div className="absolute inset-0 bg-linear-to-r from-primary/92 via-primary/62 to-primary/20" />
             <BrandLogo className="absolute top-3 right-3 z-10 size-11 rounded-lg ring-1 ring-white/20 sm:top-4 sm:right-4 sm:size-12" />
             <div className="relative z-10 flex flex-wrap items-end justify-between gap-3 pr-14 sm:pr-16">
               <div>
@@ -277,6 +220,7 @@ function ProfileForm() {
                 <p className="mt-1 text-[13px] text-white/70">
                   {familyLabel(draft)} · {draft.province} · {draft.objective}
                 </p>
+                <p className="mt-1 text-[11px] text-white/55">Profil simplifié · détail en rendez-vous</p>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 <MetaPill>{draft.country || "Pays"}</MetaPill>
@@ -365,12 +309,8 @@ function ProfileForm() {
                 tone="navy"
                 active={analysis.selected === "applicant"}
                 score={analysis.applicantScore.total}
+                simple
                 onChange={(patch) => patchAdult("applicant", patch)}
-                study={applicantStudy}
-                work={applicantWork}
-                visit={applicantVisit}
-                business={applicantBusiness}
-                family={applicantFamily}
               />
               <div className="flex items-center justify-between gap-3 px-0.5">
                 <SectionLabel>Épouses</SectionLabel>
@@ -388,6 +328,7 @@ function ProfileForm() {
                   tone="blue"
                   active={analysis.selected === "spouse"}
                   score={analysis.spouseScore.total}
+                  simple
                   onChange={(patch) => patchAdult("spouse", patch)}
                 />
                 {extraSpouses.map((spouse, index) => {
@@ -400,6 +341,7 @@ function ProfileForm() {
                       tone="blue"
                       active={analysis.selected === extraPrincipalMode(spouse.id)}
                       score={scored?.score.total ?? 0}
+                      simple
                       onChange={(patch) => patchAdult(spouse.id, patch)}
                       onRemove={extraSpouses.length > 1 ? () => removeExtraSpouse(spouse.id) : undefined}
                     />
@@ -416,12 +358,8 @@ function ProfileForm() {
                   tone="navy"
                   active={analysis.selected === "applicant"}
                   score={analysis.applicantScore.total}
+                  simple
                   onChange={(patch) => patchAdult("applicant", patch)}
-                  study={applicantStudy}
-                  work={applicantWork}
-                  visit={applicantVisit}
-                  business={applicantBusiness}
-                  family={applicantFamily}
                 />
               </div>
               {showSpouse ? (
@@ -432,6 +370,7 @@ function ProfileForm() {
                     tone="blue"
                     active={analysis.selected === "spouse"}
                     score={analysis.spouseScore.total}
+                    simple
                     onChange={(patch) => patchAdult("spouse", patch)}
                   />
                 </div>
@@ -554,7 +493,14 @@ function PrincipalPanel({
   const scoreCols = comparable.length >= 3 ? "grid-cols-3" : comparable.length === 2 ? "grid-cols-2" : "grid-cols-1";
 
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-[1.2rem] bg-linear-to-br from-primary to-ir-deep p-4 text-white shadow-[0_18px_40px_rgba(27,84,141,.22)]">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-[1.2rem] text-white shadow-[0_18px_40px_rgba(27,84,141,.22)]">
+      <img
+        src={canadaBanner}
+        alt=""
+        className="absolute inset-0 size-full object-cover object-[center_30%]"
+      />
+      <div className="absolute inset-0 bg-linear-to-br from-primary/90 via-primary/82 to-ir-deep/88" />
+      <div className="relative z-10 flex h-full min-h-0 flex-col p-4">
       <div className="flex shrink-0 items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[12px] font-semibold tracking-[0.16em] text-white/85 uppercase">Demandeur principal</p>
@@ -696,6 +642,7 @@ function PrincipalPanel({
           {saved ? <Check className="size-4" /> : null}
           {saved ? "Enregistré" : "Enregistrer"}
         </Button>
+      </div>
       </div>
     </div>
   );
@@ -927,6 +874,7 @@ function PersonCard({
   score,
   onChange,
   onRemove,
+  simple = false,
   study,
   work,
   visit,
@@ -940,6 +888,7 @@ function PersonCard({
   score: number;
   onChange: (patch: Partial<AdultMember>) => void;
   onRemove?: () => void;
+  simple?: boolean;
   study?: {
     programId: string;
     onChange: (patch: { studyLevel?: string; studyProgramId?: string }) => void;
@@ -996,7 +945,9 @@ function PersonCard({
                   <Trash2 className="size-3.5" />
                 </button>
               ) : null}
-              <span className="rounded-lg bg-white/15 px-2 py-0.5 text-[10px] font-semibold">{Math.round(Math.max(0, score))}</span>
+              {!simple ? (
+                <span className="rounded-lg bg-white/15 px-2 py-0.5 text-[10px] font-semibold">{Math.round(Math.max(0, score))}</span>
+              ) : null}
             </span>
           </div>
           <input
@@ -1015,16 +966,13 @@ function PersonCard({
           value={member.sex}
           onChange={(v) => onChange({ sex: v })}
         />
-        <AppearancePicks
-          label="Apparence"
-          value={member.look}
-          onChange={(v) => onChange({ look: v })}
-        />
-        <div className="grid grid-cols-2 gap-2 @min-[22rem]:grid-cols-4">
+        <div className={cn("grid gap-2", simple ? "grid-cols-1 @min-[22rem]:grid-cols-2" : "grid-cols-2 @min-[22rem]:grid-cols-4")}>
           <NumberField label="Âge" value={member.age} onChange={(v) => onChange({ age: v })} />
-          <NumberField label="Exp. (ans)" value={member.experience} onChange={(v) => onChange({ experience: v })} />
+          {!simple ? (
+            <NumberField label="Exp. (ans)" value={member.experience} onChange={(v) => onChange({ experience: v })} />
+          ) : null}
           <OccupationSearchField
-            className="@min-[22rem]:col-span-2"
+            className={simple ? "@min-[22rem]:col-span-1" : "@min-[22rem]:col-span-2"}
             label="Métier"
             kind="profession"
             value={member.jobTitle || member.profession}
@@ -1037,29 +985,33 @@ function PersonCard({
             }
           />
           <OccupationSearchField
-            className="@min-[22rem]:col-span-2"
+            className={simple ? "@min-[22rem]:col-span-1" : "@min-[22rem]:col-span-2"}
             label="Secteur"
             kind="sector"
             value={member.sector}
             onChange={(resolved) => onChange({ sector: resolved })}
           />
-          <ChoiceField
-            className="@min-[22rem]:col-span-2"
-            label="Capacité financière"
-            value={member.salary}
-            options={financialCapacities}
-            onChange={(v) => onChange({ salary: v as AdultMember["salary"] })}
-          />
-          <ChoiceField
-            className="@min-[22rem]:col-span-2"
-            label="Diplôme"
-            value={member.education}
-            options={educationLevels}
-            onChange={(v) => onChange({ education: v })}
-          />
+          {!simple ? (
+            <>
+              <ChoiceField
+                className="@min-[22rem]:col-span-2"
+                label="Capacité financière"
+                value={member.salary}
+                options={financialCapacities}
+                onChange={(v) => onChange({ salary: v as AdultMember["salary"] })}
+              />
+              <ChoiceField
+                className="@min-[22rem]:col-span-2"
+                label="Diplôme"
+                value={member.education}
+                options={educationLevels}
+                onChange={(v) => onChange({ education: v })}
+              />
+            </>
+          ) : null}
         </div>
-        {study ? <StudyFields programId={study.programId} onChange={study.onChange} /> : null}
-        {work ? (
+        {!simple && study ? <StudyFields programId={study.programId} onChange={study.onChange} /> : null}
+        {!simple && work ? (
           <WorkFields
             nocCode={work.nocCode}
             suggestionCode={work.suggestionCode}
@@ -1068,9 +1020,9 @@ function PersonCard({
             onChange={work.onChange}
           />
         ) : null}
-        {visit ? <VisitFields purpose={visit.purpose} duration={visit.duration} onChange={visit.onChange} /> : null}
-        {business ? <BusinessFields path={business.path} onChange={business.onChange} /> : null}
-        {family ? (
+        {!simple && visit ? <VisitFields purpose={visit.purpose} duration={visit.duration} onChange={visit.onChange} /> : null}
+        {!simple && business ? <BusinessFields path={business.path} onChange={business.onChange} /> : null}
+        {!simple && family ? (
           <FamilyFields
             link={family.link}
             sponsorStatus={family.sponsorStatus}
@@ -1079,16 +1031,20 @@ function PersonCard({
             onChange={family.onChange}
           />
         ) : null}
-        <LanguagePicks
-          label="Français"
-          value={member.french}
-          onChange={(v) => onChange({ french: v })}
-        />
-        <LanguagePicks
-          label="Anglais"
-          value={member.english}
-          onChange={(v) => onChange({ english: v })}
-        />
+        {!simple ? (
+          <>
+            <LanguagePicks
+              label="Français"
+              value={member.french}
+              onChange={(v) => onChange({ french: v })}
+            />
+            <LanguagePicks
+              label="Anglais"
+              value={member.english}
+              onChange={(v) => onChange({ english: v })}
+            />
+          </>
+        ) : null}
       </div>
       </div>
     </Surface>
@@ -1163,44 +1119,6 @@ function SexPicks({
       <legend className="mb-1 text-[11px] font-medium text-muted-foreground">{label}</legend>
       <div className="ir-option-grid" role="radiogroup" aria-label={label}>
         {sexes.map((option) => {
-          const selected = value === option;
-          return (
-            <button
-              key={option}
-              type="button"
-              role="radio"
-              aria-checked={selected}
-              onClick={() => onChange(option)}
-              className={cn(
-                "ir-option-btn font-semibold transition duration-180",
-                selected
-                  ? "bg-primary text-white shadow-[0_6px_14px_rgba(27,84,141,.22)]"
-                  : "bg-secondary text-primary hover:bg-[#d4e4f2]",
-              )}
-            >
-              {option}
-            </button>
-          );
-        })}
-      </div>
-    </fieldset>
-  );
-}
-
-function AppearancePicks({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value: Appearance;
-  onChange: (v: Appearance) => void;
-}) {
-  return (
-    <fieldset>
-      <legend className="mb-1 text-[11px] font-medium text-muted-foreground">{label}</legend>
-      <div className="ir-option-grid ir-option-grid--max-3" style={{ "--ir-option-min": "7rem" }} role="radiogroup" aria-label={label}>
-        {appearances.map((option) => {
           const selected = value === option;
           return (
             <button

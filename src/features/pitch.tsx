@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { pitchSlides } from "@/data/pitch";
-import { PitchDeck } from "@/features/pitch-deck";
+import { africaPitchSlides } from "@/data/pitch-africa";
+import { AfricaPitchDeck } from "@/features/africa-pitch-deck";
 import { installmentSplit } from "@/lib/finance";
 import { money } from "@/lib/format";
 import { useDeckStore } from "@/store/deck";
@@ -9,8 +9,8 @@ import { useProfileStore } from "@/store/profile";
 export function PitchSection() {
   const slide = useDeckStore((s) => s.slideIndex);
   const profile = useProfileStore((s) => s.draft);
-  const current = pitchSlides[slide] ?? pitchSlides[0];
-  return <PitchDeck slide={current} profile={profile} />;
+  const current = africaPitchSlides[slide] ?? africaPitchSlides[0];
+  return <AfricaPitchDeck slide={current} profile={profile} />;
 }
 
 export function RiskGrid({ items }: { items: string[] }) {

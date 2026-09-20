@@ -45,8 +45,9 @@ function extractFunction(name: string) {
 }
 
 describe("voies catalog", () => {
-  it("keeps two pathway slides", () => {
-    expect(sections.find((section) => section.id === "voies")?.slideCount).toBe(2);
+  it("keeps pathway helpers offline from the Africa menu", () => {
+    expect(sections.map((s) => s.id)).not.toContain("voies");
+    expect(source).toContain("export function RoutesSection");
   });
 });
 
@@ -185,8 +186,9 @@ describe("voies boards", () => {
 });
 
 describe("comparateur catalog", () => {
-  it("keeps two comparator slides", () => {
-    expect(sections.find((section) => section.id === "comparateur")?.slideCount).toBe(2);
+  it("keeps comparator helpers offline from the Africa menu", () => {
+    expect(sections.map((s) => s.id)).not.toContain("comparateur");
+    expect(source).toContain("export function CompareSection");
   });
 });
 

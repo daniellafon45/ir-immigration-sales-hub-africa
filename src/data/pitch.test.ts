@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { sections } from "@/catalog";
+import { africaPitchSlides } from "@/data/pitch-africa";
 import {
   personHeroImage,
   pitchDaysImage,
@@ -14,7 +15,6 @@ import {
   pitchHeroPeople,
   pitchHeroScene,
   pitchHeroSources,
-  pitchSlides,
   pitchWelcomeTitle,
 } from "@/data/pitch";
 import { defaultApplicant, defaultProfile, defaultSpouse, objectives } from "@/data/profile";
@@ -22,6 +22,7 @@ import { describe, expect, it } from "vitest";
 
 const jpegMagic = Buffer.from([0xff, 0xd8, 0xff]);
 const heroDir = join(dirname(fileURLToPath(import.meta.url)), "../assets/pitch");
+const africaDir = join(dirname(fileURLToPath(import.meta.url)), "../assets/pitch-africa");
 const heroLooks = ["noir", "blanc"] as const;
 const allLooks = ["noir", "blanc", "maghrebin", "asiatique", "latino"] as const;
 const extraHeroFiles = [
@@ -71,88 +72,61 @@ const heroFiles = [
   ]),
 ];
 
-describe("pitch commercial 2026", () => {
-  it("has 13 commercial slides, starting with the hero title", () => {
-    expect(pitchSlides).toHaveLength(13);
-    expect(pitchSlides[0].title).toBe("VOTRE PROJET CANADA COMMENCE ICI");
-    expect(pitchSlides[12].title).toContain("LE CANADA N’EST PAS UN RÊVE À ACHETER");
+describe("pitch Afrique pré-RDV anti déjà-vu", () => {
+  it("has 11 Africa layouts distinct from the post-RDV commercial deck", () => {
+    expect(africaPitchSlides).toHaveLength(11);
+    expect(africaPitchSlides[0].title).toBe("VOTRE PROJET CANADA COMMENCE ICI");
+    expect(africaPitchSlides.every((slide) => slide.layout.startsWith("africa-"))).toBe(true);
+    expect(africaPitchSlides.map((s) => s.layout)).not.toContain("hero");
+    expect(africaPitchSlides.map((s) => s.layout)).not.toContain("stats");
+    expect(africaPitchSlides.map((s) => s.layout)).not.toContain("problems");
   });
 
-  it("illustrates each targeting stat with a photo", () => {
-    const slide = pitchSlides.find((item) => item.layout === "stats");
-    expect(slide?.stats).toHaveLength(4);
-    expect(slide?.stats?.every((stat) => Boolean(stat.image))).toBe(true);
+  it("ships dedicated pitch-africa assets and bans commercial déjà-vu photos", () => {
+    const source = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "pitch-africa.ts"), "utf8");
+    expect(source).toContain("@/assets/pitch-africa/");
+    expect(source).not.toMatch(/slide-01-1|emploi-sante|demo-aines|problem-wrong-path|slide-14-1/);
+    for (const name of [
+      "hero-family-consult.jpg",
+      "welcome-work.jpg",
+      "pillar-immigration.jpg",
+      "trap-chaos.jpg",
+      "proof-meeting.jpg",
+      "cta-rdv.jpg",
+    ]) {
+      const path = join(africaDir, name);
+      expect(existsSync(path), path).toBe(true);
+      const bytes = readFileSync(path);
+      expect(bytes.subarray(0, 3).equals(jpegMagic)).toBe(true);
+    }
   });
 
-  it("illustrates each project-risk card with a dedicated problem photo", () => {
-    const slide = pitchSlides.find((item) => item.layout === "problems");
-    const images = slide?.items?.map((item) => String(item.image)) ?? [];
-    expect(slide?.items).toHaveLength(4);
-    expect(images).toHaveLength(4);
-    expect(images.every((src) => /problem-(wrong-path|incoherent-file|career-late|settlement-chance)/i.test(src))).toBe(
-      true,
-    );
-    expect(new Set(images).size).toBe(4);
-    expect(images.join(" ")).not.toMatch(/slide-02-1|slide-07-2|slide-07-5|pont-metier/i);
+  it("closes with a web RDV CTA, not a paid consultation", () => {
+    const slide = africaPitchSlides[10];
+    expect(slide.layout).toBe("africa-cta");
+    expect(slide.title).toMatch(/RENDEZ-VOUS/i);
+    expect(slide.lead).toMatch(/ir-immigration\.com/i);
+    expect(slide.lead).not.toMatch(/déjà payée/i);
   });
 
-  it("closes the CTA after a paid consultation, not a first listening", () => {
-    const slide = pitchSlides[11];
-    expect(slide.layout).toBe("cta");
-    expect(slide.title).toBe("ENTAMONS VOTRE PROJET SANS PLUS TARDER");
-    expect(slide.lead).toBe(
-      "La consultation est déjà payée. Ses frais seront déduits des honoraires de service de la procédure.",
-    );
-    expect(slide.items?.map((item) => item.title)).toEqual([
-      "Nous validons la stratégie retenue aujourd’hui",
-      "Nous constituons le dossier et le calendrier",
-      "Nous lançons les démarches sans attendre",
-      "Vous avancez avec un plan d’action clair",
-    ]);
-    expect(slide.lead).not.toMatch(/clarifiez|avant de payer/i);
-    expect(slide.items?.map((item) => item.title).join(" ")).not.toMatch(/écoutons|analysons|repartez/i);
-  });
-
-  it("registers 13 pitch pages in the hub catalog", () => {
-    expect(sections.find((s) => s.id === "pitch")?.slideCount).toBe(13);
-  });
-
-  it("no longer uses the generic Faire rêver deck", () => {
+  it("registers 11 pitch pages and wires AfricaPitchDeck", () => {
+    expect(sections.find((s) => s.id === "pitch")?.slideCount).toBe(11);
     const source = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../features/pitch.tsx"), "utf8");
-    expect(source).toContain("PitchDeck");
+    expect(source).toContain("AfricaPitchDeck");
+    expect(source).toContain("africaPitchSlides");
+    expect(source).toContain("s.draft");
     expect(source).not.toContain("Faire rêver");
   });
 
-  it("feeds the live client draft into the opening hero", () => {
-    const source = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../features/pitch.tsx"), "utf8");
-    expect(source).toContain("s.draft");
-  });
-
-  it("names every adult client in the slide 2 greeting", () => {
+  it("names every adult client in the welcome greeting", () => {
     expect(pitchWelcomeTitle(defaultProfile)).toBe(
       "On peut vous aider à construire votre projet Canada, Aminata et Mamadou.",
     );
-    expect(pitchWelcomeTitle({ ...defaultProfile, family: "Seul(e)" })).toBe(
-      "On peut vous aider à construire votre projet Canada, Aminata.",
-    );
-    expect(
-      pitchWelcomeTitle({
-        ...defaultProfile,
-        extraSpouses: [{ ...defaultProfile.spouse, id: "extra-awa", firstName: "Awa" }],
-      }),
-    ).toBe("On peut vous aider à construire votre projet Canada, Aminata et Mamadou.");
-    expect(
-      pitchWelcomeTitle({
-        ...defaultProfile,
-        family: "Polygame",
-        extraSpouses: [{ ...defaultProfile.spouse, id: "extra-awa", firstName: "Awa" }],
-      }),
-    ).toBe("On peut vous aider à construire votre projet Canada, Aminata, Mamadou et Awa.");
   });
 
-  it("uses a Canada Live card grid on slide 2, with photo cards", () => {
-    const slide = pitchSlides[1];
-    expect(slide.layout).toBe("welcome");
+  it("uses africa-welcome cards with dedicated photos", () => {
+    const slide = africaPitchSlides[1];
+    expect(slide.layout).toBe("africa-welcome");
     expect(slide.cards?.map((card) => card.title)).toEqual([
       "Travailler",
       "S’installer",
@@ -160,15 +134,14 @@ describe("pitch commercial 2026", () => {
       "Évoluer",
     ]);
     expect(slide.cards?.every((card) => Boolean(card.image))).toBe(true);
-    expect(slide.lead).toMatch(/cabinet/i);
+    expect(String(slide.image)).toMatch(/welcome-bg-house/);
   });
 
-  it("shows the photo forms slide once, in place of the old doors slide", () => {
-    const forms = pitchSlides.filter((slide) => slide.layout === "forms");
-    expect(forms).toHaveLength(1);
-    expect(pitchSlides[6]).toEqual(forms[0]);
-    expect(pitchSlides[6].title).toBe("VOTRE CANADA PEUT PRENDRE PLUSIEURS FORMES");
-    expect(pitchSlides.some((slide) => slide.title.includes("QUELLE PORTE"))).toBe(false);
+  it("uses africa-proof scene vignettes instead of mismatched portraits", () => {
+    const slide = africaPitchSlides.find((item) => item.layout === "africa-proof");
+    expect(slide?.stats).toHaveLength(4);
+    expect(slide?.stats?.every((stat) => Boolean(stat.image))).toBe(true);
+    expect(String(slide?.stats?.map((s) => s.image).join(" "))).toMatch(/proof-/);
   });
 });
 
@@ -262,31 +235,27 @@ describe("pitch hero adapts to the client profile", () => {
     expect(pitchHeroLook(defaultProfile)).toBe("noir");
   });
 
-  it("follows the applicant appearance chip, not the origin country", () => {
-    expect(pitchHeroLook({ ...defaultProfile, country: "France" })).toBe("noir");
+  it("follows the origin country, not a stored appearance chip", () => {
+    expect(pitchHeroLook({ ...defaultProfile, country: "France" })).toBe("blanc");
     expect(
       pitchHeroLook({
         ...defaultProfile,
         country: "France",
-        applicant: { ...defaultApplicant, look: "Blanc" },
+        applicant: { ...defaultApplicant, look: "Noir" },
       }),
     ).toBe("blanc");
   });
 
-  it("uses an East Asian look when the applicant chip is Asiatique", () => {
-    expect(pitchHeroLook({ ...defaultProfile, applicant: { ...defaultApplicant, look: "Asiatique" } })).toBe(
-      "asiatique",
-    );
+  it("uses an East Asian look when the origin country is China", () => {
+    expect(pitchHeroLook({ ...defaultProfile, country: "Chine" })).toBe("asiatique");
   });
 
-  it("uses a Latino look when the applicant chip is Latino", () => {
-    expect(pitchHeroLook({ ...defaultProfile, applicant: { ...defaultApplicant, look: "Latino" } })).toBe("latino");
+  it("uses a Latino look when the origin country is Mexico", () => {
+    expect(pitchHeroLook({ ...defaultProfile, country: "Mexique" })).toBe("latino");
   });
 
-  it("uses a Maghrebi look when the applicant chip is Maghrébin", () => {
-    expect(pitchHeroLook({ ...defaultProfile, applicant: { ...defaultApplicant, look: "Maghrébin" } })).toBe(
-      "maghrebin",
-    );
+  it("uses a Maghrebi look when the origin country is Morocco", () => {
+    expect(pitchHeroLook({ ...defaultProfile, country: "Maroc" })).toBe("maghrebin");
   });
 
   it("picks a solo woman photo for Aminata and a solo man photo for Mamadou", () => {
@@ -309,53 +278,46 @@ describe("pitch hero adapts to the client profile", () => {
     expect(twoMen).not.toBe(pitchHeroImage(defaultProfile));
   });
 
-  it("returns a White couple photo when both adults are Blanc", () => {
+  it("returns a White couple photo when the origin country is France", () => {
     const france = pitchHeroImage({
       ...defaultProfile,
       country: "France",
-      applicant: { ...defaultApplicant, look: "Blanc" },
-      spouse: { ...defaultSpouse, look: "Blanc" },
     });
     expect(france).not.toBe(pitchHeroImage(defaultProfile));
     expect(String(france)).toMatch(/blanc/i);
   });
 
-  it("returns an East Asian couple photo when both adults are Asiatique", () => {
+  it("returns an East Asian couple photo when the origin country is China", () => {
     const china = pitchHeroImage({
       ...defaultProfile,
-      applicant: { ...defaultApplicant, look: "Asiatique" },
-      spouse: { ...defaultSpouse, look: "Asiatique" },
+      country: "Chine",
     });
     expect(china).not.toBe(pitchHeroImage(defaultProfile));
     expect(String(china)).toMatch(/asiatique/i);
   });
 
-  it("returns a Latino couple photo when both adults are Latino", () => {
+  it("returns a Latino couple photo when the origin country is Mexico", () => {
     const mexico = pitchHeroImage({
       ...defaultProfile,
-      applicant: { ...defaultApplicant, look: "Latino" },
-      spouse: { ...defaultSpouse, look: "Latino" },
+      country: "Mexique",
     });
     expect(mexico).not.toBe(pitchHeroImage(defaultProfile));
     expect(String(mexico)).toMatch(/latino/i);
   });
 
-  it("uses a mixed couple photo for a Black woman and a White man", () => {
-    const mixed = {
+  it("uses the same country look for both adults on a couple hero", () => {
+    const couple = {
       ...defaultProfile,
-      applicant: { ...defaultApplicant, sex: "Femme" as const, look: "Noir" as const },
-      spouse: { ...defaultSpouse, sex: "Homme" as const, look: "Blanc" as const },
+      country: "Bénin",
+      applicant: { ...defaultApplicant, sex: "Femme" as const },
+      spouse: { ...defaultSpouse, sex: "Homme" as const },
     };
-    expect(pitchHeroLooks(mixed)).toEqual({ applicant: "noir", spouse: "blanc" });
-    const sources = pitchHeroSources(mixed);
+    expect(pitchHeroLooks(couple)).toEqual({ applicant: "noir", spouse: "noir" });
+    const sources = pitchHeroSources(couple);
     expect(sources).toHaveLength(1);
-    expect(String(sources[0])).toMatch(/hero-couple-hf-noir-blanc/i);
+    expect(String(sources[0])).toMatch(/hero-couple-hf-noir/i);
+    expect(String(sources[0])).not.toMatch(/hero-couple-hf-noir-/);
     expect(String(sources[0])).not.toMatch(/hero-single-/i);
-    const homog = pitchHeroSources({
-      ...mixed,
-      spouse: { ...defaultSpouse, sex: "Homme", look: "Noir" },
-    });
-    expect(sources[0]).not.toBe(homog[0]);
   });
 
   it.each([...heroFiles, ...extraHeroFiles])("ships a local JPEG for %s", (name) => {
@@ -396,13 +358,8 @@ describe("pitch 90-days hero adapts to every client profile", () => {
     expect(pitchHeroLook(defaultProfile)).toBe("noir");
   });
 
-  it("uses applicant appearance when it is not the default Noir", () => {
-    expect(
-      pitchHeroLook({
-        ...defaultProfile,
-        applicant: { ...defaultApplicant, look: "Blanc" },
-      }),
-    ).toBe("blanc");
+  it("uses origin country appearance when it is not the default Noir", () => {
+    expect(pitchHeroLook({ ...defaultProfile, country: "France" })).toBe("blanc");
   });
 
   it("returns a family unpacking photo for a couple with children", () => {
@@ -480,52 +437,20 @@ describe("pitch 90-days hero adapts to every client profile", () => {
     ).toMatch(/days-couple-ff-noir/i);
   });
 
-  it("returns a White couple photo when both adults are Blanc", () => {
-    expect(
-      String(
-        pitchDaysImage({
-          ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Blanc" },
-          spouse: { ...defaultSpouse, look: "Blanc" },
-        }),
-      ),
-    ).toMatch(/days-couple-hf-blanc/i);
+  it("returns a White couple photo when the origin country is France", () => {
+    expect(String(pitchDaysImage({ ...defaultProfile, country: "France" }))).toMatch(/days-couple-hf-blanc/i);
   });
 
-  it("returns a Maghrebi couple photo when both adults are Maghrébin", () => {
-    expect(
-      String(
-        pitchDaysImage({
-          ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Maghrébin" },
-          spouse: { ...defaultSpouse, look: "Maghrébin" },
-        }),
-      ),
-    ).toMatch(/days-couple-hf-maghrebin/i);
+  it("returns a Maghrebi couple photo when the origin country is Morocco", () => {
+    expect(String(pitchDaysImage({ ...defaultProfile, country: "Maroc" }))).toMatch(/days-couple-hf-maghrebin/i);
   });
 
-  it("returns an East Asian couple photo when both adults are Asiatique", () => {
-    expect(
-      String(
-        pitchDaysImage({
-          ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Asiatique" },
-          spouse: { ...defaultSpouse, look: "Asiatique" },
-        }),
-      ),
-    ).toMatch(/days-couple-hf-asiatique/i);
+  it("returns an East Asian couple photo when the origin country is China", () => {
+    expect(String(pitchDaysImage({ ...defaultProfile, country: "Chine" }))).toMatch(/days-couple-hf-asiatique/i);
   });
 
-  it("returns a Latino couple photo when both adults are Latino", () => {
-    expect(
-      String(
-        pitchDaysImage({
-          ...defaultProfile,
-          applicant: { ...defaultApplicant, look: "Latino" },
-          spouse: { ...defaultSpouse, look: "Latino" },
-        }),
-      ),
-    ).toMatch(/days-couple-hf-latino/i);
+  it("returns a Latino couple photo when the origin country is Mexico", () => {
+    expect(String(pitchDaysImage({ ...defaultProfile, country: "Mexique" }))).toMatch(/days-couple-hf-latino/i);
   });
 
   it("returns a father-and-child photo for a solo dad", () => {
@@ -581,13 +506,14 @@ describe("pitch forms slide adapts to the client profile", () => {
     expect(String(pitchFormImage(defaultProfile, "family"))).not.toMatch(/form-family-hf-noir-/);
   });
 
-  it("keeps a mixed couple together on the settle card", () => {
+  it("keeps a mixed-sex couple together on the settle card", () => {
     const mixed = {
       ...defaultProfile,
-      applicant: { ...defaultApplicant, sex: "Femme" as const, look: "Noir" as const },
-      spouse: { ...defaultSpouse, sex: "Homme" as const, look: "Blanc" as const },
+      applicant: { ...defaultApplicant, sex: "Femme" as const },
+      spouse: { ...defaultSpouse, sex: "Homme" as const },
     };
-    expect(String(pitchFormImage(mixed, "family"))).toMatch(/form-family-hf-noir-blanc/i);
+    expect(String(pitchFormImage(mixed, "family"))).toMatch(/form-family-hf-noir/i);
+    expect(String(pitchFormImage(mixed, "family"))).not.toMatch(/form-family-hf-noir-/);
     expect(String(pitchFormImage(mixed, "student"))).toMatch(/form-student-femme-noir/i);
     expect(String(pitchFormImage(mixed, "worker"))).toMatch(/form-worker-femme-noir/i);
   });
@@ -604,11 +530,10 @@ describe("pitch forms slide adapts to the client profile", () => {
     expect(String(pitchFormImage(man, "family"))).toMatch(/form-family-homme-noir/i);
   });
 
-  it("follows the applicant appearance chip on every form card", () => {
+  it("follows the origin country appearance on every form card", () => {
     const asian = {
       ...defaultProfile,
-      applicant: { ...defaultApplicant, look: "Asiatique" as const },
-      spouse: { ...defaultSpouse, look: "Asiatique" as const },
+      country: "Chine",
     };
     expect(String(pitchFormImage(asian, "student"))).toMatch(/asiatique/i);
     expect(String(pitchFormImage(asian, "worker"))).toMatch(/asiatique/i);

@@ -12,8 +12,8 @@ import { provinceData } from "@/data/provinces";
 const feature = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../features/canada.tsx"), "utf8");
 
 describe("Canada Live briefing pages", () => {
-  it("keeps four meeting pages in the catalog and the data", () => {
-    expect(sections.find((section) => section.id === "canada")?.slideCount).toBe(4);
+  it("keeps four meeting pages in the data (offline from Africa menu)", () => {
+    expect(sections.map((s) => s.id)).not.toContain("canada");
     expect(canadaLivePages).toHaveLength(4);
   });
 

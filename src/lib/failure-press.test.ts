@@ -4,7 +4,7 @@ import { failurePress, failureRisks } from "@/data/failures";
 import { highlightedFailureIds } from "@/lib/failure-press";
 
 describe("failureRisks", () => {
-  it("lists eight prospect-facing risks", () => {
+  it("lists ten prospect-facing risks", () => {
     expect(failureRisks.map((risk) => risk.id)).toEqual([
       "program",
       "rush",
@@ -14,9 +14,17 @@ describe("failureRisks", () => {
       "job-myth",
       "counsel",
       "urgent",
+      "status-myth",
+      "language",
     ]);
     expect(failureRisks.find((risk) => risk.id === "housing")?.label).toBe("Arriver sans logement préparé");
     expect(failureRisks.find((risk) => risk.id === "job-myth")?.cost).toBe("Personne n’embauche sur un souhait.");
+    expect(failureRisks.find((risk) => risk.id === "status-myth")?.cost).toBe(
+      "Un permis temporaire n’ouvre pas automatiquement la RP.",
+    );
+    expect(failureRisks.find((risk) => risk.id === "language")?.label).toBe(
+      "Négliger les exigences linguistiques",
+    );
     expect(failureRisks.every((risk) => Boolean(risk.image))).toBe(true);
   });
 });
