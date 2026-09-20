@@ -134,7 +134,7 @@ describe("country of origin flags", () => {
   it("places a compact waving flag to the right of the country select", () => {
     const form = extractFunction("ProfileForm");
     expect(form).toContain("<CountryHeroFlag country={draft.country} />");
-    expect(form).toContain("flex items-center gap-2");
+    expect(form).toContain("flex min-h-0 flex-1 items-center gap-2");
     expect(form).toContain("min-w-0 flex-1");
     const hero = extractFunction("CountryHeroFlag");
     expect(hero).toContain("countryFlagHeroUrl");
@@ -321,6 +321,8 @@ describe("option grid alignment", () => {
     const form = extractFunction("ProfileForm");
     expect(form).toContain("grid flex-1 items-stretch gap-3 min-w-0");
     expect(form).toContain("grid flex-1 gap-3");
+    expect(form).toContain('<div className="h-full min-h-0">');
+    expect(form).toContain("ir-rise h-full min-h-0");
     expect(form).not.toContain("grid shrink-0 items-stretch gap-3 min-w-0");
     expect(form).not.toContain('<div className="grid shrink-0 gap-3">');
   });

@@ -57,10 +57,14 @@ describe("option grid utilities", () => {
     expect(css).toContain(".ir-equal-row {");
     expect(css).toMatch(/\.ir-equal-row\s*\{[\s\S]*?display: grid;/);
     expect(css).toMatch(/\.ir-equal-row\s*\{[\s\S]*?width: 100%;/);
+    expect(css).toMatch(/\.ir-equal-row\s*\{[\s\S]*?align-items: stretch;/);
     expect(css).toMatch(/\.ir-equal-row\s*\{[\s\S]*?gap: 0\.5rem;/);
     expect(css).toContain(
       "grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--ir-equal-min, 7rem)), 1fr));",
     );
+    expect(css).toContain(".ir-equal-row > * {");
+    expect(css).toMatch(/\.ir-equal-row > \*\s*\{[\s\S]*?min-height: 100%;/);
+    expect(css).toMatch(/\.ir-equal-row > \*\s*\{[\s\S]*?height: 100%;/);
   });
 
   it("keeps existing .ir-auto-grid and .ir-auto-grid-sm", () => {

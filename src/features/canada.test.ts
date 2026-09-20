@@ -16,5 +16,14 @@ describe("Canada live layout", () => {
     expect(source).toContain("ALL_CANADA");
     expect(source).toContain("canadaLivePlaceOptions");
   });
+
+  it("stretches the hero and press columns to a shared bottom", () => {
+    expect(source).toContain("grid min-h-0 flex-1 items-stretch gap-3");
+    expect(source).toContain("flex h-full flex-col p-3 sm:px-4 sm:py-3");
+    expect(source).toContain("mt-auto pt-1.5 text-[12px] text-muted-foreground");
+    expect(source).toContain("relative h-full min-h-[12rem] overflow-hidden p-0");
+    expect(source).toContain("flex h-full min-h-0 flex-col p-3 sm:px-4 sm:py-3");
+    expect(source).not.toContain("grid shrink-0 gap-3 @min-[40rem]:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]");
+  });
 });
 

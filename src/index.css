@@ -269,6 +269,11 @@ body {
     min-height: 100%;
     flex: 1 1 0;
   }
+
+  .page-shell__frame--split .page-shell__main > :last-child {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
 }
 
 .place-strip-wrap {
@@ -360,8 +365,14 @@ body {
 .ir-equal-row {
   display: grid;
   width: 100%;
+  align-items: stretch;
   gap: 0.5rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--ir-equal-min, 7rem)), 1fr));
+}
+
+.ir-equal-row > * {
+  min-height: 100%;
+  height: 100%;
 }
 
 @keyframes ir-flag-in {

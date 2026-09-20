@@ -321,31 +321,33 @@ function ProfileForm() {
             </div>
 
             <div className="mt-3 grid items-stretch gap-3 @min-[36rem]:grid-cols-2">
-              <div>
+              <div className="flex h-full min-h-0 flex-col">
                 <SectionLabel>Destination</SectionLabel>
-                <div className="mt-1.5 ir-option-grid">
-                  {featuredProvinces.map((option) => (
-                    <Chip
-                      key={option}
-                      compact
-                      title={option}
-                      ariaLabel={option}
-                      selected={draft.province === option}
-                      className="w-full min-w-0 justify-center"
-                      onClick={() => setProject("province", option)}
-                    >
-                      <span className="font-bold tracking-wide">{provinceShort[option] ?? option}</span>
-                    </Chip>
-                  ))}
-                  <ProvinceOtherSelect
-                    value={draft.province}
-                    onChange={(v) => setProject("province", v)}
-                  />
+                <div className="mt-1.5 flex min-h-0 flex-1 flex-col justify-center">
+                  <div className="ir-option-grid">
+                    {featuredProvinces.map((option) => (
+                      <Chip
+                        key={option}
+                        compact
+                        title={option}
+                        ariaLabel={option}
+                        selected={draft.province === option}
+                        className="w-full min-w-0 justify-center"
+                        onClick={() => setProject("province", option)}
+                      >
+                        <span className="font-bold tracking-wide">{provinceShort[option] ?? option}</span>
+                      </Chip>
+                    ))}
+                    <ProvinceOtherSelect
+                      value={draft.province}
+                      onChange={(v) => setProject("province", v)}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="flex min-h-0 flex-col">
+              <div className="flex h-full min-h-0 flex-col">
                 <SectionLabel>Pays d'origine</SectionLabel>
-                <div className="mt-1.5 flex items-center gap-2">
+                <div className="mt-1.5 flex min-h-0 flex-1 items-center gap-2">
                   <div className="min-w-0 flex-1">
                     <CountrySelect value={draft.country} onChange={(v) => setProject("country", v)} />
                   </div>
@@ -407,19 +409,21 @@ function ProfileForm() {
             </div>
           ) : (
             <div className={cn("grid flex-1 items-stretch gap-3 min-w-0", showSpouse && "@min-[34rem]:grid-cols-2")}>
-              <PersonCard
-                title="Candidat"
-                member={draft.applicant}
-                tone="navy"
-                active={analysis.selected === "applicant"}
-                score={analysis.applicantScore.total}
-                onChange={(patch) => patchAdult("applicant", patch)}
-                study={applicantStudy}
-                work={applicantWork}
-                visit={applicantVisit}
-                business={applicantBusiness}
-                family={applicantFamily}
-              />
+              <div className="h-full min-h-0">
+                <PersonCard
+                  title="Candidat"
+                  member={draft.applicant}
+                  tone="navy"
+                  active={analysis.selected === "applicant"}
+                  score={analysis.applicantScore.total}
+                  onChange={(patch) => patchAdult("applicant", patch)}
+                  study={applicantStudy}
+                  work={applicantWork}
+                  visit={applicantVisit}
+                  business={applicantBusiness}
+                  family={applicantFamily}
+                />
+              </div>
               {showSpouse ? (
                 <div className="ir-rise h-full min-h-0">
                   <PersonCard

@@ -63,6 +63,10 @@ describe("fluid layout system", () => {
     expect(css).toMatch(/\.page-shell__frame--split\s*\{[\s\S]*?height:\s*100%;/);
     expect(css).toContain("align-self: stretch");
     expect(css).toContain("min-height: 100%");
+    expect(css).toContain(".page-shell__frame--split .page-shell__main > :last-child");
+    expect(css).toMatch(
+      /\.page-shell__frame--split \.page-shell__main > :last-child\s*\{[\s\S]*?flex:\s*1 1 auto;/,
+    );
 
     expect(css).toMatch(/--page-pad-x:\s*clamp\(\s*1rem\b/);
   });

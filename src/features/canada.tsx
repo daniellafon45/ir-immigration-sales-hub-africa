@@ -115,7 +115,7 @@ function CanadaLiveView({
             className="shrink-0 ir-equal-row"
             style={{ ["--ir-equal-min" as string]: "8rem" }}
           >
-            <Surface className="p-3 sm:px-4 sm:py-3">
+            <Surface className="flex h-full flex-col p-3 sm:px-4 sm:py-3">
               <p className="text-[12px] font-semibold text-[#1a2332]">Province visée</p>
               <Select
                 aria-label="Province visée"
@@ -129,21 +129,21 @@ function CanadaLiveView({
                   </option>
                 ))}
               </Select>
-              <p className="mt-1.5 text-[12px] text-muted-foreground">
+              <p className="mt-auto pt-1.5 text-[12px] text-muted-foreground">
                 {isAllCanada(place) ? "vue nationale du plan IRCC" : "le projet se juge localement"}
               </p>
             </Surface>
             {page.stats.slice(0, 3).map((stat) => (
-              <Surface key={stat.label} className="p-3 sm:px-4 sm:py-3">
+              <Surface key={stat.label} className="flex h-full flex-col p-3 sm:px-4 sm:py-3">
                 <p className="text-[12px] font-semibold text-[#1a2332]">{stat.label}</p>
                 <p className="mt-1 text-[26px] leading-none font-semibold tracking-tight text-primary">{smart(stat.value, profile)}</p>
-                <p className="mt-1.5 text-[12px] text-muted-foreground">{smart(stat.note, profile)}</p>
+                <p className="mt-auto pt-1.5 text-[12px] text-muted-foreground">{smart(stat.note, profile)}</p>
               </Surface>
             ))}
           </div>
 
-          <div className="grid shrink-0 gap-3 @min-[40rem]:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
-            <Surface className="relative min-h-[12rem] overflow-hidden p-0 @min-[40rem]:min-h-[10.5rem]">
+          <div className="grid min-h-0 flex-1 items-stretch gap-3 @min-[40rem]:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
+            <Surface className="relative h-full min-h-[12rem] overflow-hidden p-0 @min-[40rem]:min-h-[10.5rem]">
               <img src={page.heroImage} alt="" className="absolute inset-0 size-full object-cover" />
               <span className="absolute inset-0 bg-linear-to-t from-ir-navy/82 via-ir-navy/20 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-4 text-white">
@@ -152,11 +152,11 @@ function CanadaLiveView({
               </div>
             </Surface>
 
-            <Surface className="p-3 sm:px-4 sm:py-3">
+            <Surface className="flex h-full min-h-0 flex-col p-3 sm:px-4 sm:py-3">
               <SectionLabel>Presse récente</SectionLabel>
-              <ul className="mt-2 space-y-2">
+              <ul className="mt-2 flex min-h-0 flex-1 flex-col space-y-2">
                 {page.articles.map((article) => (
-                  <li key={article.url}>
+                  <li key={article.url} className="min-h-0">
                     <a
                       href={article.url}
                       target="_blank"
