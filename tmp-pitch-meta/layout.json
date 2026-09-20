@@ -1,0 +1,3512 @@
+[
+  {
+    "id": 1,
+    "images": [
+      {
+        "idx": 0,
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 191.4,
+        "top": 52.8,
+        "width": 84,
+        "height": 91.2,
+        "z": 8
+      }
+    ],
+    "shapes": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 798,
+        "height": 900,
+        "bg": "rgba(7,26,51,1.0000)",
+        "z": 2
+      },
+      {
+        "left": 684,
+        "top": 0,
+        "width": 168,
+        "height": 900,
+        "bg": "rgba(7,26,51,0.6200)",
+        "z": 4
+      },
+      {
+        "left": 111.6,
+        "top": 189.6,
+        "width": 600,
+        "height": 186,
+        "bg": "transparent",
+        "z": 10
+      },
+      {
+        "left": 114,
+        "top": 405.6,
+        "width": 594,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 114,
+        "top": 466.8,
+        "width": 558,
+        "height": 126,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 114,
+        "top": 638.4,
+        "width": 354,
+        "height": 43.2,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 16
+      },
+      {
+        "left": 114,
+        "top": 639.6,
+        "width": 354,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 18
+      },
+      {
+        "left": 114,
+        "top": 812.4,
+        "width": 564,
+        "height": 28.8,
+        "bg": "transparent",
+        "z": 20
+      }
+    ],
+    "texts": [
+      {
+        "left": 111.6,
+        "top": 189.6,
+        "width": 600,
+        "height": 186,
+        "z": 11,
+        "text": "VOTRE PROJET CANADA COMMENCE ICI"
+      },
+      {
+        "left": 114,
+        "top": 405.6,
+        "width": 594,
+        "height": 45.6,
+        "z": 13,
+        "text": "Immigration. Carrière. Installation."
+      },
+      {
+        "left": 114,
+        "top": 466.8,
+        "width": 558,
+        "height": 126,
+        "z": 15,
+        "text": "Un seul écosystème pour transformer une ambition en projet de vie structuré."
+      },
+      {
+        "left": 114,
+        "top": 639.6,
+        "width": 354,
+        "height": 40.8,
+        "z": 19,
+        "text": "STRATÉGIE • RIGUEUR • HUMAIN"
+      },
+      {
+        "left": 114,
+        "top": 812.4,
+        "width": 564,
+        "height": 28.8,
+        "z": 21,
+        "text": "ir-immigration.com | WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "images": [
+      {
+        "idx": 0,
+        "left": 849.6,
+        "top": 0,
+        "width": 750.36,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 155.4,
+        "top": 45.6,
+        "width": 84,
+        "height": 91.2,
+        "z": 4
+      }
+    ],
+    "shapes": [
+      {
+        "left": 804,
+        "top": 0,
+        "width": 84,
+        "height": 900,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 158.4,
+        "width": 686.4,
+        "height": 126,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 302.4,
+        "width": 684,
+        "height": 66,
+        "bg": "transparent",
+        "z": 8
+      },
+      {
+        "left": 86.4,
+        "top": 378,
+        "width": 654,
+        "height": 108,
+        "bg": "transparent",
+        "z": 10
+      },
+      {
+        "left": 114,
+        "top": 513.6,
+        "width": 607.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 114,
+        "top": 579.6,
+        "width": 607.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 18
+      },
+      {
+        "left": 114,
+        "top": 645.6,
+        "width": 607.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 114,
+        "top": 711.6,
+        "width": 607.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 28
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 158.4,
+        "width": 686.4,
+        "height": 126,
+        "z": 7,
+        "text": "VOUS NE CHERCHEZ PAS SEULEMENT UN VISA"
+      },
+      {
+        "left": 86.4,
+        "top": 302.4,
+        "width": 684,
+        "height": 66,
+        "z": 9,
+        "text": "Vous cherchez une vie qui tient debout."
+      },
+      {
+        "left": 86.4,
+        "top": 378,
+        "width": 654,
+        "height": 108,
+        "z": 11,
+        "text": "Le document d'immigration n'est qu'une étape. Le vrai projet se joue dans ce qui vient avant et dans ce qui vient après."
+      },
+      {
+        "left": 114,
+        "top": 513.6,
+        "width": 607.2,
+        "height": 52.8,
+        "z": 15,
+        "text": "Une carrière à la hauteur de vos compétences"
+      },
+      {
+        "left": 114,
+        "top": 579.6,
+        "width": 607.2,
+        "height": 52.8,
+        "z": 19,
+        "text": "Une famille installée avec des repères"
+      },
+      {
+        "left": 114,
+        "top": 645.6,
+        "width": 607.2,
+        "height": 52.8,
+        "z": 23,
+        "text": "Des études choisies pour un vrai projet d'avenir"
+      },
+      {
+        "left": 114,
+        "top": 711.6,
+        "width": 607.2,
+        "height": 52.8,
+        "z": 27,
+        "text": "Une transition préparée, pas improvisée"
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 29,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1359,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1152,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1404,
+        "height": 57.6,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 261.6,
+        "width": 686.4,
+        "height": 213.6,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 8
+      },
+      {
+        "left": 128.4,
+        "top": 288,
+        "width": 258,
+        "height": 69.6,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 360,
+        "top": 288,
+        "width": 369.6,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 360,
+        "top": 391.2,
+        "width": 369.6,
+        "height": 36,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 825.6,
+        "top": 261.6,
+        "width": 686.4,
+        "height": 213.6,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 18
+      },
+      {
+        "left": 867.6,
+        "top": 288,
+        "width": 258,
+        "height": 69.6,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 1099.2,
+        "top": 288,
+        "width": 369.6,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 1099.2,
+        "top": 391.2,
+        "width": 369.6,
+        "height": 36,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 86.4,
+        "top": 525.6,
+        "width": 686.4,
+        "height": 213.6,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 28
+      },
+      {
+        "left": 128.4,
+        "top": 552,
+        "width": 258,
+        "height": 69.6,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 360,
+        "top": 552,
+        "width": 369.6,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 360,
+        "top": 655.2,
+        "width": 369.6,
+        "height": 36,
+        "bg": "transparent",
+        "z": 36
+      },
+      {
+        "left": 825.6,
+        "top": 525.6,
+        "width": 686.4,
+        "height": 213.6,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 38
+      },
+      {
+        "left": 867.6,
+        "top": 552,
+        "width": 258,
+        "height": 69.6,
+        "bg": "transparent",
+        "z": 42
+      },
+      {
+        "left": 1099.2,
+        "top": 552,
+        "width": 369.6,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 44
+      },
+      {
+        "left": 1099.2,
+        "top": 655.2,
+        "width": 369.6,
+        "height": 36,
+        "bg": "transparent",
+        "z": 46
+      },
+      {
+        "left": 86.4,
+        "top": 780,
+        "width": 1032,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 48
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 1344,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 50
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1152,
+        "height": 86.4,
+        "z": 3,
+        "text": "LE CANADA CONTINUE D’ACCUEILLIR. LA SÉLECTION EST PLUS CIBLÉE."
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1404,
+        "height": 57.6,
+        "z": 7,
+        "text": "Les possibilités restent réelles, mais le profil, la stratégie et la qualité du dossier comptent davantage."
+      },
+      {
+        "left": 128.4,
+        "top": 288,
+        "width": 258,
+        "height": 69.6,
+        "z": 13,
+        "text": "380 000"
+      },
+      {
+        "left": 360,
+        "top": 288,
+        "width": 369.6,
+        "height": 86.4,
+        "z": 15,
+        "text": "admissions de résidents permanents prévues chaque année"
+      },
+      {
+        "left": 360,
+        "top": 391.2,
+        "width": 369.6,
+        "height": 36,
+        "z": 17,
+        "text": "2026 à 2028"
+      },
+      {
+        "left": 867.6,
+        "top": 288,
+        "width": 258,
+        "height": 69.6,
+        "z": 23,
+        "text": "64 %"
+      },
+      {
+        "left": 1099.2,
+        "top": 288,
+        "width": 369.6,
+        "height": 86.4,
+        "z": 25,
+        "text": "part de l’immigration économique visée"
+      },
+      {
+        "left": 1099.2,
+        "top": 391.2,
+        "width": 369.6,
+        "height": 36,
+        "z": 27,
+        "text": "en 2027 et 2028"
+      },
+      {
+        "left": 128.4,
+        "top": 552,
+        "width": 258,
+        "height": 69.6,
+        "z": 33,
+        "text": "9 %"
+      },
+      {
+        "left": 360,
+        "top": 552,
+        "width": 369.6,
+        "height": 86.4,
+        "z": 35,
+        "text": "cible de résidents permanents francophones hors Québec"
+      },
+      {
+        "left": 360,
+        "top": 655.2,
+        "width": 369.6,
+        "height": 36,
+        "z": 37,
+        "text": "2026 • 10,5 % en 2028"
+      },
+      {
+        "left": 867.6,
+        "top": 552,
+        "width": 258,
+        "height": 69.6,
+        "z": 43,
+        "text": "1,25"
+      },
+      {
+        "left": 1099.2,
+        "top": 552,
+        "width": 369.6,
+        "height": 86.4,
+        "z": 45,
+        "text": "enfant par femme au Canada, un creux historique"
+      },
+      {
+        "left": 1099.2,
+        "top": 655.2,
+        "width": 369.6,
+        "height": 36,
+        "z": 47,
+        "text": "donnée 2024"
+      },
+      {
+        "left": 86.4,
+        "top": 780,
+        "width": 1032,
+        "height": 45.6,
+        "z": 49,
+        "text": "Les portes existent. La préparation fait la différence."
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 1344,
+        "height": 21.6,
+        "z": 51,
+        "text": "Sources : IRCC, Plan des niveaux d’immigration 2026-2028. Statistique Canada, fécondité 2024."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 38.4,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 122.4,
+        "top": 315.6,
+        "width": 54,
+        "height": 54,
+        "z": 10
+      },
+      {
+        "idx": 2,
+        "left": 859.2,
+        "top": 315.6,
+        "width": 54,
+        "height": 54,
+        "z": 20
+      },
+      {
+        "idx": 3,
+        "left": 122.4,
+        "top": 591.6,
+        "width": 54,
+        "height": 54,
+        "z": 30
+      },
+      {
+        "idx": 4,
+        "left": 859.2,
+        "top": 591.6,
+        "width": 54,
+        "height": 54,
+        "z": 40
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1104,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1152,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 270,
+        "width": 686.4,
+        "height": 210,
+        "bg": "rgba(255,255,255,0.1000)",
+        "z": 8
+      },
+      {
+        "left": 196.8,
+        "top": 298.8,
+        "width": 57.6,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 260.4,
+        "top": 301.2,
+        "width": 465.6,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 260.4,
+        "top": 361.2,
+        "width": 468,
+        "height": 79.2,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 823.2,
+        "top": 270,
+        "width": 686.4,
+        "height": 210,
+        "bg": "rgba(255,255,255,0.1000)",
+        "z": 18
+      },
+      {
+        "left": 933.6,
+        "top": 298.8,
+        "width": 57.6,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 997.2,
+        "top": 301.2,
+        "width": 465.6,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 997.2,
+        "top": 361.2,
+        "width": 468,
+        "height": 79.2,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 86.4,
+        "top": 546,
+        "width": 686.4,
+        "height": 210,
+        "bg": "rgba(255,255,255,0.1000)",
+        "z": 28
+      },
+      {
+        "left": 196.8,
+        "top": 574.8,
+        "width": 57.6,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 260.4,
+        "top": 577.2,
+        "width": 465.6,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 260.4,
+        "top": 637.2,
+        "width": 468,
+        "height": 79.2,
+        "bg": "transparent",
+        "z": 36
+      },
+      {
+        "left": 823.2,
+        "top": 546,
+        "width": 686.4,
+        "height": 210,
+        "bg": "rgba(255,255,255,0.1000)",
+        "z": 38
+      },
+      {
+        "left": 933.6,
+        "top": 574.8,
+        "width": 57.6,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 42
+      },
+      {
+        "left": 997.2,
+        "top": 577.2,
+        "width": 465.6,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 44
+      },
+      {
+        "left": 997.2,
+        "top": 637.2,
+        "width": 468,
+        "height": 79.2,
+        "bg": "transparent",
+        "z": 46
+      },
+      {
+        "left": 86.4,
+        "top": 801.6,
+        "width": 1260,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 48
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 50
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1104,
+        "height": 86.4,
+        "z": 3,
+        "text": "POURQUOI TANT DE PROJETS SE COMPLIQUENT ?"
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1152,
+        "height": 52.8,
+        "z": 7,
+        "text": "Une bonne intention ne remplace pas une bonne stratégie."
+      },
+      {
+        "left": 196.8,
+        "top": 298.8,
+        "width": 57.6,
+        "height": 52.8,
+        "z": 13,
+        "text": "1"
+      },
+      {
+        "left": 260.4,
+        "top": 301.2,
+        "width": 465.6,
+        "height": 43.2,
+        "z": 15,
+        "text": "La mauvaise voie est choisie"
+      },
+      {
+        "left": 260.4,
+        "top": 361.2,
+        "width": 468,
+        "height": 79.2,
+        "z": 17,
+        "text": "Le projet commence sans vraie lecture du profil et de l’admissibilité."
+      },
+      {
+        "left": 933.6,
+        "top": 298.8,
+        "width": 57.6,
+        "height": 52.8,
+        "z": 23,
+        "text": "2"
+      },
+      {
+        "left": 997.2,
+        "top": 301.2,
+        "width": 465.6,
+        "height": 43.2,
+        "z": 25,
+        "text": "Le dossier manque de cohérence"
+      },
+      {
+        "left": 997.2,
+        "top": 361.2,
+        "width": 468,
+        "height": 79.2,
+        "z": 27,
+        "text": "Documents, preuves et récit ne racontent pas la même histoire."
+      },
+      {
+        "left": 196.8,
+        "top": 574.8,
+        "width": 57.6,
+        "height": 52.8,
+        "z": 33,
+        "text": "3"
+      },
+      {
+        "left": 260.4,
+        "top": 577.2,
+        "width": 465.6,
+        "height": 43.2,
+        "z": 35,
+        "text": "La carrière est préparée trop tard"
+      },
+      {
+        "left": 260.4,
+        "top": 637.2,
+        "width": 468,
+        "height": 79.2,
+        "z": 37,
+        "text": "Le candidat pense au marché du travail seulement après son arrivée."
+      },
+      {
+        "left": 933.6,
+        "top": 574.8,
+        "width": 57.6,
+        "height": 52.8,
+        "z": 43,
+        "text": "4"
+      },
+      {
+        "left": 997.2,
+        "top": 577.2,
+        "width": 465.6,
+        "height": 43.2,
+        "z": 45,
+        "text": "L’installation est laissée au hasard"
+      },
+      {
+        "left": 997.2,
+        "top": 637.2,
+        "width": 468,
+        "height": 79.2,
+        "z": 47,
+        "text": "Logement, démarches et repères se transforment en urgence."
+      },
+      {
+        "left": 86.4,
+        "top": 801.6,
+        "width": 1260,
+        "height": 45.6,
+        "z": 49,
+        "text": "Chez IR, immigration, carrière et installation sont travaillées ensemble."
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 51,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 264,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "z": 12
+      },
+      {
+        "idx": 2,
+        "left": 730.8,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "z": 22
+      },
+      {
+        "idx": 3,
+        "left": 1197.6,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "z": 32
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1134,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1368,
+        "height": 62.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 282,
+        "width": 404.4,
+        "height": 417.6,
+        "bg": "rgba(248,250,252,1.0000)",
+        "z": 8
+      },
+      {
+        "left": 228,
+        "top": 324,
+        "width": 120,
+        "height": 120,
+        "bg": "rgba(234,242,251,1.0000)",
+        "z": 10
+      },
+      {
+        "left": 124.8,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 129.6,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 553.2,
+        "top": 282,
+        "width": 404.4,
+        "height": 417.6,
+        "bg": "rgba(244,248,253,1.0000)",
+        "z": 18
+      },
+      {
+        "left": 694.8,
+        "top": 324,
+        "width": 120,
+        "height": 120,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 20
+      },
+      {
+        "left": 591.6,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 596.4,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 1020,
+        "top": 282,
+        "width": 404.4,
+        "height": 417.6,
+        "bg": "rgba(248,250,252,1.0000)",
+        "z": 28
+      },
+      {
+        "left": 1161.6,
+        "top": 324,
+        "width": 120,
+        "height": 120,
+        "bg": "rgba(234,242,251,1.0000)",
+        "z": 30
+      },
+      {
+        "left": 1058.4,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 1063.2,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "bg": "transparent",
+        "z": 36
+      },
+      {
+        "left": 86.4,
+        "top": 753.6,
+        "width": 1404,
+        "height": 57.6,
+        "bg": "transparent",
+        "z": 42
+      },
+      {
+        "left": 86.4,
+        "top": 819.6,
+        "width": 1404,
+        "height": 31.2,
+        "bg": "transparent",
+        "z": 44
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1134,
+        "height": 86.4,
+        "z": 3,
+        "text": "LA DIFFÉRENCE IR : 3 EXPERTISES, 1 SEUL PROJET DE VIE"
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1368,
+        "height": 62.4,
+        "z": 7,
+        "text": "Vous ne changez pas d’équipe à chaque étape. Nous connectons les enjeux qui décident de la qualité de votre parcours."
+      },
+      {
+        "left": 124.8,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "z": 15,
+        "text": "IMMIGRATION"
+      },
+      {
+        "left": 129.6,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "z": 17,
+        "text": "Analyse du profil, stratégie, préparation et coordination du dossier. Professionnels autorisés mobilisés lorsque requis."
+      },
+      {
+        "left": 591.6,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "z": 25,
+        "text": "CARRIÈRE & EMPLOI"
+      },
+      {
+        "left": 596.4,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "z": 27,
+        "text": "Positionnement métier, CV, entrevue, orientation vers les exigences du marché et réseau professionnel."
+      },
+      {
+        "left": 1058.4,
+        "top": 474,
+        "width": 327.6,
+        "height": 50.4,
+        "z": 35,
+        "text": "CONCIERGERIE"
+      },
+      {
+        "left": 1063.2,
+        "top": 543.6,
+        "width": 318,
+        "height": 138,
+        "z": 37,
+        "text": "Logement, accueil, démarches pratiques et installation pour arriver avec des repères concrets."
+      },
+      {
+        "left": 86.4,
+        "top": 753.6,
+        "width": 1404,
+        "height": 57.6,
+        "z": 43,
+        "text": "Un seul fil conducteur : votre projet de vie au Canada."
+      },
+      {
+        "left": 86.4,
+        "top": 819.6,
+        "width": 1404,
+        "height": 31.2,
+        "z": 45,
+        "text": "Les services exacts dépendent du forfait choisi, de la province et de votre admissibilité."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1134,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1044,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 105.6,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 10
+      },
+      {
+        "left": 105.6,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 62.4,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 45.6,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 348,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 18
+      },
+      {
+        "left": 348,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 304.8,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 288,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 590.4,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 26
+      },
+      {
+        "left": 590.4,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 28
+      },
+      {
+        "left": 547.2,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 530.4,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 832.8,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 34
+      },
+      {
+        "left": 832.8,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 36
+      },
+      {
+        "left": 789.6,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 38
+      },
+      {
+        "left": 772.8,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 40
+      },
+      {
+        "left": 1075.2,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 42
+      },
+      {
+        "left": 1075.2,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 44
+      },
+      {
+        "left": 1032,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 46
+      },
+      {
+        "left": 1015.2,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 48
+      },
+      {
+        "left": 1317.6,
+        "top": 324,
+        "width": 84,
+        "height": 84,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 50
+      },
+      {
+        "left": 1317.6,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 52
+      },
+      {
+        "left": 1274.4,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 54
+      },
+      {
+        "left": 1257.6,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "bg": "transparent",
+        "z": 56
+      },
+      {
+        "left": 86.4,
+        "top": 736.8,
+        "width": 1425.6,
+        "height": 86.4,
+        "bg": "rgba(234,242,251,1.0000)",
+        "z": 58
+      },
+      {
+        "left": 114,
+        "top": 754.8,
+        "width": 1368,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 60
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 62
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1134,
+        "height": 86.4,
+        "z": 3,
+        "text": "VOTRE PARCOURS, DE L’IDÉE À L’INSTALLATION"
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 1044,
+        "height": 50.4,
+        "z": 7,
+        "text": "Une méthode simple à comprendre. Chaque étape prépare la suivante."
+      },
+      {
+        "left": 105.6,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 13,
+        "text": "01"
+      },
+      {
+        "left": 62.4,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 15,
+        "text": "DIAGNOSTIC"
+      },
+      {
+        "left": 45.6,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 17,
+        "text": "Comprendre votre profil, vos objectifs et vos contraintes."
+      },
+      {
+        "left": 348,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 21,
+        "text": "02"
+      },
+      {
+        "left": 304.8,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 23,
+        "text": "STRATÉGIE"
+      },
+      {
+        "left": 288,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 25,
+        "text": "Identifier les options réalistes et les priorités."
+      },
+      {
+        "left": 590.4,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 29,
+        "text": "03"
+      },
+      {
+        "left": 547.2,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 31,
+        "text": "PRÉPARATION"
+      },
+      {
+        "left": 530.4,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 33,
+        "text": "Organiser les documents, preuves et échéances."
+      },
+      {
+        "left": 832.8,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 37,
+        "text": "04"
+      },
+      {
+        "left": 789.6,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 39,
+        "text": "DÉPÔT & SUIVI"
+      },
+      {
+        "left": 772.8,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 41,
+        "text": "Coordonner le dossier et répondre aux demandes."
+      },
+      {
+        "left": 1075.2,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 45,
+        "text": "05"
+      },
+      {
+        "left": 1032,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 47,
+        "text": "DÉPART"
+      },
+      {
+        "left": 1015.2,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 49,
+        "text": "Préparer carrière, logement et arrivée."
+      },
+      {
+        "left": 1317.6,
+        "top": 339.6,
+        "width": 84,
+        "height": 40.8,
+        "z": 53,
+        "text": "06"
+      },
+      {
+        "left": 1274.4,
+        "top": 438,
+        "width": 170.4,
+        "height": 45.6,
+        "z": 55,
+        "text": "INTÉGRATION"
+      },
+      {
+        "left": 1257.6,
+        "top": 504,
+        "width": 204,
+        "height": 158.4,
+        "z": 57,
+        "text": "Soutenir l’installation et les prochaines étapes."
+      },
+      {
+        "left": 114,
+        "top": 754.8,
+        "width": 1368,
+        "height": 40.8,
+        "z": 61,
+        "text": "Une seule question guide tout le parcours : quelle est la prochaine action utile pour votre projet ?"
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 63,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 86.4,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "z": 8
+      },
+      {
+        "idx": 2,
+        "left": 573.6,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "z": 16
+      },
+      {
+        "idx": 3,
+        "left": 1060.8,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "z": 24
+      },
+      {
+        "idx": 4,
+        "left": 330,
+        "top": 552,
+        "width": 452.4,
+        "height": 243.6,
+        "z": 32
+      },
+      {
+        "idx": 5,
+        "left": 817.2,
+        "top": 552,
+        "width": 452.4,
+        "height": 243.6,
+        "z": 40
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1110,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1104,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 394.8,
+        "width": 452.4,
+        "height": 106.8,
+        "bg": "rgba(7,26,51,0.8500)",
+        "z": 10
+      },
+      {
+        "left": 108,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 108,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 573.6,
+        "top": 394.8,
+        "width": 452.4,
+        "height": 106.8,
+        "bg": "rgba(7,26,51,0.8500)",
+        "z": 18
+      },
+      {
+        "left": 595.2,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 595.2,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 1060.8,
+        "top": 394.8,
+        "width": 452.4,
+        "height": 106.8,
+        "bg": "rgba(7,26,51,0.8500)",
+        "z": 26
+      },
+      {
+        "left": 1082.4,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 28
+      },
+      {
+        "left": 1082.4,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 330,
+        "top": 688.8,
+        "width": 452.4,
+        "height": 106.8,
+        "bg": "rgba(7,26,51,0.8500)",
+        "z": 34
+      },
+      {
+        "left": 351.6,
+        "top": 696,
+        "width": 409.2,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 36
+      },
+      {
+        "left": 351.6,
+        "top": 735.6,
+        "width": 409.2,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 38
+      },
+      {
+        "left": 817.2,
+        "top": 688.8,
+        "width": 452.4,
+        "height": 106.8,
+        "bg": "rgba(7,26,51,0.8500)",
+        "z": 42
+      },
+      {
+        "left": 838.8,
+        "top": 696,
+        "width": 409.2,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 44
+      },
+      {
+        "left": 838.8,
+        "top": 735.6,
+        "width": 409.2,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 46
+      },
+      {
+        "left": 86.4,
+        "top": 835.2,
+        "width": 1404,
+        "height": 28.8,
+        "bg": "transparent",
+        "z": 48
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1110,
+        "height": 86.4,
+        "z": 3,
+        "text": "QUELLE PORTE CORRESPOND À VOTRE PROJET ?"
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1104,
+        "height": 50.4,
+        "z": 7,
+        "text": "Nous partons de votre objectif. Ensuite seulement, nous parlons de programme."
+      },
+      {
+        "left": 108,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "z": 13,
+        "text": "RÉSIDENCE PERMANENTE"
+      },
+      {
+        "left": 108,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "z": 15,
+        "text": "Pour les profils admissibles qui construisent un projet durable."
+      },
+      {
+        "left": 595.2,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "z": 21,
+        "text": "ÉTUDES"
+      },
+      {
+        "left": 595.2,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "z": 23,
+        "text": "Choisir un programme cohérent avec votre parcours et votre objectif."
+      },
+      {
+        "left": 1082.4,
+        "top": 402,
+        "width": 409.2,
+        "height": 38.4,
+        "z": 29,
+        "text": "TRAVAIL"
+      },
+      {
+        "left": 1082.4,
+        "top": 441.6,
+        "width": 409.2,
+        "height": 50.4,
+        "z": 31,
+        "text": "Explorer les options possibles selon votre métier et votre situation."
+      },
+      {
+        "left": 351.6,
+        "top": 696,
+        "width": 409.2,
+        "height": 38.4,
+        "z": 37,
+        "text": "VISITE & FAMILLE"
+      },
+      {
+        "left": 351.6,
+        "top": 735.6,
+        "width": 409.2,
+        "height": 50.4,
+        "z": 39,
+        "text": "Préparer un séjour, une visite ou un projet familial avec clarté."
+      },
+      {
+        "left": 838.8,
+        "top": 696,
+        "width": 409.2,
+        "height": 38.4,
+        "z": 45,
+        "text": "AFFAIRES"
+      },
+      {
+        "left": 838.8,
+        "top": 735.6,
+        "width": 409.2,
+        "height": 50.4,
+        "z": 47,
+        "text": "Organiser un projet d’affaires, des rencontres et la logistique du séjour."
+      },
+      {
+        "left": 86.4,
+        "top": 835.2,
+        "width": 1404,
+        "height": 28.8,
+        "z": 49,
+        "text": "Chaque voie dépend de votre profil, de votre admissibilité et des règles en vigueur."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "images": [
+      {
+        "idx": 0,
+        "left": 0,
+        "top": 0,
+        "width": 744,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 4
+      }
+    ],
+    "shapes": [
+      {
+        "left": 705.6,
+        "top": 0,
+        "width": 54,
+        "height": 900,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 2
+      },
+      {
+        "left": 798,
+        "top": 141.6,
+        "width": 686.4,
+        "height": 123.6,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 798,
+        "top": 296.4,
+        "width": 624,
+        "height": 51.6,
+        "bg": "transparent",
+        "z": 8
+      },
+      {
+        "left": 826.8,
+        "top": 375.6,
+        "width": 577.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 826.8,
+        "top": 445.2,
+        "width": 577.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 826.8,
+        "top": 514.8,
+        "width": 577.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 826.8,
+        "top": 584.4,
+        "width": 577.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 798,
+        "top": 686.4,
+        "width": 687.6,
+        "height": 114,
+        "bg": "rgba(234,242,251,1.0000)",
+        "z": 26
+      },
+      {
+        "left": 834,
+        "top": 712.8,
+        "width": 618,
+        "height": 57.6,
+        "bg": "transparent",
+        "z": 28
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 30
+      }
+    ],
+    "texts": [
+      {
+        "left": 798,
+        "top": 141.6,
+        "width": 686.4,
+        "height": 123.6,
+        "z": 7,
+        "text": "UN STATUT N’EST PAS ENCORE UNE INTÉGRATION"
+      },
+      {
+        "left": 798,
+        "top": 296.4,
+        "width": 624,
+        "height": 51.6,
+        "z": 9,
+        "text": "Nous préparons aussi l’après."
+      },
+      {
+        "left": 826.8,
+        "top": 375.6,
+        "width": 577.2,
+        "height": 52.8,
+        "z": 13,
+        "text": "Projet professionnel et ciblage métier"
+      },
+      {
+        "left": 826.8,
+        "top": 445.2,
+        "width": 577.2,
+        "height": 52.8,
+        "z": 17,
+        "text": "CV, entrevue et positionnement aux standards canadiens"
+      },
+      {
+        "left": 826.8,
+        "top": 514.8,
+        "width": 577.2,
+        "height": 52.8,
+        "z": 21,
+        "text": "Orientation sur reconnaissance, équivalences et formations utiles"
+      },
+      {
+        "left": 826.8,
+        "top": 584.4,
+        "width": 577.2,
+        "height": 52.8,
+        "z": 25,
+        "text": "Réseau, employeurs et pistes de développement"
+      },
+      {
+        "left": 834,
+        "top": 712.8,
+        "width": 618,
+        "height": 57.6,
+        "z": 29,
+        "text": "Objectif : arriver avec un plan professionnel, pas recommencer de zéro."
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 31,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "images": [
+      {
+        "idx": 0,
+        "left": 858,
+        "top": 0,
+        "width": 741.96,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 155.4,
+        "top": 43.2,
+        "width": 84,
+        "height": 91.2,
+        "z": 4
+      },
+      {
+        "idx": 2,
+        "left": 91.2,
+        "top": 418.8,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 10
+      },
+      {
+        "idx": 3,
+        "left": 91.2,
+        "top": 476.4,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 14
+      },
+      {
+        "idx": 4,
+        "left": 91.2,
+        "top": 534,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 18
+      },
+      {
+        "idx": 5,
+        "left": 91.2,
+        "top": 591.6,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 22
+      },
+      {
+        "idx": 6,
+        "left": 91.2,
+        "top": 649.2,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 26
+      },
+      {
+        "idx": 7,
+        "left": 91.2,
+        "top": 706.8,
+        "width": 32.4,
+        "height": 32.4,
+        "z": 30
+      }
+    ],
+    "shapes": [
+      {
+        "left": 822,
+        "top": 0,
+        "width": 66,
+        "height": 900,
+        "bg": "rgba(247,248,250,1.0000)",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 146.4,
+        "width": 674.4,
+        "height": 122.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 294,
+        "width": 690,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 8
+      },
+      {
+        "left": 141.6,
+        "top": 416.4,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 141.6,
+        "top": 474,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 141.6,
+        "top": 531.6,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 141.6,
+        "top": 589.2,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 141.6,
+        "top": 646.8,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 28
+      },
+      {
+        "left": 141.6,
+        "top": 704.4,
+        "width": 654,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 86.4,
+        "top": 787.2,
+        "width": 710.4,
+        "height": 38.4,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 36
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 146.4,
+        "width": 674.4,
+        "height": 122.4,
+        "z": 7,
+        "text": "VOTRE ARRIVÉE PEUT ÊTRE DÉJÀ ORGANISÉE"
+      },
+      {
+        "left": 86.4,
+        "top": 294,
+        "width": 690,
+        "height": 86.4,
+        "z": 9,
+        "text": "Selon le forfait choisi, nous pouvons préparer une grande partie de votre installation avant même votre départ."
+      },
+      {
+        "left": 141.6,
+        "top": 416.4,
+        "width": 654,
+        "height": 38.4,
+        "z": 13,
+        "text": "Accueil à l’aéroport"
+      },
+      {
+        "left": 141.6,
+        "top": 474,
+        "width": 654,
+        "height": 38.4,
+        "z": 17,
+        "text": "Recherche et inspection de logement"
+      },
+      {
+        "left": 141.6,
+        "top": 531.6,
+        "width": 654,
+        "height": 38.4,
+        "z": 21,
+        "text": "Clés et logement prêt"
+      },
+      {
+        "left": 141.6,
+        "top": 589.2,
+        "width": 654,
+        "height": 38.4,
+        "z": 25,
+        "text": "SIM, premières courses et abonnements"
+      },
+      {
+        "left": 141.6,
+        "top": 646.8,
+        "width": 654,
+        "height": 38.4,
+        "z": 29,
+        "text": "Démarches essentielles sur place"
+      },
+      {
+        "left": 141.6,
+        "top": 704.4,
+        "width": 654,
+        "height": 38.4,
+        "z": 33,
+        "text": "Support et orientation après l’arrivée"
+      },
+      {
+        "left": 86.4,
+        "top": 787.2,
+        "width": 710.4,
+        "height": 38.4,
+        "z": 35,
+        "text": "Les démarches varient selon la province, le statut et la situation du client."
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 37,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "images": [
+      {
+        "idx": 0,
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 153.6,
+        "top": 42,
+        "width": 84,
+        "height": 91.2,
+        "z": 4
+      }
+    ],
+    "shapes": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 654,
+        "height": 900,
+        "bg": "rgba(7,26,51,0.9200)",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 546,
+        "height": 126,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 328.8,
+        "width": 523.2,
+        "height": 74.4,
+        "bg": "transparent",
+        "z": 8
+      },
+      {
+        "left": 86.4,
+        "top": 426,
+        "width": 55.2,
+        "height": 55.2,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 10
+      },
+      {
+        "left": 86.4,
+        "top": 426.6,
+        "width": 55.2,
+        "height": 54,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 165.6,
+        "top": 423.6,
+        "width": 372,
+        "height": 36,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 165.6,
+        "top": 466.8,
+        "width": 417.6,
+        "height": 60,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 86.4,
+        "top": 540,
+        "width": 55.2,
+        "height": 55.2,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 18
+      },
+      {
+        "left": 86.4,
+        "top": 540.6,
+        "width": 55.2,
+        "height": 54,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 165.6,
+        "top": 537.6,
+        "width": 372,
+        "height": 36,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 165.6,
+        "top": 580.8,
+        "width": 417.6,
+        "height": 60,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 86.4,
+        "top": 654,
+        "width": 55.2,
+        "height": 55.2,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 26
+      },
+      {
+        "left": 86.4,
+        "top": 654.6,
+        "width": 55.2,
+        "height": 54,
+        "bg": "transparent",
+        "z": 28
+      },
+      {
+        "left": 165.6,
+        "top": 651.6,
+        "width": 372,
+        "height": 36,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 165.6,
+        "top": 694.8,
+        "width": 417.6,
+        "height": 60,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 86.4,
+        "top": 828,
+        "width": 513.6,
+        "height": 26.4,
+        "bg": "transparent",
+        "z": 34
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 174,
+        "width": 546,
+        "height": 126,
+        "z": 7,
+        "text": "IMAGINEZ VOS 90 PREMIERS JOURS"
+      },
+      {
+        "left": 86.4,
+        "top": 328.8,
+        "width": 523.2,
+        "height": 74.4,
+        "z": 9,
+        "text": "Moins d’improvisation. Plus de repères dès le départ."
+      },
+      {
+        "left": 86.4,
+        "top": 426.6,
+        "width": 55.2,
+        "height": 54,
+        "z": 13,
+        "text": "1"
+      },
+      {
+        "left": 165.6,
+        "top": 423.6,
+        "width": 372,
+        "height": 36,
+        "z": 15,
+        "text": "AVANT LE DÉPART"
+      },
+      {
+        "left": 165.6,
+        "top": 466.8,
+        "width": 417.6,
+        "height": 60,
+        "z": 17,
+        "text": "Documents, logement, préparation carrière et plan d’arrivée."
+      },
+      {
+        "left": 86.4,
+        "top": 540.6,
+        "width": 55.2,
+        "height": 54,
+        "z": 21,
+        "text": "2"
+      },
+      {
+        "left": 165.6,
+        "top": 537.6,
+        "width": 372,
+        "height": 36,
+        "z": 23,
+        "text": "SEMAINE 1"
+      },
+      {
+        "left": 165.6,
+        "top": 580.8,
+        "width": 417.6,
+        "height": 60,
+        "z": 25,
+        "text": "Accueil, clés, démarches prioritaires, repères essentiels."
+      },
+      {
+        "left": 86.4,
+        "top": 654.6,
+        "width": 55.2,
+        "height": 54,
+        "z": 29,
+        "text": "3"
+      },
+      {
+        "left": 165.6,
+        "top": 651.6,
+        "width": 372,
+        "height": 36,
+        "z": 31,
+        "text": "MOIS 1 À 3"
+      },
+      {
+        "left": 165.6,
+        "top": 694.8,
+        "width": 417.6,
+        "height": 60,
+        "z": 33,
+        "text": "Installation, réseau, carrière, suivi et ajustements."
+      },
+      {
+        "left": 86.4,
+        "top": 828,
+        "width": 513.6,
+        "height": 26.4,
+        "z": 35,
+        "text": "Selon les services retenus et votre situation."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 124.8,
+        "top": 288,
+        "width": 54,
+        "height": 54,
+        "z": 12
+      },
+      {
+        "idx": 2,
+        "left": 864,
+        "top": 288,
+        "width": 54,
+        "height": 54,
+        "z": 14
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1140,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1020,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 249.6,
+        "width": 686.4,
+        "height": 414,
+        "bg": "rgba(238,248,242,1.0000)",
+        "z": 8
+      },
+      {
+        "left": 825.6,
+        "top": 249.6,
+        "width": 686.4,
+        "height": 414,
+        "bg": "rgba(255,241,239,1.0000)",
+        "z": 10
+      },
+      {
+        "left": 204,
+        "top": 283.2,
+        "width": 438,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 16
+      },
+      {
+        "left": 943.2,
+        "top": 283.2,
+        "width": 468,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 18
+      },
+      {
+        "left": 152.4,
+        "top": 366,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 22
+      },
+      {
+        "left": 152.4,
+        "top": 432,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 152.4,
+        "top": 498,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 152.4,
+        "top": 564,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 891.6,
+        "top": 366,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 38
+      },
+      {
+        "left": 891.6,
+        "top": 432,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 42
+      },
+      {
+        "left": 891.6,
+        "top": 498,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 46
+      },
+      {
+        "left": 891.6,
+        "top": 564,
+        "width": 553.2,
+        "height": 52.8,
+        "bg": "transparent",
+        "z": 50
+      },
+      {
+        "left": 86.4,
+        "top": 705.6,
+        "width": 1425.6,
+        "height": 93.6,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 52
+      },
+      {
+        "left": 122.4,
+        "top": 728.4,
+        "width": 1353.6,
+        "height": 48,
+        "bg": "transparent",
+        "z": 54
+      },
+      {
+        "left": 86.4,
+        "top": 822,
+        "width": 1425.6,
+        "height": 28.8,
+        "bg": "transparent",
+        "z": 56
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1140,
+        "height": 86.4,
+        "z": 3,
+        "text": "CE QUE NOUS PROMETTONS. ET CE QUE NOUS NE PROMETTONS PAS."
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1020,
+        "height": 50.4,
+        "z": 7,
+        "text": "La confiance commence par des attentes claires."
+      },
+      {
+        "left": 204,
+        "top": 283.2,
+        "width": 438,
+        "height": 52.8,
+        "z": 17,
+        "text": "NOUS PROMETTONS"
+      },
+      {
+        "left": 943.2,
+        "top": 283.2,
+        "width": 468,
+        "height": 52.8,
+        "z": 19,
+        "text": "NOUS NE PROMETTONS PAS"
+      },
+      {
+        "left": 152.4,
+        "top": 366,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 23,
+        "text": "Une lecture honnête de votre situation"
+      },
+      {
+        "left": 152.4,
+        "top": 432,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 27,
+        "text": "Une stratégie personnalisée"
+      },
+      {
+        "left": 152.4,
+        "top": 498,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 31,
+        "text": "De la rigueur et de la transparence"
+      },
+      {
+        "left": 152.4,
+        "top": 564,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 35,
+        "text": "Un accompagnement structuré dans la durée"
+      },
+      {
+        "left": 891.6,
+        "top": 366,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 39,
+        "text": "Une approbation garantie"
+      },
+      {
+        "left": 891.6,
+        "top": 432,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 43,
+        "text": "Un emploi garanti"
+      },
+      {
+        "left": 891.6,
+        "top": 498,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 47,
+        "text": "Une résidence permanente garantie"
+      },
+      {
+        "left": 891.6,
+        "top": 564,
+        "width": 553.2,
+        "height": 52.8,
+        "z": 51,
+        "text": "Des délais irréalistes ou “miracles”"
+      },
+      {
+        "left": 122.4,
+        "top": 728.4,
+        "width": 1353.6,
+        "height": 48,
+        "z": 55,
+        "text": "« Nous ne vendons pas de rêve. Nous construisons une méthode et un chemin sécurisé. »"
+      },
+      {
+        "left": 86.4,
+        "top": 822,
+        "width": 1425.6,
+        "height": 28.8,
+        "z": 57,
+        "text": "Toute décision appartient aux autorités compétentes. L’admissibilité est évaluée au cas par cas."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "images": [
+      {
+        "idx": 0,
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 86.4,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "z": 8
+      },
+      {
+        "idx": 2,
+        "left": 459.6,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "z": 14
+      },
+      {
+        "idx": 3,
+        "left": 832.8,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "z": 20
+      },
+      {
+        "idx": 4,
+        "left": 1206,
+        "top": 255.6,
+        "width": 307.2,
+        "height": 456,
+        "z": 26
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1092,
+        "height": 86.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 156,
+        "width": 74.4,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1080,
+        "height": 50.4,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 86.4,
+        "top": 596.4,
+        "width": 345.6,
+        "height": 115.2,
+        "bg": "rgba(7,26,51,0.8300)",
+        "z": 10
+      },
+      {
+        "left": 104.4,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 459.6,
+        "top": 596.4,
+        "width": 345.6,
+        "height": 115.2,
+        "bg": "rgba(7,26,51,0.8300)",
+        "z": 16
+      },
+      {
+        "left": 477.6,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 18
+      },
+      {
+        "left": 832.8,
+        "top": 596.4,
+        "width": 345.6,
+        "height": 115.2,
+        "bg": "rgba(7,26,51,0.8300)",
+        "z": 22
+      },
+      {
+        "left": 850.8,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 1206,
+        "top": 596.4,
+        "width": 307.2,
+        "height": 115.2,
+        "bg": "rgba(7,26,51,0.8300)",
+        "z": 28
+      },
+      {
+        "left": 1224,
+        "top": 626.4,
+        "width": 271.2,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 86.4,
+        "top": 765.6,
+        "width": 1425.6,
+        "height": 55.2,
+        "bg": "transparent",
+        "z": 32
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 34
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 62.4,
+        "width": 1092,
+        "height": 86.4,
+        "z": 3,
+        "text": "VOTRE CANADA PEUT PRENDRE PLUSIEURS FORMES"
+      },
+      {
+        "left": 86.4,
+        "top": 171.6,
+        "width": 1080,
+        "height": 50.4,
+        "z": 7,
+        "text": "Chaque projet est différent. Votre stratégie doit l’être aussi."
+      },
+      {
+        "left": 104.4,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "z": 13,
+        "text": "ÉTUDIER"
+      },
+      {
+        "left": 477.6,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "z": 19,
+        "text": "TRAVAILLER"
+      },
+      {
+        "left": 850.8,
+        "top": 626.4,
+        "width": 309.6,
+        "height": 40.8,
+        "z": 25,
+        "text": "ENTREPRENDRE"
+      },
+      {
+        "left": 1224,
+        "top": 626.4,
+        "width": 271.2,
+        "height": 40.8,
+        "z": 31,
+        "text": "S’INSTALLER EN FAMILLE"
+      },
+      {
+        "left": 86.4,
+        "top": 765.6,
+        "width": 1425.6,
+        "height": 55.2,
+        "z": 33,
+        "text": "IR vous aide à transformer l’envie en plan d’action réaliste."
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 35,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "images": [
+      {
+        "idx": 0,
+        "left": 157.2,
+        "top": 40.8,
+        "width": 84,
+        "height": 91.2,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 1026,
+        "top": 282,
+        "width": 378,
+        "height": 378,
+        "z": 32
+      }
+    ],
+    "shapes": [
+      {
+        "left": 86.4,
+        "top": 153.6,
+        "width": 774,
+        "height": 134.4,
+        "bg": "transparent",
+        "z": 2
+      },
+      {
+        "left": 86.4,
+        "top": 312,
+        "width": 750,
+        "height": 57.6,
+        "bg": "transparent",
+        "z": 4
+      },
+      {
+        "left": 86.4,
+        "top": 400.8,
+        "width": 76.8,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 182.4,
+        "top": 400.8,
+        "width": 669.6,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 8
+      },
+      {
+        "left": 86.4,
+        "top": 481.2,
+        "width": 76.8,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 12
+      },
+      {
+        "left": 182.4,
+        "top": 481.2,
+        "width": 669.6,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 86.4,
+        "top": 561.6,
+        "width": 76.8,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 18
+      },
+      {
+        "left": 182.4,
+        "top": 561.6,
+        "width": 669.6,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 20
+      },
+      {
+        "left": 86.4,
+        "top": 642,
+        "width": 76.8,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 24
+      },
+      {
+        "left": 182.4,
+        "top": 642,
+        "width": 669.6,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 26
+      },
+      {
+        "left": 918,
+        "top": 150,
+        "width": 597.6,
+        "height": 602.4,
+        "bg": "rgba(255,255,255,1.0000)",
+        "z": 28
+      },
+      {
+        "left": 960,
+        "top": 201.6,
+        "width": 513.6,
+        "height": 57.6,
+        "bg": "transparent",
+        "z": 30
+      },
+      {
+        "left": 972,
+        "top": 642,
+        "width": 482.4,
+        "height": 43.2,
+        "bg": "transparent",
+        "z": 34
+      },
+      {
+        "left": 1017.6,
+        "top": 693.6,
+        "width": 390,
+        "height": 50.4,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 36
+      },
+      {
+        "left": 1017.6,
+        "top": 694.8,
+        "width": 390,
+        "height": 45.6,
+        "bg": "transparent",
+        "z": 38
+      },
+      {
+        "left": 972,
+        "top": 765.6,
+        "width": 482.4,
+        "height": 36,
+        "bg": "transparent",
+        "z": 40
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "bg": "transparent",
+        "z": 42
+      }
+    ],
+    "texts": [
+      {
+        "left": 86.4,
+        "top": 153.6,
+        "width": 774,
+        "height": 134.4,
+        "z": 3,
+        "text": "VOTRE PROCHAINE ÉTAPE : UN DIAGNOSTIC CANADA"
+      },
+      {
+        "left": 86.4,
+        "top": 312,
+        "width": 750,
+        "height": 57.6,
+        "z": 5,
+        "text": "Avant de payer pour une procédure, clarifiez d’abord votre projet."
+      },
+      {
+        "left": 86.4,
+        "top": 400.8,
+        "width": 76.8,
+        "height": 43.2,
+        "z": 7,
+        "text": "01"
+      },
+      {
+        "left": 182.4,
+        "top": 400.8,
+        "width": 669.6,
+        "height": 45.6,
+        "z": 9,
+        "text": "Nous écoutons votre objectif"
+      },
+      {
+        "left": 86.4,
+        "top": 481.2,
+        "width": 76.8,
+        "height": 43.2,
+        "z": 13,
+        "text": "02"
+      },
+      {
+        "left": 182.4,
+        "top": 481.2,
+        "width": 669.6,
+        "height": 45.6,
+        "z": 15,
+        "text": "Nous analysons les options possibles"
+      },
+      {
+        "left": 86.4,
+        "top": 561.6,
+        "width": 76.8,
+        "height": 43.2,
+        "z": 19,
+        "text": "03"
+      },
+      {
+        "left": 182.4,
+        "top": 561.6,
+        "width": 669.6,
+        "height": 45.6,
+        "z": 21,
+        "text": "Nous identifions les risques et priorités"
+      },
+      {
+        "left": 86.4,
+        "top": 642,
+        "width": 76.8,
+        "height": 43.2,
+        "z": 25,
+        "text": "04"
+      },
+      {
+        "left": 182.4,
+        "top": 642,
+        "width": 669.6,
+        "height": 45.6,
+        "z": 27,
+        "text": "Vous repartez avec une prochaine étape claire"
+      },
+      {
+        "left": 960,
+        "top": 201.6,
+        "width": 513.6,
+        "height": 57.6,
+        "z": 31,
+        "text": "PARLONS DE VOTRE PROJET"
+      },
+      {
+        "left": 972,
+        "top": 642,
+        "width": 482.4,
+        "height": 43.2,
+        "z": 35,
+        "text": "Scannez pour nous écrire sur WhatsApp"
+      },
+      {
+        "left": 1017.6,
+        "top": 694.8,
+        "width": 390,
+        "height": 45.6,
+        "z": 39,
+        "text": "819 919 8683"
+      },
+      {
+        "left": 972,
+        "top": 765.6,
+        "width": 482.4,
+        "height": 36,
+        "z": 41,
+        "text": "ir-immigration.com"
+      },
+      {
+        "left": 86.4,
+        "top": 852,
+        "width": 792,
+        "height": 21.6,
+        "z": 43,
+        "text": "ir-immigration.com • WhatsApp 819 919 8683"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "images": [
+      {
+        "idx": 0,
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "z": 0
+      },
+      {
+        "idx": 1,
+        "left": 167.4,
+        "top": 50.4,
+        "width": 84,
+        "height": 91.2,
+        "z": 4
+      }
+    ],
+    "shapes": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "bg": "rgba(7,26,51,0.7200)",
+        "z": 2
+      },
+      {
+        "left": 120,
+        "top": 252,
+        "width": 1358.4,
+        "height": 153.6,
+        "bg": "transparent",
+        "z": 6
+      },
+      {
+        "left": 612,
+        "top": 441.6,
+        "width": 378,
+        "height": 6.6,
+        "bg": "rgba(232,53,38,1.0000)",
+        "z": 8
+      },
+      {
+        "left": 120,
+        "top": 487.2,
+        "width": 1358.4,
+        "height": 62.4,
+        "bg": "transparent",
+        "z": 10
+      },
+      {
+        "left": 537.6,
+        "top": 630,
+        "width": 525.6,
+        "height": 79.2,
+        "bg": "rgba(0,60,130,1.0000)",
+        "z": 12
+      },
+      {
+        "left": 537.6,
+        "top": 646.8,
+        "width": 525.6,
+        "height": 39.6,
+        "bg": "transparent",
+        "z": 14
+      },
+      {
+        "left": 522,
+        "top": 739.2,
+        "width": 556.8,
+        "height": 40.8,
+        "bg": "transparent",
+        "z": 16
+      }
+    ],
+    "texts": [
+      {
+        "left": 120,
+        "top": 252,
+        "width": 1358.4,
+        "height": 153.6,
+        "z": 7,
+        "text": "LE CANADA N’EST PAS UN RÊVE À ACHETER. C’EST UN PROJET À CONSTRUIRE."
+      },
+      {
+        "left": 120,
+        "top": 487.2,
+        "width": 1358.4,
+        "height": 62.4,
+        "z": 11,
+        "text": "Construisons le vôtre avec méthode."
+      },
+      {
+        "left": 537.6,
+        "top": 646.8,
+        "width": 525.6,
+        "height": 39.6,
+        "z": 15,
+        "text": "ir-immigration.com"
+      },
+      {
+        "left": 522,
+        "top": 739.2,
+        "width": 556.8,
+        "height": 40.8,
+        "z": 17,
+        "text": "WhatsApp : 819 919 8683"
+      }
+    ]
+  }
+]

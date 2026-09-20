@@ -1,0 +1,47 @@
+# Review package: Open Sans + principal panel readability (working tree, no git)
+
+## Commits
+
+none (git forbidden)
+
+## Files changed
+
+- src/index.css — Inter → Open Sans Google Fonts import; `--font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;`
+- src/index.css.test.ts — created; asserts Open Sans import and no Inter
+- src/features/profile.tsx — PrincipalPanel/PanelBlock/FactRow/ScoreBar/ScorePick name: +2px and higher white opacities
+- src/features/profile.test.ts — describe("principal panel readability")
+
+## Task 1 diff
+
+src/index.css line 1:
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+src/index.css line 6:
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+## Task 2 class strings in profile.tsx
+
+- 420: text-[12px] font-semibold tracking-[0.16em] text-white/85 uppercase  (Demandeur principal)
+- 421: text-[24px] leading-none font-semibold tracking-tight  (first name, unchanged)
+- 422: mt-1 text-[14px] text-white/85  (family)
+- 461: mt-3 shrink-0 text-[14px] leading-snug text-white/90  (primary reason; brief-mandated /90)
+- 464: text-[14px] leading-relaxed text-white/85  (extra reasons)
+- 489: pt-0.5 text-[14px] font-semibold text-white
+- 493: pt-0.5 text-[14px] text-white/85
+- 547: text-[12px] font-semibold tracking-[0.14em] text-white/80 uppercase  (PanelBlock)
+- 556: shrink-0 text-[13px] text-white/80  (FactRow label)
+- 557: text-right text-[14px] leading-tight font-medium  (FactRow value)
+- 566: mb-0.5 flex items-center justify-between text-[12px] text-white/80  (ScoreBar; from /65)
+- 707: mt-1 block w-full truncate text-[13px] tracking-wide uppercase opacity-75  (ScorePick name)
+- 705: text-[15px] unchanged (ScorePick score)
+- Chip compact text-[12px] unchanged
+
+## Tests
+
+npm test -- src/features/profile.test.ts src/index.css.test.ts
+12/12 passed
+
+## Recorded minors from per-task reviews
+
+- Inter remains only in unused prototype HTML IR_Sales_Hub_Prototype_v2.html
+- Task 2 reviewer flagged /90 and ScoreBar /65→/80; both are verbatim in the plan Task 2 Step 3

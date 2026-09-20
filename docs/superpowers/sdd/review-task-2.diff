@@ -1,0 +1,73 @@
+# Review package: Task 2 (working tree, no git)
+
+## Commits
+
+none (git forbidden for this project)
+
+## Files changed (this task)
+
+- modified: src/features/profile.test.ts (appended describe("principal panel readability"))
+- modified: src/features/profile.tsx (class strings in PrincipalPanel, PanelBlock, FactRow, ScoreBar, ScorePick name)
+
+Note: profile.tsx also contains concurrent layout from other sessions (mode chips grid, hidden scrollbar, provincial lever, polygamous copy). Those are not this task. This task's production edits are the class-string replacements below.
+
+## Diff (task-scoped class strings)
+
+### PrincipalPanel
+
+eyebrow:
+- from: text-[10px] font-semibold tracking-[0.16em] text-white/70 uppercase
+- to (profile.tsx:420): text-[12px] font-semibold tracking-[0.16em] text-white/85 uppercase
+
+first name (unchanged, profile.tsx:421):
+- text-[24px] leading-none font-semibold tracking-tight
+
+family line:
+- from: mt-1 text-[12px] text-white/70
+- to (profile.tsx:422): mt-1 text-[14px] text-white/85
+
+primary reason:
+- from: mt-3 shrink-0 text-[12px] leading-snug text-white/80
+- to (profile.tsx:461): mt-3 shrink-0 text-[14px] leading-snug text-white/90
+
+extra reasons:
+- from: text-[12px] leading-relaxed text-white/70
+- to (profile.tsx:464): text-[14px] leading-relaxed text-white/85
+
+lever positive:
+- from: pt-0.5 text-[12px] font-semibold text-white
+- to (profile.tsx:489): pt-0.5 text-[14px] font-semibold text-white
+
+lever muted:
+- from: pt-0.5 text-[12px] text-white/70
+- to (profile.tsx:493): pt-0.5 text-[14px] text-white/85
+
+ScorePick score left as text-[15px] (profile.tsx:705).
+Chip compact left as text-[12px].
+Polygamous disclaimer left as text-[13px] text-white/80 (profile.tsx:522) — not in this task.
+
+### PanelBlock (profile.tsx:547)
+
+- from: text-[10px] font-semibold tracking-[0.14em] text-white/55 uppercase
+- to: text-[12px] font-semibold tracking-[0.14em] text-white/80 uppercase
+
+### FactRow (profile.tsx:556-557)
+
+- label from: shrink-0 text-[11px] text-white/55
+- label to: shrink-0 text-[13px] text-white/80
+- value from: text-right text-[12px] leading-tight font-medium
+- value to: text-right text-[14px] leading-tight font-medium
+
+### ScoreBar (profile.tsx:566)
+
+- from: mb-0.5 flex items-center justify-between text-[10px] text-white/65
+- to: mb-0.5 flex items-center justify-between text-[12px] text-white/80
+
+### ScorePick name (profile.tsx:707)
+
+- from: mt-1 block w-full truncate text-[11px] tracking-wide uppercase opacity-75
+- to: mt-1 block w-full truncate text-[13px] tracking-wide uppercase opacity-75
+
+### src/features/profile.test.ts
+
+New describe at lines 72-99: "principal panel readability" with the two tests from the brief (class strings asserted via extractFunction).

@@ -1,0 +1,51 @@
+# Review package: Task 1 (working tree, no git)
+
+## Commits
+
+none (git forbidden for this project)
+
+## Files changed
+
+- created: src/index.css.test.ts
+- modified: src/index.css (Google Fonts import + --font-sans only)
+
+## Diff
+
+### src/index.css
+
+Line 1 before:
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+Line 1 after:
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+Line 6 before:
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+Line 6 after:
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+No other lines in src/index.css were changed.
+
+### src/index.css.test.ts (new file, full contents)
+
+```
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { describe, expect, it } from "vitest";
+
+const css = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "index.css"), "utf8");
+
+describe("app sans font", () => {
+  it("loads Open Sans from Google Fonts and uses it as --font-sans", () => {
+    expect(css).toContain('family=Open+Sans:wght@400;500;600;700');
+    expect(css).toContain('--font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;');
+  });
+
+  it("does not keep Inter as the app font", () => {
+    expect(css).not.toContain("family=Inter");
+    expect(css).not.toContain('"Inter"');
+  });
+});
+```

@@ -1,0 +1,585 @@
+[
+  {
+    "id": "1",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "bytes": 252791,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 191.4,
+        "top": 52.8,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(7,26,51,1.0000)",
+      "rgba(7,26,51,0.6200)",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "rgba(255,255,255,1.0000)",
+      "transparent"
+    ]
+  },
+  {
+    "id": "2",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 849.6,
+        "top": 0,
+        "width": 750.36,
+        "height": 900,
+        "bytes": 303806,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 155.4,
+        "top": 45.6,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(255,255,255,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent"
+    ]
+  },
+  {
+    "id": "3",
+    "imageCount": 1,
+    "images": [
+      {
+        "left": 1359,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(255,255,255,1.0000)",
+      "rgba(0,60,130,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent"
+    ]
+  },
+  {
+    "id": "4",
+    "imageCount": 5,
+    "images": [
+      {
+        "left": 1356,
+        "top": 38.4,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      },
+      {
+        "left": 122.4,
+        "top": 315.6,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 859.2,
+        "top": 315.6,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 122.4,
+        "top": 591.6,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 859.2,
+        "top": 591.6,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(255,255,255,0.1000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "rgba(255,255,255,0.1000)"
+    ]
+  },
+  {
+    "id": "5",
+    "imageCount": 4,
+    "images": [
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      },
+      {
+        "left": 264,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 730.8,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 1197.6,
+        "top": 360,
+        "width": 48,
+        "height": 48,
+        "bytes": 1613,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(248,250,252,1.0000)",
+      "rgba(234,242,251,1.0000)",
+      "transparent",
+      "transparent",
+      "rgba(244,248,253,1.0000)"
+    ]
+  },
+  {
+    "id": "6",
+    "imageCount": 1,
+    "images": [
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(0,60,130,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "rgba(0,60,130,1.0000)"
+    ]
+  },
+  {
+    "id": "7",
+    "imageCount": 6,
+    "images": [
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      },
+      {
+        "left": 86.4,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "bytes": 252791,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 573.6,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "bytes": 264611,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 1060.8,
+        "top": 258,
+        "width": 452.4,
+        "height": 243.6,
+        "bytes": 252065,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 330,
+        "top": 552,
+        "width": 452.4,
+        "height": 243.6,
+        "bytes": 252080,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 817.2,
+        "top": 552,
+        "width": 452.4,
+        "height": 243.6,
+        "bytes": 214877,
+        "mime": "image/jpeg"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(7,26,51,0.8500)",
+      "transparent",
+      "transparent",
+      "rgba(7,26,51,0.8500)",
+      "transparent"
+    ]
+  },
+  {
+    "id": "8",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 744,
+        "height": 900,
+        "bytes": 252065,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(255,255,255,1.0000)",
+      "transparent",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(232,53,38,1.0000)"
+    ]
+  },
+  {
+    "id": "9",
+    "imageCount": 8,
+    "images": [
+      {
+        "left": 858,
+        "top": 0,
+        "width": 741.96,
+        "height": 900,
+        "bytes": 252080,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 155.4,
+        "top": 43.2,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 418.8,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 476.4,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 534,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 591.6,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 649.2,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 91.2,
+        "top": 706.8,
+        "width": 32.4,
+        "height": 32.4,
+        "bytes": 1613,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(247,248,250,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent"
+    ]
+  },
+  {
+    "id": "10",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "bytes": 280793,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 153.6,
+        "top": 42,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(7,26,51,0.9200)",
+      "transparent",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "transparent",
+      "transparent",
+      "rgba(232,53,38,1.0000)"
+    ]
+  },
+  {
+    "id": "11",
+    "imageCount": 3,
+    "images": [
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      },
+      {
+        "left": 124.8,
+        "top": 288,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      },
+      {
+        "left": 864,
+        "top": 288,
+        "width": 54,
+        "height": 54,
+        "bytes": 1613,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(238,248,242,1.0000)",
+      "rgba(255,241,239,1.0000)",
+      "transparent",
+      "transparent",
+      "rgba(21,115,71,1.0000)"
+    ]
+  },
+  {
+    "id": "12",
+    "imageCount": 5,
+    "images": [
+      {
+        "left": 1356,
+        "top": 36,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      },
+      {
+        "left": 86.4,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "bytes": 264611,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 459.6,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "bytes": 252065,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 832.8,
+        "top": 255.6,
+        "width": 345.6,
+        "height": 456,
+        "bytes": 214877,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 1206,
+        "top": 255.6,
+        "width": 307.2,
+        "height": 456,
+        "bytes": 303806,
+        "mime": "image/jpeg"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(7,26,51,0.8300)",
+      "transparent",
+      "rgba(7,26,51,0.8300)",
+      "transparent",
+      "rgba(7,26,51,0.8300)"
+    ]
+  },
+  {
+    "id": "13",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 157.2,
+        "top": 40.8,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 22667,
+        "mime": "image/png"
+      },
+      {
+        "left": 1026,
+        "top": 282,
+        "width": 378,
+        "height": 378,
+        "bytes": 560,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent"
+    ]
+  },
+  {
+    "id": "14",
+    "imageCount": 2,
+    "images": [
+      {
+        "left": 0,
+        "top": 0,
+        "width": 1599.96,
+        "height": 900,
+        "bytes": 467558,
+        "mime": "image/jpeg"
+      },
+      {
+        "left": 167.4,
+        "top": 50.4,
+        "width": 84,
+        "height": 91.2,
+        "bytes": 24833,
+        "mime": "image/png"
+      }
+    ],
+    "bgSample": [
+      "rgba(7,26,51,0.7200)",
+      "transparent",
+      "rgba(232,53,38,1.0000)",
+      "transparent",
+      "rgba(0,60,130,1.0000)",
+      "transparent",
+      "transparent"
+    ]
+  }
+]
