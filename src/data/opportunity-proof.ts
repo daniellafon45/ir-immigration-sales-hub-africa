@@ -156,7 +156,7 @@ export const opportunityPress: OpportunityPressArticle[] = [
     date: "2025",
     title: "Présence physique pour la citoyenneté",
     excerpt:
-      "En règle générale, 1 095 jours de présence physique en 5 ans après la RP. Ce n’est pas une promesse automatique.",
+      "En règle générale, environ 2 à 3 ans de présence physique après la RP. Ce n’est pas une promesse automatique.",
     url: "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/citoyennete-canadienne/devenir-citoyen-canadien/admissibilite/presence-physique.html",
     image: quebecWinter,
   },

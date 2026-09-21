@@ -1,4 +1,4 @@
-export type CompetitorArchetypeId = "ir" | "visa-only" | "local" | "freelance" | "diy";
+export type CompetitorArchetypeId = "ir" | "local" | "freelance" | "diy";
 
 export type CompetitorScore = boolean | "partial";
 
@@ -17,48 +17,47 @@ export type CompetitorCriterion = {
 };
 
 export const competitorArchetypes: CompetitorArchetype[] = [
-  { id: "ir", label: "IR Immigration", short: "IR", blurb: "Projet de vie complet" },
-  { id: "visa-only", label: "Agence « visa only »", short: "Visa", blurb: "Dossier administratif seul" },
-  { id: "local", label: "Cabinet local", short: "Local", blurb: "Conseil près de chez vous" },
-  { id: "freelance", label: "Freelance non autorisé", short: "Freelance", blurb: "Sans cadre réglementé" },
-  { id: "diy", label: "Faire seul", short: "DIY", blurb: "Sans accompagnement" },
+  { id: "ir", label: "IR Immigration", short: "IR", blurb: "Carrière, visa et installation" },
+  { id: "local", label: "Cabinet local", short: "Cabinet local", blurb: "Conseil chez vous, sans réseau Canada" },
+  { id: "freelance", label: "Freelance non autorisé", short: "Non agréé", blurb: "Conseiller hors cadre réglementé" },
+  { id: "diy", label: "Faire seul", short: "Faire seul", blurb: "Aucun professionnel : vous déposez tout vous-même" },
 ];
 
 export const competitorCriteria: CompetitorCriterion[] = [
   {
     id: "strategy",
     label: "Stratégie de projet de vie",
-    scores: { ir: true, "visa-only": "partial", local: "partial", freelance: false, diy: "partial" },
+    scores: { ir: true, local: "partial", freelance: false, diy: "partial" },
     note: "Un papier ne remplace pas un plan carrière + installation.",
   },
   {
     id: "employment",
     label: "Emploi & positionnement métier",
-    scores: { ir: true, "visa-only": false, local: "partial", freelance: false, diy: false },
+    scores: { ir: true, local: "partial", freelance: false, diy: false },
     note: "Via Industrielle RH / IR recrutement.",
   },
   {
     id: "settlement",
     label: "Installation & conciergerie",
-    scores: { ir: true, "visa-only": false, local: false, freelance: false, diy: "partial" },
+    scores: { ir: true, local: false, freelance: false, diy: "partial" },
     note: "Logement, accueil, démarches dès l’arrivée.",
   },
   {
     id: "compliance",
     label: "Conformité & professionnels autorisés",
-    scores: { ir: true, "visa-only": "partial", local: "partial", freelance: false, diy: "partial" },
+    scores: { ir: true, local: "partial", freelance: false, diy: "partial" },
     note: "Mobilisés lorsque requis. Décisions aux autorités.",
   },
   {
     id: "transparency",
     label: "Transparence délais & non-promesses",
-    scores: { ir: true, "visa-only": "partial", local: "partial", freelance: false, diy: "partial" },
+    scores: { ir: true, local: "partial", freelance: false, diy: "partial" },
     note: "Pas d’approbation, d’emploi ou de RP garantis.",
   },
   {
     id: "ecosystem",
     label: "Écosystème partenaires (études, billet, RP…)",
-    scores: { ir: true, "visa-only": "partial", local: "partial", freelance: false, diy: false },
+    scores: { ir: true, local: "partial", freelance: false, diy: false },
     note: "Un réseau pour les démarches, pas un interlocuteur isolé.",
   },
 ];

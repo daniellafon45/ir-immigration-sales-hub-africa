@@ -136,7 +136,7 @@ function nationalityPanel(profile: Profile): Pick<OpportunityPanel, "stats" | "c
   const ee = irccTimeFor("ee");
   const stats: OpportunityStat[] = [
     { label: "Traitement RP (indicatif)", value: ee.headline },
-    { label: "Présence physique", value: "1 095 jours / 5 ans" },
+    { label: "Présence physique", value: "2 à 3 ans" },
     { label: "Après la RP", value: "Citoyenneté possible sous conditions" },
     { label: "Province actuelle", value: profile.province || "—" },
   ];
@@ -146,7 +146,7 @@ function nationalityPanel(profile: Profile): Pick<OpportunityPanel, "stats" | "c
       label: "Jalons indicatifs (mois)",
       bars: [
         { label: "RP (après invitation)", value: Math.round(ee.sortDays / 30) || 7 },
-        { label: "Présence physique", value: 36 },
+        { label: "Présence physique", value: 30 },
         { label: "Citoyenneté (traitement)", value: 12 },
       ],
     },
