@@ -149,7 +149,7 @@ describe("country of origin flags", () => {
   it("places a compact waving flag to the right of the country select", () => {
     const form = extractFunction("ProfileForm");
     expect(form).toContain("<CountryHeroFlag country={draft.country} />");
-    expect(form).toContain("flex min-h-0 flex-1 items-center gap-2");
+    expect(form).toContain("mt-1.5 flex items-center gap-2");
     expect(form).toContain("min-w-0 flex-1");
     const hero = extractFunction("CountryHeroFlag");
     expect(hero).toContain("countryFlagHeroUrl");
@@ -319,12 +319,16 @@ describe("option grid alignment", () => {
 
     const objectifBlock = form.slice(objectifStart, destinationStart);
     const destinationBlock = form.slice(destinationStart, originStart);
+    const originBlock = form.slice(originStart, form.indexOf("</Surface>", originStart));
 
     expect(objectifBlock).toContain("ir-option-grid");
     expect(objectifBlock).toContain('--ir-option-min": "7.5rem"');
     expect(destinationBlock).toContain("ir-option-grid");
-    expect(form).toContain("@min-[36rem]:grid-cols-2");
+    expect(form).toContain("grid items-start gap-3 @min-[36rem]:grid-cols-2");
     expect(form).not.toContain("@min-[54rem]:grid-cols-[minmax(0,1.2fr)_minmax(0,0.95fr)_minmax(9.25rem,10.5rem)]");
+    expect(destinationBlock).not.toContain("flex-1 flex-col justify-center");
+    expect(originBlock).toContain("mt-1.5 flex items-center gap-2");
+    expect(originBlock).not.toContain("flex-1 items-center");
 
     for (const block of [objectifBlock, destinationBlock]) {
       expect(block).toContain('className=\"w-full min-w-0 justify-center\"');

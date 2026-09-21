@@ -264,10 +264,10 @@ function ProfileForm() {
               </div>
             </div>
 
-            <div className="mt-3 grid items-stretch gap-3 @min-[36rem]:grid-cols-2">
-              <div className="flex h-full min-h-0 flex-col">
+            <div className="mt-3 grid items-start gap-3 @min-[36rem]:grid-cols-2">
+              <div className="flex min-h-0 flex-col">
                 <SectionLabel>Destination</SectionLabel>
-                <div className="mt-1.5 flex min-h-0 flex-1 flex-col justify-center">
+                <div className="mt-1.5">
                   <div className="ir-option-grid">
                     {featuredProvinces.map((option) => (
                       <Chip
@@ -289,9 +289,9 @@ function ProfileForm() {
                   </div>
                 </div>
               </div>
-              <div className="flex h-full min-h-0 flex-col">
+              <div className="flex min-h-0 flex-col">
                 <SectionLabel>Pays d'origine</SectionLabel>
-                <div className="mt-1.5 flex min-h-0 flex-1 items-center gap-2">
+                <div className="mt-1.5 flex items-center gap-2">
                   <div className="min-w-0 flex-1">
                     <CountrySelect value={draft.country} onChange={(v) => setProject("country", v)} />
                   </div>
