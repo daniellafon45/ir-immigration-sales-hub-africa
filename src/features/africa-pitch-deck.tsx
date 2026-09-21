@@ -5,7 +5,7 @@ import { ProofDrawer } from "@/components/ui/proof-drawer";
 import { SiteDrawer } from "@/components/ui/site-drawer";
 import { IR_CTA, IR_SITE_LABEL, IR_SITE_URL } from "@/data/ecosystem";
 import type { OpportunityThemeId } from "@/data/opportunity-proof";
-import { pitchWelcomeTitle } from "@/data/pitch";
+import { joinFrenchNames, pitchClientNames, pitchWelcomeTitle } from "@/data/pitch";
 import {
   PITCH_CONTACT,
   type AfricaPitchSlide,
@@ -80,7 +80,7 @@ export function AfricaPitchDeck({
 function SlideBody({ slide, profile }: { slide: AfricaPitchSlide; profile: Profile }) {
   switch (slide.layout) {
     case "africa-hero":
-      return <AfricaHero slide={slide} />;
+      return <AfricaHero slide={slide} profile={profile} />;
     case "africa-welcome":
       return <AfricaWelcome slide={slide} profile={profile} />;
     case "africa-trio":
@@ -119,11 +119,17 @@ function Title({ title, light = false }: { title: string; light?: boolean }) {
   );
 }
 
-function AfricaHero({ slide }: { slide: AfricaPitchSlide }) {
+function AfricaHero({ slide, profile }: { slide: AfricaPitchSlide; profile: Profile }) {
+  const clientNames = joinFrenchNames(pitchClientNames(profile));
   return (
     <div className="grid min-h-full gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-stretch">
       <div className="flex flex-col justify-center py-4">
         <Title title={slide.title} light />
+        {clientNames ? (
+          <p className="mt-3 max-w-[36ch] text-[clamp(1.05rem,2.4vw,1.35rem)] font-semibold tracking-tight text-white drop-shadow-[0_1px_8px_rgba(10,22,40,.45)]">
+            {clientNames}
+          </p>
+        ) : null}
         {slide.lead ? (
           <p className="mt-5 max-w-[36ch] text-lg font-medium text-white drop-shadow-[0_1px_8px_rgba(10,22,40,.45)]">
             {slide.lead}

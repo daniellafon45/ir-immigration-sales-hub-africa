@@ -22,6 +22,13 @@ describe("AfricaPitchDeck", () => {
     expect(source).toMatch(/function AfricaHero[\s\S]*lg:grid-cols-/);
   });
 
+  it("shows client first names on africa-hero like africa-welcome", () => {
+    expect(source).toMatch(/case "africa-hero":\s*return <AfricaHero slide=\{slide\} profile=\{profile\}/);
+    expect(source).toMatch(
+      /function AfricaHero[\s\S]*joinFrenchNames\(pitchClientNames\(profile\)\)/,
+    );
+  });
+
   it("keeps africa-promises in the deck", () => {
     expect(africaPitchSlides.find((s) => s.layout === "africa-promises")).toBeTruthy();
   });
