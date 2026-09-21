@@ -272,16 +272,22 @@ describe("Canada Live province lens", () => {
     const ontario = canadaLivePagesFor(defaultProfile, "Ontario");
 
     expect(manitoba).not.toBe(canadaLivePages);
-    expect(manitoba[0]?.stats.some((stat) => stat.label === "Francophones hors Québec")).toBe(false);
-    expect(quebec[0]?.stats.some((stat) => stat.label === "Francophones hors Québec")).toBe(false);
-    expect(manitoba[0]?.stats.find((stat) => stat.label === "Postes vacants")?.value).toBe("28 000");
-    expect(quebec[0]?.stats.find((stat) => stat.label === "Postes vacants")?.value).toBe("104 000");
+    expect(manitoba[0]?.stats.some((stat) => stat.label === "Admissions RP prévues")).toBe(true);
+    expect(manitoba[0]?.stats.some((stat) => stat.label === "Part économique visée")).toBe(true);
+    expect(manitoba[0]?.stats.some((stat) => stat.label === "Francophones hors Québec")).toBe(true);
+    expect(quebec[0]?.stats.some((stat) => stat.label === "Francophones hors Québec")).toBe(true);
+    expect(manitoba[0]?.stats.some((stat) => stat.label === "Postes vacants")).toBe(false);
+    expect(quebec[0]?.stats.some((stat) => stat.label === "Postes vacants")).toBe(false);
+    expect(quebec[0]?.stats.find((stat) => stat.label === "Francophones hors Québec")?.note).toMatch(/français structure/i);
     expect(manitoba[2]?.stats.find((stat) => stat.label === "Postes vacants")?.value).toBe(
       String(provinceData.MB.vacancies).replace(/\B(?=(\d{3})+(?!\d))/g, " "),
     );
     expect(manitoba[2]?.stats.find((stat) => stat.label === "Postes vacants")?.value).not.toBe(
       quebec[2]?.stats.find((stat) => stat.label === "Postes vacants")?.value,
     );
+    expect(manitoba[3]?.stats.some((stat) => stat.label === "Chômage local")).toBe(false);
+    expect(manitoba[3]?.stats.some((stat) => stat.label === "Postes encore vacants")).toBe(false);
+    expect(manitoba[3]?.stats.some((stat) => stat.label === "Places RP encore ouvertes")).toBe(true);
     expect(JSON.stringify(manitoba)).not.toContain("118 700");
     expect(JSON.stringify(manitoba)).not.toContain("radio-canada.ca");
     expect(JSON.stringify(quebec)).toContain("radio-canada.ca");
@@ -292,5 +298,33 @@ describe("Canada Live province lens", () => {
     expect(JSON.stringify(manitoba)).not.toContain("–");
     expect(JSON.stringify(quebec)).not.toContain("—");
     expect(JSON.stringify(quebec)).not.toContain("–");
+  });
+
+  it("keeps Études and Travail pathway labels when the province changes", () => {
+    const study = { ...defaultProfile, objective: "Études" as const };
+    const work = { ...defaultProfile, objective: "Travail" as const };
+    const studyMb = canadaLivePagesFor(study, "Manitoba");
+    const studyQc = canadaLivePagesFor(study, "Québec");
+    const studyAll = canadaLivePagesFor(study, ALL_CANADA);
+    const workMb = canadaLivePagesFor(work, "Manitoba");
+    const workQc = canadaLivePagesFor(work, "Québec");
+
+    expect(studyAll[0]?.stats.some((stat) => stat.label === "Permis d'études actifs")).toBe(true);
+    expect(studyMb[0]?.stats.some((stat) => stat.label === "Permis d'études actifs")).toBe(true);
+    expect(studyQc[0]?.stats.some((stat) => stat.label === "Permis d'études actifs")).toBe(true);
+    expect(studyMb[0]?.stats.some((stat) => stat.label === "Postes vacants")).toBe(false);
+    expect(studyMb[0]?.title).toMatch(/Manitoba|Manitoba reste|Manitoba /i);
+    expect(workMb[0]?.stats.some((stat) => stat.label === "Délai permis")).toBe(true);
+    expect(workQc[0]?.stats.some((stat) => stat.label === "Délai permis")).toBe(true);
+    expect(workMb[0]?.stats.some((stat) => stat.label === "Postes vacants")).toBe(false);
+    expect(studyMb[0]?.stats[0]?.note).toMatch(/Manitoba|ancré/i);
+    expect(studyQc[0]?.stats[0]?.note).not.toBe(studyMb[0]?.stats[0]?.note);
+  });
+
+  it("leaves Affaires capital thresholds alone instead of swapping them for market stats", () => {
+    const business = { ...defaultProfile, objective: "Affaires" as const, province: "Ontario" };
+    const pages = canadaLivePagesFor(business, "Manitoba");
+    expect(pages[0]?.stats.some((stat) => stat.label.includes("Capital") || stat.label.includes("PNP"))).toBe(true);
+    expect(pages[0]?.stats.some((stat) => stat.label === "Postes vacants")).toBe(false);
   });
 });

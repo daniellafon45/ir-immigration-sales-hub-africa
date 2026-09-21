@@ -169,6 +169,20 @@ function vueShot(place: string) {
   return { place, image: catalog[0]?.imageUrl ?? "" };
 }
 
+function pathwayKind(page: CanadaLivePage): "etudes" | "travail" | "visite" | null {
+  const kicker = page.kicker;
+  if (/Études|Campus|diplôme|projet d'études/i.test(kicker)) return "etudes";
+  if (/Travail|projet travail/i.test(kicker)) return "travail";
+  if (/Visite|projet visite/i.test(kicker)) return "visite";
+  return null;
+}
+
+function pathwayLabel(kind: "etudes" | "travail" | "visite") {
+  if (kind === "etudes") return "études";
+  if (kind === "travail") return "travail";
+  return "visite";
+}
+
 function copyFor(page: CanadaLivePage, place: string, quebec: boolean): Partial<CanadaLivePage> {
   if (page.id === "vue" && page.stats.some((stat) => stat.label === "Admissions RP prévues")) {
     return {
@@ -202,6 +216,40 @@ function copyFor(page: CanadaLivePage, place: string, quebec: boolean): Partial<
       ask: `Si on relie {profession} ${inPlace(place)} aujourd'hui, quelle est la première décision utile ?`,
     };
   }
+  const pathway = pathwayKind(page);
+  if (pathway) {
+    const lens = pathwayLabel(pathway);
+    if (page.id === "vue") {
+      return {
+        title: quebec
+          ? `Le Québec reste ouvert. Le projet ${lens}, lui, se joue ici.`
+          : `${thePlace(place)} reste ouvert. Le projet ${lens}, lui, se joue ici.`,
+        lead: `Les chiffres nationaux restent le cadre. Le dossier ${lens}, lui, se construit ${inPlace(place)}.`,
+        panelTitle: quebec ? "Le Québec n'est pas fermé" : `Le projet se joue ${inPlace(place)}`,
+        ask: `Dans 12 mois, voulez-vous encore chercher une stratégie ${lens}, ou l'avoir déjà lancée ${inPlace(place)} ?`,
+      };
+    }
+    if (page.id === "demographie") {
+      return {
+        title: `${thePlace(place)} vieillit aussi. Les besoins, eux, ne diminuent pas.`,
+        lead: `Sans relève naturelle suffisante, ${place} doit encore attirer des profils utiles, y compris via un projet ${lens}.`,
+        ask: `Si ${place} a déjà besoin de renouveler sa population active, où le projet ${lens} de {name} apporte le plus de valeur ?`,
+      };
+    }
+    if (page.id === "emploi") {
+      return {
+        title: `Le marché s'est calmé. ${InPlace(place)}, des postes restent à pourvoir.`,
+        lead: `Le chiffre national ne raconte pas le métier de {name}. Il faut relier chômage, postes vacants et ${place} avant de figer le projet ${lens}.`,
+        ask: `Parmi les métiers du foyer, lequel se relie le plus clairement à un besoin réel ${inPlace(place)} ?`,
+      };
+    }
+    if (page.id === "pont") {
+      return {
+        lead: `La bonne question n'est plus le Canada en général. C'est où le projet ${lens} trouve le meilleur compromis ${inPlace(place)}.`,
+        ask: `Si on ancre le projet ${lens} ${inPlace(place)} aujourd'hui, quelle est la première décision utile ?`,
+      };
+    }
+  }
   return {};
 }
 
@@ -211,66 +259,106 @@ function pillsFor(page: CanadaLivePage, place: string) {
   return [place, "Statistique Canada"];
 }
 
+function annotateNationalStats(stats: CanadaLiveStat[], place: string, quebec: boolean): CanadaLiveStat[] {
+  return stats.map((stat) => {
+    if (stat.label === "Francophones hors Québec") {
+      return {
+        ...stat,
+        note: quebec
+          ? "cible IRCC hors Québec ; au Québec le français structure la sélection"
+          : `${stat.note} · lecture locale ${inPlace(place)}`,
+      };
+    }
+    if (stat.label === "Avantage langue") {
+      return {
+        ...stat,
+        value: quebec ? "français" : stat.value,
+        note: quebec
+          ? "le français structure le dossier au Québec"
+          : `${stat.note} · ancré ${inPlace(place)}`,
+      };
+    }
+    return {
+      ...stat,
+      note: `${stat.note} · cadre national, ancré ${inPlace(place)}`,
+    };
+  });
+}
+
+function demographieStats(place: string, quebec: boolean): CanadaLiveStat[] {
+  const fertility = FERTILITY[provinceCode(place)] ?? {
+    value: "1,25",
+    note: `moyenne nationale; ${place} suit le creux canadien`,
+  };
+  return [
+    { label: "Fécondité 2024", value: fertility.value, note: fertility.note },
+    {
+      label: "Seuil de renouvellement",
+      value: "2,1",
+      note: quebec ? "le Québec ne l'atteint pas non plus" : "aucune province hors Nunavut ne l'atteint",
+    },
+    {
+      label: "Âge moyen à la maternité",
+      value: "31,8 ans",
+      note: `sommet national, le vieillissement pèse aussi ${inPlace(place)}`,
+    },
+    {
+      label: "Naissances, mère née à l'étranger",
+      value: "42,3 %",
+      note: "l'immigration porte déjà le renouvellement",
+    },
+  ];
+}
+
+function emploiMarketStats(place: string, data: Province, quebec: boolean): CanadaLiveStat[] {
+  return [
+    { label: "Postes vacants", value: count(data.vacancies), note: `${place}, T4 2025, Statistique Canada` },
+    { label: "Chômage", value: rate(data.unemployment), note: `${place}, Enquête sur la population active` },
+    { label: "Salaire hebdomadaire", value: money(data.avgSalary), note: "moyenne provinciale des postes" },
+    {
+      label: "Français",
+      value: data.french,
+      note: quebec ? "le français reste un filtre fort" : "présence francophone à lire dans le dossier",
+    },
+  ];
+}
+
+function pontStats(place: string, quebec: boolean, base: CanadaLiveStat[]): CanadaLiveStat[] {
+  const places = base.find((stat) => stat.label === "Places RP encore ouvertes") ?? {
+    label: "Places RP encore ouvertes",
+    value: "380 000",
+    note: "chaque année jusqu'en 2028",
+  };
+  const releve = base.find((stat) => stat.label === "Relève naturelle") ?? {
+    label: "Relève naturelle",
+    value: "insuffisante",
+    note: "fécondité à 1,25 en 2024",
+  };
+  return [
+    { ...places, note: `${places.note} · cadre national, ancré ${inPlace(place)}` },
+    { ...releve, note: `${releve.note} · ${place} suit la pression démographique` },
+    quebec
+      ? { label: "Avantage langue", value: "français", note: "le français structure le dossier au Québec" }
+      : { label: "Avantage langue", value: "francophone", note: `cible 9 % hors Québec · lecture ${inPlace(place)}` },
+  ];
+}
+
 function statsFor(page: CanadaLivePage, place: string, data: Province, quebec: boolean): CanadaLiveStat[] {
   if (page.id === "vue" && page.stats.some((stat) => stat.label === "Admissions RP prévues")) {
-    return [
-      { label: "Chômage", value: rate(data.unemployment), note: `${place}, Enquête sur la population active` },
-      { label: "Postes vacants", value: count(data.vacancies), note: "lecture provinciale, T4 2025" },
-      quebec
-        ? { label: "Français", value: data.french, note: "le français structure la sélection au Québec" }
-        : { label: "Français", value: data.french, note: "atout francophone hors Québec, cible 9 % en 2026" },
-      {
-        label: "Salaire hebdomadaire",
-        value: money(data.avgSalary),
-        note: "moyenne provinciale, lecture de marché",
-      },
-    ];
+    return annotateNationalStats(page.stats, place, quebec);
   }
   if (page.id === "demographie" && page.stats.some((stat) => stat.label === "Fécondité 2024")) {
-    const fertility = FERTILITY[provinceCode(place)] ?? {
-      value: "1,25",
-      note: `moyenne nationale; ${place} suit le creux canadien`,
-    };
-    return [
-      { label: "Fécondité 2024", value: fertility.value, note: fertility.note },
-      {
-        label: "Seuil de renouvellement",
-        value: "2,1",
-        note: quebec ? "le Québec ne l'atteint pas non plus" : "aucune province hors Nunavut ne l'atteint",
-      },
-      {
-        label: "Âge moyen à la maternité",
-        value: "31,8 ans",
-        note: `sommet national, le vieillissement pèse aussi ${inPlace(place)}`,
-      },
-      {
-        label: "Naissances, mère née à l'étranger",
-        value: "42,3 %",
-        note: "l'immigration porte déjà le renouvellement",
-      },
-    ];
+    return demographieStats(place, quebec);
   }
   if (page.id === "emploi" && hasNationalJobsStats(page.stats)) {
-    return [
-      { label: "Postes vacants", value: count(data.vacancies), note: `${place}, T4 2025, Statistique Canada` },
-      { label: "Chômage", value: rate(data.unemployment), note: `${place}, Enquête sur la population active` },
-      { label: "Salaire hebdomadaire", value: money(data.avgSalary), note: "moyenne provinciale des postes" },
-      {
-        label: "Français",
-        value: data.french,
-        note: quebec ? "le français reste un filtre fort" : "présence francophone à lire dans le dossier",
-      },
-    ];
+    return emploiMarketStats(place, data, quebec);
   }
   if (page.id === "pont" && page.stats.some((stat) => stat.label === "Places RP encore ouvertes")) {
-    return [
-      { label: "Places RP encore ouvertes", value: "380 000", note: "chaque année jusqu'en 2028, cadre national" },
-      { label: "Chômage local", value: rate(data.unemployment), note: `${place}, lecture de marché` },
-      { label: "Postes encore vacants", value: count(data.vacancies), note: `même après le reflux, ${inPlace(place)}` },
-      quebec
-        ? { label: "Avantage langue", value: "français", note: "le français structure le dossier au Québec" }
-        : { label: "Avantage langue", value: "francophone", note: "cible 9 % hors Québec dès 2026" },
-    ];
+    return pontStats(place, quebec, page.stats);
+  }
+  const pathway = pathwayKind(page);
+  if (pathway) {
+    return annotateNationalStats(page.stats, place, quebec);
   }
   return page.stats;
 }
@@ -515,6 +603,80 @@ function talksFor(page: CanadaLivePage, place: string, data: Province, quebec: b
         body: `La suite utile : voir les opportunités de votre métier, puis comparer ${place} aux autres options. Une décision, pas un catalogue.`,
       },
     ];
+  }
+  const pathway = pathwayKind(page);
+  if (pathway) {
+    const lens = pathwayLabel(pathway);
+    if (page.id === "vue") {
+      return [
+        {
+          label: "Aujourd'hui",
+          body: `${thePlace(place)} n'a pas fermé. Les volumes nationaux restent le cadre, mais le dossier ${lens} se construit ${inPlace(place)}.`,
+        },
+        {
+          label: "Les priorités",
+          body: quebec
+            ? "Au Québec, le français et un projet cohérent pèsent tôt. Ce n'est plus seulement une règle fédérale."
+            : `Le programme, la province et la cohérence du dossier structurent la lecture ${inPlace(place)}.`,
+        },
+        {
+          label: "L'ancrage",
+          body: quebec
+            ? "Au Québec, le français et le projet local pèsent tôt. Un dossier cohérent pèse plus qu'une intention."
+            : `Si vous ancrez le projet ${lens} ${inPlace(place)}, la province devient un argument, pas un décor.`,
+        },
+      ];
+    }
+    if (page.id === "demographie") {
+      return [
+        {
+          label: "Constat",
+          body: `${thePlace(place)} suit la pression démographique canadienne. La relève naturelle ne suffit plus.`,
+        },
+        {
+          label: "Image",
+          body: quebec
+            ? "Le vieillissement rend visible un Québec qui a besoin de soignants, de logements et de contribuables."
+            : `Moins d'enfants, plus d'aînés : ${place} a déjà besoin de renouveler sa population active.`,
+        },
+        {
+          label: "Pont",
+          body: `Le projet ${lens} de {name} se lit mieux s'il répond à un besoin réel ${inPlace(place)}.`,
+        },
+      ];
+    }
+    if (page.id === "emploi") {
+      return [
+        {
+          label: "Nuance",
+          body: `Le marché s'est détendu depuis 2022. ${count(data.vacancies)} postes restent pourtant ouverts ${inPlace(place)}, utiles pour lire le projet ${lens}.`,
+        },
+        {
+          label: "Province",
+          body: `${thePlace(place)} a ${count(data.vacancies)} postes vacants, pour un chômage à ${rate(data.unemployment)}. La province change autant le projet que la voie.`,
+        },
+        {
+          label: "Suite",
+          body: `Le chiffre national n'embauche personne. Le projet ${lens} de {name}, lui, peut trouver une place ${inPlace(place)}.`,
+        },
+      ];
+    }
+    if (page.id === "pont") {
+      return [
+        {
+          label: "Recentrer",
+          body: `Ces chiffres se ramènent à votre foyer. ${thePlace(place)} recrute encore, et le projet ${lens} doit coller à un ancrage local.`,
+        },
+        {
+          label: "Perte",
+          body: "Attendre 12 mois ne gèle pas le profil. Les places et les règles bougent avant vous.",
+        },
+        {
+          label: "Action",
+          body: `La suite utile : voir les opportunités, puis comparer ${place} aux autres options. Une décision, pas un catalogue.`,
+        },
+      ];
+    }
   }
   return page.talks;
 }
