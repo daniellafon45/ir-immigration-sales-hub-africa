@@ -960,7 +960,7 @@ function PersonCard({
         </div>
       </div>
 
-      <div className="grid min-w-0 flex-1 content-start gap-2 p-3">
+      <div className="grid min-h-0 min-w-0 flex-1 content-start gap-2 overflow-y-auto p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <SexPicks
           label="Sexe"
           value={member.sex}

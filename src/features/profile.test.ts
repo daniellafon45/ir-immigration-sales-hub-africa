@@ -81,6 +81,17 @@ describe("principal panel scroll", () => {
   });
 });
 
+describe("person card scroll", () => {
+  it("scrolls the form body without a visible scrollbar", () => {
+    const personCard = extractFunction("PersonCard");
+    expect(personCard).toContain(
+      "grid min-h-0 min-w-0 flex-1 content-start gap-2 overflow-y-auto p-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden",
+    );
+    expect(personCard).not.toContain("[scrollbar-width:thin]");
+    expect(personCard).not.toContain("[scrollbar-gutter:stable]");
+  });
+});
+
 describe("profile places strip", () => {
   it("does not show Canada landmark cards under the form", () => {
     const form = extractFunction("ProfileForm");
