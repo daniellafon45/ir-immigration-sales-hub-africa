@@ -10,7 +10,6 @@ import quebecWinter from "@/assets/places/quebec-winter.jpg";
 import problemSettlementChance from "@/assets/pitch/problem-settlement-chance.jpg";
 import problemWrongPath from "@/assets/pitch/problem-wrong-path.jpg";
 import finance1 from "@/assets/professions/finance-1.jpg";
-import { countryCompareAxes } from "@/data/country-compare";
 
 export type CountryCompareAxisId =
   | "credit"
@@ -178,14 +177,23 @@ export const countryComparePress: CountryComparePressArticle[] = [
     date: "2025",
     title: "Présence physique pour la citoyenneté",
     excerpt:
-      "En règle générale, 1 095 jours de présence physique en 5 ans après la RP. Ce n’est pas une promesse automatique.",
+      "En règle générale, environ 2 à 3 ans de présence physique après la RP. Ce n’est pas une promesse automatique.",
     url: "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/citoyennete-canadienne/devenir-citoyen-canadien/admissibilite/presence-physique.html",
     image: montrealWinter,
   },
 ];
 
 export function countryCompareAxisLabel(id: CountryCompareAxisId) {
-  return countryCompareAxes.find((axis) => axis.id === id)?.label ?? id;
+  const labels: Record<CountryCompareAxisId, string> = {
+    credit: "Accès au crédit",
+    equality: "Égalité des chances",
+    quality: "Qualité de vie",
+    salary: "Niveau de salaire",
+    entrepreneurship: "Écosystème entrepreneurial",
+    education: "Qualité de l’éducation",
+    nationality: "Chemin vers la nationalité",
+  };
+  return labels[id] ?? id;
 }
 
 export function countryComparePressFor(axis: CountryCompareAxisId) {

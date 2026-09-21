@@ -10,7 +10,7 @@ import { ecosystemPartners, journeySteps, IR_CTA, IR_FEES_NOTE } from "@/data/ec
 
 describe("Africa comparison data", () => {
   it("compares IR against anonymous archetypes", () => {
-    expect(competitorArchetypes.map((a) => a.id)).toEqual(["ir", "visa-only", "local", "freelance", "diy"]);
+    expect(competitorArchetypes.map((a) => a.id)).toEqual(["ir", "local", "freelance", "diy"]);
     expect(competitorArchetypes.every((a) => a.blurb.length > 0)).toBe(true);
     expect(competitorCriteria.length).toBeGreaterThanOrEqual(5);
     expect(competitorCriteria.every((row) => row.scores.ir === true)).toBe(true);
@@ -24,6 +24,8 @@ describe("Africa comparison data", () => {
     expect(countryCompareAxes.map((a) => a.id)).toContain("salary");
     expect(countryCompareAxes.map((a) => a.id)).toContain("nationality");
     expect(countryCompareTitle("Bénin")).toBe("Canada vs Bénin");
+    expect(countryCompareAxes.find((a) => a.id === "credit")?.canada).toMatch(/\d/);
+    expect(countryCompareAxes.find((a) => a.id === "credit")?.origin).toMatch(/\d/);
   });
 
   it("exposes partners, journey and RDV CTA copy", () => {

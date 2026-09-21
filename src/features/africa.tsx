@@ -22,7 +22,7 @@ import {
   type CompetitorScore,
 } from "@/data/competitors";
 import {
-  countryCompareAxes,
+  countryCompareAxesFor,
   countryCompareLead,
   countryCompareTitle,
 } from "@/data/country-compare";
@@ -169,7 +169,11 @@ function ProofAside({
             {panel.chart.bars.map((bar) => {
               const width = max > 0 ? (bar.value / max) * 100 : 0;
               const display =
-                panel.chart.unit === "CAD" ? money(bar.value) : String(Math.round(bar.value));
+                panel.chart.unit === "CAD"
+                  ? money(bar.value)
+                  : panel.chart.unit === "%"
+                    ? String(Math.round(bar.value * 10) / 10)
+                    : String(Math.round(bar.value));
               return (
                 <div
                   key={bar.label}
@@ -227,6 +231,7 @@ export function CountryCompareSection() {
   const [openAxis, setOpenAxis] = useState<CountryCompareAxisId | null>(null);
   const panel = openAxis ? countryComparePanel(openAxis, profile) : null;
   const originLabel = profile.country.trim() || "Pays d’origine";
+  const axes = countryCompareAxesFor(profile.country);
 
   useEffect(() => {
     if (!openAxis) return;
@@ -247,7 +252,7 @@ export function CountryCompareSection() {
       panel={panel ? <ProofAside panel={panel} onClose={() => setOpenAxis(null)} /> : undefined}
     >
       <div className="grid gap-2.5">
-        {countryCompareAxes.map((axis) => {
+        {axes.map((axis) => {
           const axisId = axis.id as CountryCompareAxisId;
           const selected = openAxis === axisId;
           return (
@@ -500,7 +505,7 @@ export function WhyUsSection() {
         <p className="text-[15px] font-semibold text-[#1a2332]">{active.label}</p>
         <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">{active.note}</p>
 
-        <div className="mt-4 grid gap-2 @min-[28rem]:grid-cols-2 @min-[48rem]:grid-cols-5">
+        <div className="mt-4 grid gap-2 @min-[28rem]:grid-cols-2 @min-[48rem]:grid-cols-4">
           {competitorArchetypes.map((arch) => {
             const isIr = arch.id === "ir";
             const value = active.scores[arch.id];
@@ -553,8 +558,8 @@ export function WhyUsSection() {
               value: 62,
             },
             {
-              userId: "visa-only",
-              userName: "Agence visa only",
+              userId: "diy",
+              userName: "Faire seul",
               rank: 3,
               value: 48,
             },

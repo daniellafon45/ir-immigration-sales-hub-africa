@@ -72,6 +72,7 @@ describe("Africa feature sections", () => {
     expect(source).toContain("countryComparePanel");
     expect(source).toContain("CountryCompareAxisId");
     expect(source).toContain("openAxis");
+    expect(source).toContain("countryCompareAxesFor");
     expect(source).toContain("Voir preuves →");
     const compareChunk = source.slice(
       source.indexOf("export function CountryCompareSection"),
