@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { defaultProfile, emptyAdult } from "@/data/profile";
 import { failurePress, failureRisks } from "@/data/failures";
-import { highlightedFailureIds } from "@/lib/failure-press";
+import { highlightedFailureIds, selectPressArticles, stalePressArticles } from "@/lib/failure-press";
 
 describe("failureRisks", () => {
   it("lists ten prospect-facing risks", () => {
@@ -30,13 +30,55 @@ describe("failureRisks", () => {
 });
 
 describe("failurePress", () => {
-  it("lists six sourced articles across housing, jobs and distress", () => {
-    expect(failurePress).toHaveLength(6);
-    expect(failurePress.filter((article) => article.theme === "housing")).toHaveLength(2);
-    expect(failurePress.filter((article) => article.theme === "jobs")).toHaveLength(2);
-    expect(failurePress.filter((article) => article.theme === "distress")).toHaveLength(2);
-    expect(failurePress.every((article) => article.url.startsWith("https://"))).toBe(true);
-    expect(failurePress.every((article) => Boolean(article.image))).toBe(true);
+  it("only keeps sourced articles from the last 12 months, tagged by situation", () => {
+    expect(failurePress.length).toBeGreaterThanOrEqual(9);
+    for (const article of failurePress) {
+      expect(article.url.startsWith("https://")).toBe(true);
+      expect(article.publishedOn >= "2025-10-18").toBe(true);
+      expect(article.tags.length).toBeGreaterThan(0);
+      expect(Boolean(article.image)).toBe(true);
+    }
+    for (const theme of ["housing", "jobs", "distress"] as const) {
+      expect(failurePress.filter((a) => a.theme === theme).length).toBeGreaterThanOrEqual(2);
+    }
+  });
+});
+
+describe("selectPressArticles", () => {
+  const TODAY = "2026-10-18";
+  const pick = (profile: Parameters<typeof selectPressArticles>[0]) => selectPressArticles(profile, { today: TODAY });
+
+  it("returns two articles per theme", () => {
+    const picked = pick(defaultProfile);
+    for (const theme of ["housing", "jobs", "distress"] as const) {
+      expect(picked.filter((a) => a.theme === theme)).toHaveLength(2);
+    }
+  });
+
+  it("shows student articles to a student", () => {
+    const picked = pick({ ...defaultProfile, objective: "Études" });
+    expect(picked.some((a) => a.tags.includes("student"))).toBe(true);
+  });
+
+  it("shows the PSTQ end-of-permit article to a temporary worker already in Québec", () => {
+    const picked = pick({ ...defaultProfile, objective: "Travail", province: "Québec" });
+    expect(picked.some((a) => a.url.includes("lapresse.ca/actualites/2026-05-13"))).toBe(true);
+  });
+
+  it("shows francophone-minority news to a French speaker settling outside Québec", () => {
+    const picked = pick({ ...defaultProfile, province: "Ontario", applicant: { ...defaultProfile.applicant, french: "Bilingue" } });
+    expect(picked.some((a) => a.tags.includes("francophone-outside-qc"))).toBe(true);
+  });
+
+  it("explains why each article was chosen", () => {
+    for (const a of pick({ ...defaultProfile, objective: "Études" })) expect(a.reason.length).toBeGreaterThan(0);
+  });
+});
+
+describe("stalePressArticles", () => {
+  it("flags articles older than 12 months for replacement", () => {
+    expect(stalePressArticles("2026-10-18")).toEqual([]);
+    expect(stalePressArticles("2028-01-01").length).toBe(failurePress.length);
   });
 });
 

@@ -43,7 +43,7 @@ export const studyLivingIrccExtra = 6318;
 
 const settlementSourceUrl = irccFundsMeta.sourceUrl;
 const studySourceUrl =
-  "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada/permis-etudes/obtenir-documents/soutien-financier.html";
+  "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada/permis-etudes/obtenir-documents.html";
 
 export function fundsFromGrid(grid: number[], extra: number, familySize: number) {
   const size = Math.max(1, Math.floor(familySize));

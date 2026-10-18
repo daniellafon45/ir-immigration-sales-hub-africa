@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  adultFundsCad,
   appearanceFromCountry,
   appearances,
   createExtraSpouse,
@@ -54,5 +55,12 @@ describe("adult appearance", () => {
     for (const country of countryList) {
       expect(appearances, country).toContain(appearanceFromCountry(country));
     }
+  });
+});
+
+describe("funds helpers", () => {
+  it("prefers the exact amount over the capacity bracket", () => {
+    expect(adultFundsCad({ ...defaultApplicant, salary: "Bonne", fundsCad: 7000 })).toBe(7000);
+    expect(adultFundsCad({ ...defaultApplicant, salary: "Bonne", fundsCad: 0 })).toBe(48000);
   });
 });

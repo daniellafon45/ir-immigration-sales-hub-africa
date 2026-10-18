@@ -28,6 +28,7 @@ const extraAwa: ExtraSpouse = {
   education: "Baccalauréat / Licence",
   french: "Avancé",
   english: "Intermédiaire",
+  fundsCad: 0,
 };
 
 function richClientProfile(): Profile {
@@ -60,6 +61,7 @@ function richClientProfile(): Profile {
     education: "Baccalauréat / Licence",
     french: "Avancé",
     english: "Avancé",
+    fundsCad: 0,
   };
   profile.spouse = {
     firstName: "Aïcha",
@@ -74,6 +76,7 @@ function richClientProfile(): Profile {
     education: "Maîtrise / Master",
     french: "Bilingue",
     english: "Intermédiaire",
+    fundsCad: 0,
   };
   profile.extraSpouses = [structuredClone(extraAwa)];
   profile.children = [{ id: "child-1", firstName: "Noah", age: 6 }];

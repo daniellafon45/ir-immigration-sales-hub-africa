@@ -4,6 +4,11 @@ import { fileURLToPath } from "node:url";
 import { beforeEach, describe, expect, it } from "vitest";
 import { defaultProfile } from "@/data/profile";
 import { useProfileStore } from "@/store/profile";
+import { eeRoundsSnapshot, latestCutoffs } from "@/data/ee-rounds";
+import { findBestPrograms } from "@/lib/best-programs";
+import { toEngineProfile } from "@/lib/engine-profile";
+
+const snapshotCutoffs = latestCutoffs(eeRoundsSnapshot.rounds);
 
 const source = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "profile.ts"), "utf8");
 
@@ -77,3 +82,22 @@ describe("profile store", () => {
   });
 });
 
+describe("province « Toutes »", () => {
+  beforeEach(() => {
+    useProfileStore.setState({ profile: structuredClone(defaultProfile), draft: structuredClone(defaultProfile) });
+  });
+
+  it("switches to all-provinces mode and fills the province suggested by the pathways", () => {
+    useProfileStore.getState().setAllProvinces();
+    const draft = useProfileStore.getState().draft;
+    expect(draft.provinceMode).toBe("all");
+    expect(draft.province).toBe(findBestPrograms(toEngineProfile(draft), { cutoffs: snapshotCutoffs }).suggestedProvince);
+  });
+
+  it("leaves all-provinces mode when a specific province is chosen", () => {
+    useProfileStore.getState().setAllProvinces();
+    useProfileStore.getState().setProject("province", "Alberta");
+    expect(useProfileStore.getState().draft.provinceMode).toBe("chosen");
+    expect(useProfileStore.getState().draft.province).toBe("Alberta");
+  });
+});

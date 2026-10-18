@@ -1,3 +1,4 @@
+import { PistesPanel } from "@/features/pistes-panel";
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import {
@@ -37,6 +38,8 @@ import {
   familyOptions,
   featuredProvinces,
   financialCapacities,
+  financialCapacityAmount,
+  normalizeFinancialCapacity,
   languageLevels,
   objectives,
   otherProvinces,
@@ -115,6 +118,8 @@ export function ProfileSection() {
 function ProfileForm() {
   const draft = useProfileStore((s) => s.draft);
   const setProject = useProfileStore((s) => s.setProject);
+  const setAllProvinces = useProfileStore((s) => s.setAllProvinces);
+  const allProvinces = draft.provinceMode === "all";
   const patchApplicant = useProfileStore((s) => s.patchApplicant);
   const patchSpouse = useProfileStore((s) => s.patchSpouse);
   const addExtraSpouse = useProfileStore((s) => s.addExtraSpouse);
@@ -218,7 +223,7 @@ function ProfileForm() {
                   {principal.firstName || "Nouveau dossier"}
                 </h1>
                 <p className="mt-1 text-[13px] text-white/70">
-                  {familyLabel(draft)} · {draft.province} · {draft.objective}
+                  {familyLabel(draft)} · {allProvinces ? `${draft.province} (suggérée)` : draft.province} · {draft.objective}
                 </p>
                 <p className="mt-1 text-[11px] text-white/55">Profil simplifié · détail en rendez-vous</p>
               </div>
@@ -275,7 +280,7 @@ function ProfileForm() {
                         compact
                         title={option}
                         ariaLabel={option}
-                        selected={draft.province === option}
+                        selected={!allProvinces && draft.province === option}
                         className="w-full min-w-0 justify-center"
                         onClick={() => setProject("province", option)}
                       >
@@ -283,9 +288,19 @@ function ProfileForm() {
                       </Chip>
                     ))}
                     <ProvinceOtherSelect
-                      value={draft.province}
+                      value={allProvinces ? "" : draft.province}
                       onChange={(v) => setProject("province", v)}
                     />
+                    <Chip
+                      compact
+                      title="Toutes les provinces : la province suit les pistes du profil"
+                      ariaLabel="Toutes les provinces"
+                      selected={allProvinces}
+                      className="w-full min-w-0 justify-center"
+                      onClick={setAllProvinces}
+                    >
+                      <span className="font-bold tracking-wide">Toutes</span>
+                    </Chip>
                   </div>
                 </div>
               </div>
@@ -377,6 +392,8 @@ function ProfileForm() {
               ) : null}
             </div>
           )}
+
+          <PistesPanel />
 
           {showChildren ? (
             <Surface className="ir-rise shrink-0 p-3 sm:px-4 sm:py-3">
@@ -998,7 +1015,20 @@ function PersonCard({
                 label="Capacité financière"
                 value={member.salary}
                 options={financialCapacities}
-                onChange={(v) => onChange({ salary: v as AdultMember["salary"] })}
+                onChange={(v) => onChange({ salary: v as AdultMember["salary"], fundsCad: 0 })}
+              />
+              <NumberField
+                className="@min-[22rem]:col-span-2"
+                label="Montant exact ($)"
+                value={member.fundsCad}
+                optional
+                placeholder={`≈ ${financialCapacityAmount(member.salary).toLocaleString("fr-CA")} (tranche)`}
+                onChange={(v) =>
+                  onChange({
+                    fundsCad: v > 0 ? v : 0,
+                    ...(v > 0 ? { salary: normalizeFinancialCapacity(v) } : {}),
+                  })
+                }
               />
               <ChoiceField
                 className="@min-[22rem]:col-span-2"

@@ -27,6 +27,8 @@ export type AdultMember = {
   education: string;
   french: string;
   english: string;
+  /** Montant exact disponible ($ CA). 0 = utiliser la tranche `salary`. */
+  fundsCad: number;
 };
 
 export type ChildMember = {
@@ -39,12 +41,17 @@ export type ExtraSpouse = AdultMember & { id: string };
 
 export type PrincipalMode = "auto" | "applicant" | "spouse" | `extra:${string}`;
 
+export const provinceModes = ["chosen", "all"] as const;
+export type ProvinceMode = (typeof provinceModes)[number];
+
 export type Profile = {
   country: string;
   family: string;
   objective: string;
   budget: number;
   province: string;
+  /** « all » : la province suit les pistes du profil. */
+  provinceMode: ProvinceMode;
   start: string;
   principalMode: PrincipalMode;
   studyLevel: string;
@@ -76,6 +83,7 @@ export const emptyAdult: AdultMember = {
   education: "Baccalauréat / Licence",
   french: "Intermédiaire",
   english: "Intermédiaire",
+  fundsCad: 0,
 };
 
 export const defaultApplicant: AdultMember = {
@@ -91,6 +99,7 @@ export const defaultApplicant: AdultMember = {
   education: "Baccalauréat / Licence",
   french: "Avancé",
   english: "Intermédiaire",
+  fundsCad: 0,
 };
 
 export const defaultSpouse: AdultMember = {
@@ -106,6 +115,7 @@ export const defaultSpouse: AdultMember = {
   education: "Baccalauréat / Licence",
   french: "Intermédiaire",
   english: "Avancé",
+  fundsCad: 0,
 };
 
 export const defaultProfile: Profile = {
@@ -114,6 +124,7 @@ export const defaultProfile: Profile = {
   objective: "Résidence permanente",
   budget: 10000,
   province: "Québec",
+  provinceMode: "chosen",
   start: "3 à 6 mois",
   principalMode: "auto",
   studyLevel: "",
@@ -457,4 +468,17 @@ export function appearanceFromCountry(country: string): Appearance {
   if (asianCountries.has(country)) return "Asiatique";
   if (latinoCountries.has(country)) return "Latino";
   return "Blanc";
+}
+
+/** Fonds disponibles d’un adulte : montant exact s’il est saisi, sinon la tranche choisie. */
+export function adultFundsCad(member: Pick<AdultMember, "salary" | "fundsCad">): number {
+  return member.fundsCad > 0 ? member.fundsCad : financialCapacityAmount(member.salary);
+}
+
+/** Fonds disponibles du foyer (adultes qui immigrent). */
+export function householdFundsCad(profile: Profile): number {
+  let total = adultFundsCad(profile.applicant);
+  if (familyHasSpouse(profile.family)) total += adultFundsCad(profile.spouse);
+  if (familyIsPolygamous(profile.family)) for (const s of profile.extraSpouses) total += adultFundsCad(s);
+  return total;
 }

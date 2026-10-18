@@ -186,3 +186,26 @@ describe("profile storage", () => {
     expect(loadProfile().principalMode).toBe("auto");
   });
 });
+
+describe("exact amount and all-provinces mode", () => {
+  beforeEach(() => {
+    for (const key of Object.keys(memory)) delete memory[key];
+  });
+
+  it("keeps an exact amount per adult and clears invalid values", () => {
+    memory[PROFILE_STORAGE_KEY] = JSON.stringify({
+      applicant: { ...defaultProfile.applicant, fundsCad: 12500 },
+      spouse: { ...defaultProfile.spouse, fundsCad: -4 },
+    });
+    const loaded = loadProfile();
+    expect(loaded.applicant.fundsCad).toBe(12500);
+    expect(loaded.spouse.fundsCad).toBe(0);
+  });
+
+  it("keeps the all-provinces mode and defaults to a chosen province", () => {
+    memory[PROFILE_STORAGE_KEY] = JSON.stringify({ provinceMode: "all", province: "Ontario" });
+    expect(loadProfile().provinceMode).toBe("all");
+    memory[PROFILE_STORAGE_KEY] = JSON.stringify({ provinceMode: "weird" });
+    expect(loadProfile().provinceMode).toBe("chosen");
+  });
+});

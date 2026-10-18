@@ -115,3 +115,14 @@ describe("Africa feature sections", () => {
     expect(source).toContain("prepare: \"bg-primary");
   });
 });
+
+describe("risks section press and call to action", () => {
+  it("shows the articles that match the prospect's situation and ends on a positive appointment call", () => {
+    const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "africa.tsx"), "utf8");
+    const risks = src.slice(src.indexOf("export function RisksSection"), src.indexOf("function ScoreBadge"));
+    expect(risks).toContain("selectPressArticles(profile");
+    expect(risks).toContain("article.reason");
+    expect(risks).toContain("Bien préparé, c’est possible");
+    expect(risks).toMatch(/goToSectionId\("rdv"\)/);
+  });
+});

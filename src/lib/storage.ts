@@ -14,6 +14,7 @@ import {
   normalizeFinancialCapacity,
   objectives,
   provinces,
+  provinceModes,
   type AdultMember,
   type ChildMember,
   type ExtraSpouse,
@@ -68,6 +69,7 @@ export function normalizeProfile(raw: Record<string, unknown>): Profile {
     objective: oneOfOr(legacy.objective, objectives, defaultProfile.objective),
     budget: Number(legacy.budget ?? defaultProfile.budget),
     province: oneOfOr(legacy.province, provinces, defaultProfile.province),
+    provinceMode: oneOfOr(legacy.provinceMode, provinceModes, defaultProfile.provinceMode),
     start: String(legacy.start ?? defaultProfile.start),
     principalMode: normalizePrincipalMode(legacy.principalMode),
     studyLevel: isStudyLevel(legacy.studyLevel) ? legacy.studyLevel : "",
@@ -200,5 +202,6 @@ function canonicalizeAdult(member: AdultMember): AdultMember {
     salary: normalizeFinancialCapacity(member.salary),
     age: Number(member.age),
     experience: Number(member.experience),
+    fundsCad: Number.isFinite(Number(member.fundsCad)) && Number(member.fundsCad) > 0 ? Math.round(Number(member.fundsCad)) : 0,
   };
 }

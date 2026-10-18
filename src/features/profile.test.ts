@@ -373,3 +373,12 @@ describe("option grid alignment", () => {
   });
 });
 
+describe("exact amount and all provinces", () => {
+  it("lets each adult type an exact amount and offers « Toutes » as destination", () => {
+    const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "profile.tsx"), "utf8");
+    expect(src).toContain('label="Montant exact ($)"');
+    expect(src).toMatch(/fundsCad: v > 0 \? v : 0/);
+    expect(src).toMatch(/salary: v as AdultMember\["salary"\], fundsCad: 0/);
+    expect(src).toContain('ariaLabel="Toutes les provinces"');
+  });
+});

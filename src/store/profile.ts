@@ -14,12 +14,17 @@ import {
   type PrincipalMode,
   type Profile,
 } from "@/data/profile";
+import { eeRoundsSnapshot, latestCutoffs } from "@/data/ee-rounds";
+import { findBestPrograms } from "@/lib/best-programs";
+import { toEngineProfile } from "@/lib/engine-profile";
 
 type ProfileState = {
   profile: Profile;
   draft: Profile;
   importDraft: (profile: Profile) => void;
   setProject: <K extends keyof Profile>(key: K, value: Profile[K]) => void;
+  /** Destination « Toutes » : la province suit les pistes du profil. */
+  setAllProvinces: () => void;
   setPrincipalMode: (mode: PrincipalMode) => void;
   patchApplicant: (patch: Partial<AdultMember>) => void;
   patchSpouse: (patch: Partial<AdultMember>) => void;
@@ -51,7 +56,23 @@ function draftWithFamily(draft: Profile, family: string): Profile {
   return next;
 }
 
-export const useProfileStore = create<ProfileState>((set, get) => ({
+const snapshotCutoffs = latestCutoffs(eeRoundsSnapshot.rounds);
+
+/** En mode « Toutes », remplace la province par celle de la meilleure piste. */
+export function resolveProvince(draft: Profile): Profile {
+  if (draft.provinceMode !== "all") return draft;
+  const suggested = findBestPrograms(toEngineProfile(draft), { cutoffs: snapshotCutoffs }).suggestedProvince;
+  return suggested === draft.province ? draft : { ...draft, province: suggested };
+}
+
+export const useProfileStore = create<ProfileState>((rawSet, get) => {
+  // Toute mise à jour du brouillon repasse par resolveProvince.
+  const set = (update: Partial<ProfileState> | ((state: ProfileState) => Partial<ProfileState>)) =>
+    rawSet((state) => {
+      const next = typeof update === "function" ? update(state) : update;
+      return next.draft ? { ...next, draft: resolveProvince(next.draft) } : next;
+    });
+  return {
   profile: structuredClone(defaultProfile),
   draft: structuredClone(defaultProfile),
   setProject: (key, value) =>
@@ -71,8 +92,12 @@ export const useProfileStore = create<ProfileState>((set, get) => ({
           },
         };
       }
+      if (key === "province") {
+        return { draft: { ...state.draft, province: String(value), provinceMode: "chosen" } };
+      }
       return { draft: { ...state.draft, [key]: value } };
     }),
+  setAllProvinces: () => set((state) => ({ draft: { ...state.draft, provinceMode: "all" } })),
   setPrincipalMode: (mode) =>
     set((state) => ({
       draft: { ...state.draft, principalMode: mode },
@@ -159,4 +184,5 @@ export const useProfileStore = create<ProfileState>((set, get) => ({
     const next = structuredClone(defaultProfile);
     set({ profile: next, draft: structuredClone(next) });
   },
-}));
+};
+});

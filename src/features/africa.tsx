@@ -1,3 +1,4 @@
+import { selectPressArticles } from "@/lib/failure-press";
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink, X } from "lucide-react";
 import logoIr from "@/assets/brand/logo-ir.png";
@@ -27,7 +28,7 @@ import {
   countryCompareTitle,
 } from "@/data/country-compare";
 import type { CountryCompareAxisId } from "@/data/country-compare-proof";
-import { failurePress, failureRisks } from "@/data/failures";
+import { failureRisks } from "@/data/failures";
 import { OPPORTUNITY_THEMES, type OpportunityThemeId } from "@/data/opportunity-proof";
 import { sectionBanners } from "@/data/section-banners";
 import { OpportunitiesShell, SalariesSection, SectionLabel, Surface } from "@/features/market";
@@ -365,7 +366,9 @@ function LivingProofSlide() {
 export function RisksSection() {
   const profile = useProfileStore((s) => s.draft);
   const market = householdMarket(profile);
-  const pressSample = failurePress.filter((a) => a.theme === "distress").slice(0, 2);
+  const goToSectionId = useDeckStore((s) => s.goToSectionId);
+  // Un article par thème (logement, emploi, détresse), choisi selon la situation du prospect.
+  const pressSample = selectPressArticles(profile, { perTheme: 1 });
   return (
     <OpportunitiesShell
       kicker="Pièges & détresse"
@@ -398,7 +401,7 @@ export function RisksSection() {
         </ul>
       </Surface>
       {pressSample.length > 0 ? (
-        <div className="grid gap-3 @min-[36rem]:grid-cols-2">
+        <div className="grid gap-3 @min-[36rem]:grid-cols-3">
           {pressSample.map((article) => (
             <a
               key={article.url}
@@ -409,8 +412,15 @@ export function RisksSection() {
             >
               <img src={article.image} alt="" className="h-28 w-full object-cover object-[center_28%]" />
               <div className="p-4">
-                <p className="text-[11px] font-semibold tracking-wide text-primary uppercase">{article.source}</p>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[11px] font-semibold tracking-wide text-primary uppercase">{article.source}</p>
+                  <p className="text-[11px] text-muted-foreground">{article.date}</p>
+                </div>
                 <p className="mt-1.5 text-[13px] font-semibold text-[#1a2332] group-hover:text-primary">{article.title}</p>
+                <p className="mt-1 line-clamp-3 text-[12px] leading-relaxed text-muted-foreground">{article.excerpt}</p>
+                <p className="mt-1.5 flex w-fit rounded-md bg-secondary px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                  Pertinent : {article.reason}
+                </p>
                 <span className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-primary">
                   Lire
                   <ExternalLink className="size-3" />
@@ -420,6 +430,21 @@ export function RisksSection() {
           ))}
         </div>
       ) : null}
+      <Surface className="flex flex-col gap-3 border-transparent bg-linear-to-br from-primary to-ir-deep p-5 text-white @min-[36rem]:flex-row @min-[36rem]:items-center @min-[36rem]:justify-between">
+        <div>
+          <p className="text-[16px] font-semibold leading-snug">Bien préparé, c’est possible.</p>
+          <p className="mt-1 text-[13px] text-white/80">
+            Ces pièges s’évitent avec une stratégie claire, un budget prévu et le bon programme dès le départ.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => goToSectionId("rdv")}
+          className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg bg-white px-5 text-sm font-semibold text-primary hover:bg-white/90"
+        >
+          Prendre rendez-vous
+        </button>
+      </Surface>
     </OpportunitiesShell>
   );
 }
