@@ -298,17 +298,27 @@ const EVALUATORS: Record<OpportunityId, (c: Ctx) => Eval> = {
   },
   "ee-fsw": (c) => {
     if (!skilled(c)) return { status: "blocked", gaps: [`Profession ${teerLabel(c)} : FEER 0-3 requise.`] };
-    const gaps: string[] = [];
-    if (c.member.experience < 1) gaps.push("1 an d’expérience qualifiée continue requis.");
-    if (c.bestLang < 7) gaps.push(`Meilleure langue estimée NCLC ${c.bestLang} — NCLC 7 requis.`);
+    const hard: string[] = [];
+    const soft: string[] = [];
+    if (c.member.experience < 1) hard.push("1 an d’expérience qualifiée continue requis.");
+    if (c.bestLang < 7) hard.push(`Meilleure langue estimée NCLC ${c.bestLang} — NCLC 7 requis.`);
     const points = fswOf(c).total;
-    const farFromGrid = points < FSW_PASS - 10;
-    if (points < FSW_PASS) gaps.push(fswGap(points));
+    if (points < FSW_PASS) {
+      const gap = fswGap(points);
+      if (points < FSW_PASS - 10) hard.push(gap);
+      else soft.push(gap);
+    }
     const funds = settlementFundsFor(irccFamilySize(c.profile));
-    if (c.profile.budget < funds && !c.hasOffer) gaps.push(`Fonds d’établissement ≈ ${funds.toLocaleString("fr-CA")} $ à prouver.`);
+    if (c.profile.budget < funds && !c.hasOffer) {
+      soft.push(`Fonds d’établissement ≈ ${funds.toLocaleString("fr-CA")} $ à prouver.`);
+    }
     const watch = c.wantsQuebec ? ["Destination Québec : la RP fédérale exige de s’installer hors Québec."] : [];
-    if (gaps.length === 0) return { status: "ready", why: [`Grille FSW ${points}/${FSW_PASS}, expérience, langue et fonds compatibles.`], watch };
-    return { status: gaps.length === 1 && !farFromGrid ? "lever" : "blocked", gaps, watch };
+    if (hard.length === 0 && soft.length === 0) {
+      return { status: "ready", why: [`Grille FSW ${points}/${FSW_PASS}, expérience, langue et fonds compatibles.`], watch };
+    }
+    // Bloquant seulement si critères durs non rattrapables à court terme.
+    if (hard.length > 0) return { status: "blocked", gaps: [...hard, ...soft], watch };
+    return { status: "lever", gaps: soft, watch, bonus: 8 };
   },
   "ee-cec": (c) => {
     if (!skilled(c)) return { status: "blocked", gaps: [`Profession ${teerLabel(c)} : FEER 0-3 requise.`] };
@@ -329,14 +339,38 @@ const EVALUATORS: Record<OpportunityId, (c: Ctx) => Eval> = {
   "ee-french": (c) => {
     const base = skilled(c) && (c.member.experience >= 1 || c.canExp >= 1);
     if (!base) return { status: "blocked", gaps: ["Il faut d’abord être admissible à Entrée express (FEER 0-3, 1 an d’expérience)."] };
-    // Admissibilité FSW calculée avec le français visé (NCLC 7), sauf si CEC / FST couvre déjà le profil.
+    if (c.fr < 5) return { status: "blocked", gaps: ["Français insuffisant pour la catégorie francophone (viser NCLC 7)."] };
+    // Admissibilité FSW avec le français visé (NCLC 7), sauf si CEC / FST couvre déjà le profil.
     const withTargetFrench = c.fr >= 7 ? c.member : { ...c.member, french: "Avancé" };
     const fswWithFrench = fswOf(c, withTargetFrench);
     const cecOrFst = (c.canExp >= 1 && c.fr >= 5) || (c.trade && c.hasOffer && c.member.experience >= 2);
-    if (!fswWithFrench.pass && !cecOrFst) return { status: "blocked", gaps: [fswGap(fswWithFrench.total)] };
-    if (c.fr >= 7) return { status: "ready", why: [`Français NCLC ${c.fr} : accès aux tirages francophones à seuil bas.`], bonus: 20 };
-    if (c.fr >= 5) return { status: "lever", gaps: [`Français estimé NCLC ${c.fr} — monter à NCLC 7 dans les 4 compétences.`], bonus: 12 };
-    return { status: "blocked", gaps: ["Français insuffisant pour la catégorie francophone."] };
+    const nearFsw = fswWithFrench.total >= FSW_PASS - 10;
+    const funds = settlementFundsFor(irccFamilySize(c.profile));
+    const fundsGap =
+      c.profile.budget < funds && !c.hasOffer && c.canExp < 1
+        ? `Fonds d’établissement ≈ ${funds.toLocaleString("fr-CA")} $ à prouver.`
+        : null;
+
+    if (!fswWithFrench.pass && !cecOrFst) {
+      // Proche de 67 pts : levier (ex. Aminata 62/67) — ne jamais enterrer la catégorie francophone.
+      if (nearFsw) {
+        const gaps = [fswGap(fswWithFrench.total)];
+        if (c.fr < 7) gaps.unshift(`Français estimé NCLC ${c.fr} — monter à NCLC 7 dans les 4 compétences.`);
+        if (fundsGap) gaps.push(fundsGap);
+        return { status: "lever", gaps, bonus: c.fr >= 7 ? 22 : 12 };
+      }
+      return { status: "blocked", gaps: [fswGap(fswWithFrench.total)] };
+    }
+
+    if (c.fr >= 7) {
+      if (fundsGap) return { status: "lever", why: [`Français NCLC ${c.fr} : tirages francophones à seuil bas.`], gaps: [fundsGap], bonus: 20 };
+      return { status: "ready", why: [`Français NCLC ${c.fr} : accès aux tirages francophones à seuil bas.`], bonus: 24 };
+    }
+    return {
+      status: "lever",
+      gaps: [`Français estimé NCLC ${c.fr} — monter à NCLC 7 dans les 4 compétences.`, ...(fundsGap ? [fundsGap] : [])],
+      bonus: 14,
+    };
   },
   "ee-health": (c) => {
     if (!c.health) return { status: "blocked", gaps: ["Profession hors santé et services sociaux."] };

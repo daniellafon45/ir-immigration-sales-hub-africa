@@ -75,34 +75,35 @@ export const spouseEducationPoints: Record<string, number> = {
 
 /**
  * Le profil capture un niveau global (Débutant/Intermédiaire/Avancé/Bilingue) plutôt que les 4
- * habiletés CLB séparées exigées par la grille officielle. Cette table applique un point par
- * habileté (×4) à titre d’estimation — à confirmer avec un test linguistique reconnu (TEF/IELTS/CELPIP).
+ * habiletés CLB séparées. Valeurs = points **par habileté** (grille CRS IRCC), puis ×4.
+ * Mapping indicatif : Débutant sous CLB 4, Intermédiaire ≈ CLB 5, Avancé ≈ CLB 7, Bilingue ≈ CLB 9.
+ * À confirmer avec un test officiel (TEF/IELTS/CELPIP).
  */
 export const firstLanguageAbilityPointsSolo: Record<LanguageLevel, number> = {
   Débutant: 0,
-  Intermédiaire: 16,
-  Avancé: 29,
-  Bilingue: 32,
+  Intermédiaire: 6,
+  Avancé: 17,
+  Bilingue: 31,
 };
 
 export const firstLanguageAbilityPointsSpouse: Record<LanguageLevel, number> = {
   Débutant: 0,
-  Intermédiaire: 15,
-  Avancé: 27,
-  Bilingue: 30,
+  Intermédiaire: 6,
+  Avancé: 16,
+  Bilingue: 29,
 };
 
 export const secondLanguageAbilityPoints: Record<LanguageLevel, number> = {
-  Débutant: 1,
-  Intermédiaire: 3,
-  Avancé: 6,
+  Débutant: 0,
+  Intermédiaire: 1,
+  Avancé: 3,
   Bilingue: 6,
 };
 
 export const spouseLanguageAbilityPoints: Record<LanguageLevel, number> = {
-  Débutant: 1,
-  Intermédiaire: 3,
-  Avancé: 5,
+  Débutant: 0,
+  Intermédiaire: 1,
+  Avancé: 3,
   Bilingue: 5,
 };
 

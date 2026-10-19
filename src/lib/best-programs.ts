@@ -84,7 +84,9 @@ function chanceOf(
   if (isEe) {
     if (!crsCheck) return { level: "faible", reason: "Aucun tirage récent dans cette catégorie." };
     if (crsCheck.above) return { level: "élevée", reason: `CRS ${crsCheck.score} ≥ dernier seuil ${crsCheck.cutoff} (${crsCheck.date}).` };
-    if (crsCheck.cutoff - crsCheck.score <= 50) {
+    // Catégorie francophone : les seuils oscillent davantage ; une marge de 80 pts reste « moyenne ».
+    const nearGap = match.program.id === "ee-french" ? 80 : 50;
+    if (crsCheck.cutoff - crsCheck.score <= nearGap) {
       return { level: "moyenne", reason: `CRS ${crsCheck.score} proche du dernier seuil ${crsCheck.cutoff} (${crsCheck.date}).` };
     }
     return { level: "faible", reason: `CRS ${crsCheck.score} loin du dernier seuil ${crsCheck.cutoff} (${crsCheck.date}).` };
@@ -312,6 +314,13 @@ function provinceOrder(programId: OpportunityId, offerProvince: string): string[
   return offerProvince ? [offerProvince, "Québec", ...base] : ["Québec", ...base];
 }
 
+/** 2 = sans employeur, 1 = employeur déjà en main, 0 = employeur à trouver. */
+function autonomyOf(match: OpportunityMatch, scenario: Profile): 0 | 1 | 2 {
+  if (!match.needsEmployer) return 2;
+  if (scenario.workHasOffer) return 1;
+  return 0;
+}
+
 function rankOf(
   match: OpportunityMatch,
   scenario: Profile,
@@ -335,8 +344,9 @@ function rankOf(
     penalties.push(`Fonds d’établissement ≈ ${fundsToShowCad.toLocaleString("fr-CA")} $ à prouver.`);
   }
   if (crsCheck) {
+    const farGap = match.program.id === "ee-french" ? 80 : 50;
     if (crsCheck.above) rank += 15;
-    else if (crsCheck.cutoff - crsCheck.score > 50) {
+    else if (crsCheck.cutoff - crsCheck.score > farGap) {
       // Une invitation est alors très peu probable : la voie ne doit pas passer devant une voie réaliste.
       rank -= 40;
       penalties.push(`CRS estimé ${crsCheck.score} loin du dernier seuil (${crsCheck.cutoff}) : invitation peu probable.`);
@@ -349,6 +359,10 @@ function rankOf(
     penalties.push("Aucun tirage récent (12 derniers mois) dans cette catégorie Entrée express.");
   }
   if (DIRECT_PR.has(match.program.family)) rank += 10;
+  // Catégorie francophone : voie EE la plus réaliste dès NCLC 7 — remonter devant les pilotes employeur.
+  if (match.program.id === "ee-french" && (match.status === "ready" || match.status === "lever")) {
+    rank += 18;
+  }
   return { rank, penalties };
 }
 
@@ -422,15 +436,19 @@ export function findBestPrograms(
     }
   }
 
-  // Le niveau de chance prime : un programme « moyenne » passe devant un « faible », puis le rang départage.
+  // Chance d’abord, puis autonomie (sans employeur avant les pilotes qui en exigent un),
+  // puis délai, puis rang métier.
   const CHANCE_ORDER: Record<ChanceLevel, number> = { élevée: 0, moyenne: 1, faible: 2 };
-  const all = [...best.values()].sort(
-    (a, b) =>
-      CHANCE_ORDER[a.chance.level] - CHANCE_ORDER[b.chance.level] ||
-      SPEED_ORDER[a.timeline.speed] - SPEED_ORDER[b.timeline.speed] ||
-      b.rank - a.rank ||
-      b.score - a.score,
-  );
+  const all = [...best.values()]
+    .map((m) => ({ ...m, autonomy: autonomyOf(m, { ...cv, workHasOffer: cv.workHasOffer, offerProvince: cv.offerProvince }) }))
+    .sort(
+      (a, b) =>
+        CHANCE_ORDER[a.chance.level] - CHANCE_ORDER[b.chance.level] ||
+        b.autonomy - a.autonomy ||
+        SPEED_ORDER[a.timeline.speed] - SPEED_ORDER[b.timeline.speed] ||
+        b.rank - a.rank ||
+        b.score - a.score,
+    );
   const top = all
     .filter((m) => !EXPLORATION.has(m.program.id))
     .filter((m) => m.status === "ready" || m.status === "lever" || m.status === "bridge")
